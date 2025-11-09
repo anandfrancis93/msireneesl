@@ -7,39 +7,43 @@ import { Briefcase, MapPin, Calendar } from 'lucide-react';
 
 const experiences = [
   {
-    title: 'ESL Instructor',
-    institution: 'Brigham Young University',
-    location: 'Provo, Utah',
-    period: '2018 - Present',
+    title: 'Online Teacher/Tutor',
+    institution: 'Brigham Young University, Online Teaching & Learning Department',
+    location: '',
+    period: 'January 2019 to current',
     responsibilities: [
-      'Teaching English to international students at various proficiency levels',
-      'Developing curriculum and lesson plans aligned with institutional standards',
-      'Conducting assessments and providing individualized feedback',
-      'Mentoring new ESL instructors and contributing to professional development',
+      'Teaching adults and children whose first or main language is not English.',
+      'Making daily lesson plans using a range of course books and materials, and a variety of audio visual aids.',
+      'Classroom management',
+      'Planning, preparing and delivering lessons to a range of classes and age groups;',
+      'Preparing and setting tests, examination papers, and exercises',
+      'Marking and providing appropriate feedback on oral and written work',
+      'Devising, writing and producing new materials, including audio and visual resources',
+      'Attending and contributing to training sessions',
+      'Participating in marketing events for the language school',
+      'Preparing information for inspection visits and other quality assurance exercises',
+      'Freelance teaching on a one-to-one basis',
+      'Basic administration, such as keeping student registers and attendance records',
     ],
   },
   {
-    title: 'ESL Teacher',
-    institution: 'Utah Valley University',
-    location: 'Orem, Utah',
-    period: '2015 - 2018',
+    title: 'English Instructor/Teacher',
+    institution: 'Inlingua, a Language School',
+    location: '',
+    period: 'April 2013 to August 2017',
     responsibilities: [
-      'Instructed diverse groups of ESL students in reading, writing, speaking, and listening',
-      'Implemented interactive teaching methods to enhance student engagement',
-      'Collaborated with faculty to improve ESL program offerings',
-      'Organized cultural exchange activities to support language learning',
-    ],
-  },
-  {
-    title: 'International ESL Instructor',
-    institution: 'Various International Schools',
-    location: 'Multiple Countries',
-    period: '2010 - 2015',
-    responsibilities: [
-      'Taught English in diverse cultural settings across multiple countries',
-      'Adapted teaching strategies to accommodate different learning styles',
-      'Developed cross-cultural communication skills',
-      'Created engaging materials for students of varying ages and backgrounds',
+      'Teaching adults and children whose first or main language is not English.',
+      'Making daily lesson plans using a range of course books and materials, and a variety of audio visual aids.',
+      'Classroom management',
+      'Planning, preparing and delivering lessons to a range of classes and age groups;',
+      'Preparing and setting tests, examination papers, and exercises',
+      'Marking and providing appropriate feedback on oral and written work',
+      'Devising, writing and producing new materials, including audio and visual resources',
+      'Attending and contributing to training sessions',
+      'Participating in marketing events for the language school',
+      'Preparing information for inspection visits and other quality assurance exercises',
+      'Freelance teaching on a one-to-one basis',
+      'Basic administration, such as keeping student registers and attendance records',
     ],
   },
 ];
@@ -86,10 +90,12 @@ export default function WorkExperience() {
                       <Briefcase size={16} />
                       <span className="font-semibold">{exp.institution}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin size={16} />
-                      <span>{exp.location}</span>
-                    </div>
+                    {exp.location && (
+                      <div className="flex items-center gap-2">
+                        <MapPin size={16} />
+                        <span>{exp.location}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Responsibilities */}
@@ -121,22 +127,6 @@ export default function WorkExperience() {
           ))}
         </div>
 
-        {/* Additional Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 text-center"
-        >
-          <div className="bg-dark-surface border border-dark-border rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-xl font-bold mb-4">Additional Experience</h3>
-            <p className="text-text-secondary leading-relaxed">
-              Throughout my career, I have also provided private tutoring, conducted
-              workshops for language educators, and participated in professional development
-              conferences focused on innovative ESL teaching methodologies and technologies.
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
