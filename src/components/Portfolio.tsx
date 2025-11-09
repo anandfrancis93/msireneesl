@@ -3,198 +3,124 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { BookOpen, Users, Award, FileText, Video, Presentation } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react';
 
-const portfolioItems = [
-  {
-    icon: BookOpen,
-    category: 'Curriculum',
-    title: 'Comprehensive ESL Curriculum',
-    description: 'Developed a complete curriculum for intermediate ESL learners focusing on practical communication skills.',
-    tags: ['Speaking', 'Writing', 'Grammar'],
-  },
-  {
-    icon: Presentation,
-    category: 'Workshop',
-    title: 'Interactive Teaching Methods Workshop',
-    description: 'Designed and delivered professional development workshops for ESL educators on student engagement.',
-    tags: ['Professional Development', 'Teaching Methods'],
-  },
-  {
-    icon: FileText,
-    category: 'Materials',
-    title: 'Cultural Exchange Activities',
-    description: 'Created interactive lesson plans integrating cultural awareness with language learning objectives.',
-    tags: ['Culture', 'Activities', 'Engagement'],
-  },
-  {
-    icon: Video,
-    category: 'Online Course',
-    title: 'Digital ESL Learning Modules',
-    description: 'Developed online learning modules for remote ESL instruction with multimedia content.',
-    tags: ['Online Learning', 'Technology', 'Multimedia'],
-  },
-  {
-    icon: Users,
-    category: 'Program',
-    title: 'Student Mentorship Program',
-    description: 'Established a peer mentorship program connecting advanced and beginner ESL students.',
-    tags: ['Mentorship', 'Community', 'Support'],
-  },
-  {
-    icon: Award,
-    category: 'Achievement',
-    title: 'Teaching Excellence Recognition',
-    description: 'Received multiple awards for outstanding teaching performance and student satisfaction scores.',
-    tags: ['Awards', 'Recognition', 'Excellence'],
-  },
+// Placeholder images - replace with actual image paths later
+const portfolioImages = [
+  { id: 1, alt: 'Portfolio Image 1' },
+  { id: 2, alt: 'Portfolio Image 2' },
+  { id: 3, alt: 'Portfolio Image 3' },
+  { id: 4, alt: 'Portfolio Image 4' },
+  { id: 5, alt: 'Portfolio Image 5' },
+  { id: 6, alt: 'Portfolio Image 6' },
 ];
-
-const categories = ['All', 'Curriculum', 'Workshop', 'Materials', 'Online Course', 'Program', 'Achievement'];
 
 export default function Portfolio() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const filteredItems =
-    activeCategory === 'All'
-      ? portfolioItems
-      : portfolioItems.filter((item) => item.category === activeCategory);
+  const goToPrevious = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? portfolioImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNext = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === portfolioImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const goToImage = (index: number) => {
+    setCurrentImageIndex(index);
+  };
 
   return (
-    <section className="section-padding bg-dark-surface">
+    <section className="section-padding bg-dark-surface min-h-screen">
       <div className="container-custom" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Teaching <span className="gradient-text">Portfolio</span>
+            My <span className="gradient-text">Portfolio</span>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-            Projects, curricula, and achievements showcasing my commitment to excellence in ESL education
+            Welcome to my portfolio. Here you'll find a selection of my work. Explore my projects to learn more about what I do.
           </p>
         </motion.div>
 
-        {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
-        >
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeCategory === category
-                  ? 'bg-accent-primary text-white'
-                  : 'bg-dark-elevated text-text-secondary hover:text-text-primary hover:bg-dark-hover border border-dark-border'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Portfolio Grid */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                layout
-                key={item.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                whileHover={{ y: -8 }}
-                className="card-dark h-full flex flex-col group cursor-pointer"
-              >
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-accent-primary/20 to-accent-secondary/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-8 h-8 text-accent-primary" />
-                  </div>
-                </div>
-
-                {/* Category */}
-                <div className="text-xs text-accent-primary font-medium mb-2">
-                  {item.category}
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold mb-3 group-hover:text-accent-primary transition-colors duration-300">
-                  {item.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-text-secondary text-sm mb-6 flex-1 leading-relaxed">
-                  {item.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-dark-elevated border border-dark-border rounded-full text-xs text-text-tertiary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* Evaluations Section */}
+        {/* Slideshow */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-20"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="max-w-5xl mx-auto"
         >
-          <h3 className="text-3xl font-bold mb-12 text-center">
-            Student <span className="gradient-text">Evaluations</span>
-          </h3>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="card-dark">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-5 h-5 text-accent-primary">★</div>
-                ))}
-              </div>
-              <p className="text-text-secondary leading-relaxed mb-4">
-                "Ms. Irene changed my vision about grammar and writing because she taught me with love, and the Holy ghost company. I learned a lot with her, and I am so grateful for her. She is amazing, and she is a big example to learn another language, and how to be patient with English Students."
-              </p>
-              <div className="border-t border-dark-border pt-4">
-                <div className="font-semibold">Isabella M.</div>
-                <div className="text-sm text-text-tertiary">Student</div>
+          {/* Main Image Display */}
+          <div className="relative bg-dark-bg border border-dark-border rounded-2xl overflow-hidden mb-6">
+            <div className="aspect-video flex items-center justify-center bg-dark-elevated">
+              {/* Placeholder for main image */}
+              <div className="flex flex-col items-center gap-4">
+                <ImageIcon className="w-24 h-24 text-text-tertiary" />
+                <p className="text-text-tertiary text-sm">
+                  Portfolio Image {currentImageIndex + 1}
+                </p>
               </div>
             </div>
 
-            <div className="card-dark">
-              <div className="flex gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-5 h-5 text-accent-primary">★</div>
-                ))}
-              </div>
-              <p className="text-text-secondary leading-relaxed mb-4">
-                "Irene is a confident, friendly, and imaginative teacher of ESL. She thinks of things to do with her students that are outside the usual classroom activities, but that still contribute to their learning and practice of the language. I have often been amazed at her creativity."
-              </p>
-              <div className="border-t border-dark-border pt-4">
-                <div className="font-semibold">Jessica M.</div>
-                <div className="text-sm text-text-tertiary">Trainer & Mentor</div>
-              </div>
+            {/* Navigation Arrows */}
+            <button
+              onClick={goToPrevious}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-dark-elevated/90 hover:bg-dark-hover border border-dark-border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+              aria-label="Previous image"
+            >
+              <ChevronLeft className="w-6 h-6 text-accent-primary" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-dark-elevated/90 hover:bg-dark-hover border border-dark-border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+              aria-label="Next image"
+            >
+              <ChevronRight className="w-6 h-6 text-accent-primary" />
+            </button>
+
+            {/* Image Counter */}
+            <div className="absolute bottom-4 right-4 bg-dark-elevated/90 backdrop-blur-sm px-4 py-2 rounded-full border border-dark-border">
+              <span className="text-text-primary text-sm font-medium">
+                {currentImageIndex + 1} / {portfolioImages.length}
+              </span>
             </div>
+          </div>
+
+          {/* Thumbnail Strip */}
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+            {portfolioImages.map((image, index) => (
+              <motion.button
+                key={image.id}
+                onClick={() => goToImage(index)}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                className={`aspect-video bg-dark-elevated border-2 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 flex items-center justify-center ${
+                  currentImageIndex === index
+                    ? 'border-accent-primary ring-2 ring-accent-primary/50'
+                    : 'border-dark-border hover:border-accent-primary/50'
+                }`}
+              >
+                {/* Placeholder for thumbnail */}
+                <ImageIcon
+                  className={`w-8 h-8 ${
+                    currentImageIndex === index
+                      ? 'text-accent-primary'
+                      : 'text-text-tertiary'
+                  }`}
+                />
+              </motion.button>
+            ))}
           </div>
         </motion.div>
       </div>
