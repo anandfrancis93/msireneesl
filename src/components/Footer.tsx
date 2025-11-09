@@ -11,9 +11,10 @@ const socialLinks = [
 
 const footerLinks = [
   { title: 'Home', href: '#home' },
-  { title: 'About', href: '#about' },
-  { title: 'Expertise', href: '#services' },
-  { title: 'Evaluations', href: '#evaluations' },
+  { title: 'About Me', href: '#about' },
+  { title: 'TESOL', href: '#tesol' },
+  { title: 'Work Experience', href: '#experience' },
+  { title: 'Portfolio', href: '#portfolio' },
   { title: 'Contact', href: '#contact' },
 ];
 

@@ -88,12 +88,12 @@ export default function Hero() {
             </button>
             <button
               onClick={() => {
-                const element = document.querySelector('#evaluations');
+                const element = document.querySelector('#portfolio');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
               className="btn-secondary"
             >
-              Read Evaluations
+              View Portfolio
             </button>
           </motion.div>
 
