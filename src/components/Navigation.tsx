@@ -1,13 +1,21 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About Me', href: '#about' },
-  { name: 'TESOL', href: '#tesol' },
+  {
+    name: 'TESOL',
+    href: '#tesol',
+    submenu: [
+      { name: 'Book Reports', href: '#book-reports' },
+      { name: 'Lesson Plans', href: '#lesson-plans' },
+      { name: 'Test Technical Manual', href: '#test-manual' },
+    ]
+  },
   { name: 'Work Experience', href: '#experience' },
   { name: 'Portfolio', href: '#portfolio' },
   { name: 'Contact', href: '#contact' },
@@ -16,6 +24,7 @@ const navItems = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,18 +71,59 @@ export default function Navigation() {
             className="hidden md:flex items-center space-x-8"
           >
             {navItems.map((item, index) => (
-              <motion.button
+              <motion.div
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className="text-text-secondary hover:text-text-primary transition-colors duration-300 text-sm font-medium"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="relative"
+                onMouseEnter={() => item.submenu && setActiveDropdown(item.name)}
+                onMouseLeave={() => item.submenu && setActiveDropdown(null)}
               >
-                {item.name}
-              </motion.button>
+                {item.submenu ? (
+                  <>
+                    <button
+                      className="text-text-secondary hover:text-text-primary transition-colors duration-300 text-sm font-medium flex items-center gap-1"
+                    >
+                      {item.name}
+                      <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
+                    </button>
+                    <AnimatePresence>
+                      {activeDropdown === item.name && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full left-0 mt-2 bg-dark-surface border border-dark-border rounded-xl shadow-xl overflow-hidden min-w-[200px]"
+                        >
+                          {item.submenu.map((subItem) => (
+                            <button
+                              key={subItem.name}
+                              onClick={() => {
+                                scrollToSection(subItem.href);
+                                setActiveDropdown(null);
+                              }}
+                              className="block w-full text-left px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-dark-elevated transition-colors duration-200 text-sm"
+                            >
+                              {subItem.name}
+                            </button>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </>
+                ) : (
+                  <motion.button
+                    onClick={() => scrollToSection(item.href)}
+                    className="text-text-secondary hover:text-text-primary transition-colors duration-300 text-sm font-medium"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {item.name}
+                  </motion.button>
+                )}
+              </motion.div>
             ))}
           </motion.div>
 
@@ -101,17 +151,60 @@ export default function Navigation() {
             transition={{ duration: 0.3 }}
             className="md:hidden bg-dark-surface border-b border-dark-border"
           >
-            <div className="container-custom py-4 space-y-4">
+            <div className="container-custom py-4 space-y-2">
               {navItems.map((item) => (
-                <motion.button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-text-secondary hover:text-text-primary transition-colors duration-300 py-2"
-                  whileHover={{ x: 10 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {item.name}
-                </motion.button>
+                <div key={item.name}>
+                  {item.submenu ? (
+                    <div>
+                      <button
+                        onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
+                        className="flex items-center justify-between w-full text-left text-text-secondary hover:text-text-primary transition-colors duration-300 py-2"
+                      >
+                        {item.name}
+                        <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
+                      </button>
+                      <AnimatePresence>
+                        {activeDropdown === item.name && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="pl-4 space-y-2 overflow-hidden"
+                          >
+                            {item.submenu.map((subItem) => (
+                              <motion.button
+                                key={subItem.name}
+                                onClick={() => {
+                                  scrollToSection(subItem.href);
+                                  setIsOpen(false);
+                                  setActiveDropdown(null);
+                                }}
+                                className="block w-full text-left text-text-secondary hover:text-text-primary transition-colors duration-300 py-2 text-sm"
+                                whileHover={{ x: 10 }}
+                                whileTap={{ scale: 0.95 }}
+                              >
+                                {subItem.name}
+                              </motion.button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ) : (
+                    <motion.button
+                      onClick={() => {
+                        scrollToSection(item.href);
+                        setIsOpen(false);
+                      }}
+                      className="block w-full text-left text-text-secondary hover:text-text-primary transition-colors duration-300 py-2"
+                      whileHover={{ x: 10 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {item.name}
+                    </motion.button>
+                  )}
+                </div>
               ))}
             </div>
           </motion.div>
