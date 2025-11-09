@@ -12,8 +12,8 @@ const socialLinks = [
 const footerLinks = [
   { title: 'Home', href: '#home' },
   { title: 'About', href: '#about' },
-  { title: 'Services', href: '#services' },
-  { title: 'Portfolio', href: '#portfolio' },
+  { title: 'Expertise', href: '#services' },
+  { title: 'Evaluations', href: '#evaluations' },
   { title: 'Contact', href: '#contact' },
 ];
 
@@ -33,10 +33,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold gradient-text mb-4">Irene</h3>
+            <h3 className="text-2xl font-bold gradient-text mb-4">Ms. Irene</h3>
             <p className="text-text-secondary text-sm leading-relaxed">
-              Creating beautiful, minimal digital experiences that make a lasting
-              impact.
+              Dedicated ESL instructor empowering students to achieve language proficiency and unlock new opportunities.
             </p>
           </div>
 
@@ -85,8 +84,8 @@ export default function Footer() {
         <div className="pt-8 border-t border-dark-border">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-text-tertiary">
             <p className="flex items-center gap-1">
-              © {currentYear} Irene. Made with{' '}
-              <Heart size={14} className="text-accent-primary fill-current" /> by Irene
+              © {currentYear} Ms. Irene. Teaching with{' '}
+              <Heart size={14} className="text-accent-primary fill-current" /> and dedication
             </p>
             <p>All rights reserved.</p>
           </div>

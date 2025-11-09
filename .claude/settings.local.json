@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git config:*)",
+      "WebFetch(domain:vidyairenerm.wixsite.com)",
+      "Bash(find:*)",
+      "Bash(dir \"C:\\Users\\anand\\msireneesl\" /b /s /ad)",
+      "Bash(npx create-next-app@latest:*)",
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)",
+      "Bash(public/README.md)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

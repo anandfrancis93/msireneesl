@@ -7,8 +7,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
-  { name: 'Services', href: '#services' },
-  { name: 'Portfolio', href: '#portfolio' },
+  { name: 'Expertise', href: '#services' },
+  { name: 'Evaluations', href: '#evaluations' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -50,7 +50,7 @@ export default function Navigation() {
             transition={{ duration: 0.5 }}
             className="text-2xl font-bold gradient-text"
           >
-            Irene
+            Ms. Irene
           </motion.div>
 
           {/* Desktop Navigation */}

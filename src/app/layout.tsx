@@ -5,10 +5,10 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Irene - Modern Portfolio",
-  description: "A modern, minimal dark-themed portfolio website",
-  keywords: ["portfolio", "modern", "minimal", "dark theme"],
-  authors: [{ name: "Irene" }],
+  title: "Ms. Irene - ESL Instructor Portfolio",
+  description: "Experienced ESL Teacher, Trainer, and Researcher with over 10 years of experience teaching English to diverse learners",
+  keywords: ["ESL", "English teacher", "TESOL", "language instruction", "education", "language learning"],
+  authors: [{ name: "Ms. Irene" }],
 };
 
 export const viewport: Viewport = {

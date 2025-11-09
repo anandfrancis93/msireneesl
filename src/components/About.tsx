@@ -6,10 +6,10 @@ import { useRef } from 'react';
 import { Code2, Palette, Rocket, Users } from 'lucide-react';
 
 const stats = [
-  { icon: Code2, label: 'Projects Completed', value: '50+' },
-  { icon: Users, label: 'Happy Clients', value: '30+' },
-  { icon: Rocket, label: 'Years Experience', value: '5+' },
-  { icon: Palette, label: 'Design Awards', value: '10+' },
+  { icon: Users, label: 'Students Taught', value: '500+' },
+  { icon: Rocket, label: 'Years Experience', value: '10+' },
+  { icon: Code2, label: 'Institutions', value: '5+' },
+  { icon: Palette, label: 'Countries', value: '3+' },
 ];
 
 export default function About() {
@@ -29,8 +29,7 @@ export default function About() {
             About <span className="gradient-text">Me</span>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-            Passionate about creating seamless digital experiences that combine
-            aesthetics with functionality
+            Experienced ESL Teacher & Language Expert
           </p>
         </motion.div>
 
@@ -43,21 +42,24 @@ export default function About() {
             className="space-y-6"
           >
             <h3 className="text-2xl sm:text-3xl font-bold">
-              Crafting Digital Excellence
+              Experienced ESL Teacher
             </h3>
             <p className="text-text-secondary text-lg leading-relaxed">
-              I'm a creative professional specializing in UI/UX design and
-              full-stack development. With a keen eye for detail and a passion
-              for innovation, I transform ideas into beautiful, functional
-              digital products.
+              I am a dedicated professional with extensive experience in education, language instruction, and customer service. With academic credentials in TESOL, Education, and minors in Psychology and Special Education, I have consistently demonstrated a strong commitment to creating inclusive and effective learning environments.
             </p>
             <p className="text-text-secondary text-lg leading-relaxed">
-              My approach combines modern design principles with cutting-edge
-              technology to deliver experiences that not only look stunning but
-              also perform flawlessly across all devices.
+              Over the years, I have honed my expertise in teaching English as a Second Language (ESL) through roles at institutions like Brigham Young University and Utah Valley University, as well as through international teaching experiences spanning more than a decade.
+            </p>
+            <div className="border-l-4 border-accent-primary bg-dark-elevated p-6 rounded-r-xl my-6">
+              <p className="text-text-primary italic text-lg leading-relaxed">
+                "Language learning is the bridge that connects cultures, unlocks opportunities, and allows us to see the world through new perspectives."
+              </p>
+            </div>
+            <p className="text-text-secondary text-lg leading-relaxed">
+              Passionate ESL teacher dedicated to helping students achieve language proficiency. With over 10 years of experience, I have taught English to diverse groups of students from various cultural backgrounds. My teaching approach focuses on interactive and engaging methods to make learning enjoyable and effective. I am committed to creating a supportive and inclusive learning environment where students feel motivated to succeed.
             </p>
             <div className="flex flex-wrap gap-3 pt-4">
-              {['UI/UX Design', 'React/Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Figma'].map(
+              {['TESOL', 'Education', 'Psychology', 'Special Education', 'ESL Instruction', 'Curriculum Development'].map(
                 (skill, index) => (
                   <motion.span
                     key={skill}

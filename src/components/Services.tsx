@@ -3,38 +3,38 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Laptop, Smartphone, Globe, Zap, Layers, Sparkles } from 'lucide-react';
+import { BookOpen, Users, Globe, GraduationCap, Target, Heart } from 'lucide-react';
 
 const services = [
   {
-    icon: Laptop,
-    title: 'Web Development',
-    description: 'Full-stack web applications built with modern frameworks and best practices for performance and scalability.',
+    icon: BookOpen,
+    title: 'ESL Instruction',
+    description: 'Comprehensive English language teaching for diverse learners, from beginner to advanced levels.',
   },
   {
-    icon: Smartphone,
-    title: 'Responsive Design',
-    description: 'Pixel-perfect, mobile-first designs that look stunning on every device and screen size.',
+    icon: Users,
+    title: 'Interactive Learning',
+    description: 'Engaging, student-centered teaching methods that make language learning enjoyable and effective.',
   },
   {
-    icon: Layers,
-    title: 'UI/UX Design',
-    description: 'User-centered design solutions that prioritize usability, accessibility, and beautiful aesthetics.',
+    icon: GraduationCap,
+    title: 'Academic Credentials',
+    description: 'TESOL, Education degree with minors in Psychology and Special Education for specialized instruction.',
   },
   {
     icon: Globe,
-    title: 'Web Applications',
-    description: 'Complex web applications with seamless user experiences and robust backend architectures.',
+    title: 'Cultural Diversity',
+    description: 'Experience teaching students from various cultural backgrounds across multiple countries.',
   },
   {
-    icon: Zap,
-    title: 'Performance Optimization',
-    description: 'Lightning-fast websites optimized for speed, SEO, and exceptional user experience.',
+    icon: Target,
+    title: 'Curriculum Development',
+    description: 'Custom-designed lesson plans and materials tailored to individual student needs and goals.',
   },
   {
-    icon: Sparkles,
-    title: 'Brand Identity',
-    description: 'Cohesive brand experiences that tell your story and connect with your audience.',
+    icon: Heart,
+    title: 'Supportive Environment',
+    description: 'Creating inclusive, encouraging classrooms where every student feels motivated to succeed.',
   },
 ];
 
@@ -52,10 +52,10 @@ export default function Services() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            What I <span className="gradient-text">Offer</span>
+            Teaching <span className="gradient-text">Expertise</span>
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-            Comprehensive services to bring your digital vision to life
+            Comprehensive language instruction backed by experience and dedication
           </p>
         </motion.div>
 

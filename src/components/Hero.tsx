@@ -62,8 +62,8 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-4xl sm:text-6xl lg:text-7xl font-bold"
           >
-            Hi, I'm{' '}
-            <span className="gradient-text">Irene</span>
+            Welcome to{' '}
+            <span className="gradient-text">Ms. Irene's Portfolio</span>
           </motion.h1>
 
           {/* Subheading */}
@@ -73,8 +73,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-lg sm:text-xl lg:text-2xl text-text-secondary max-w-3xl mx-auto"
           >
-            Creative Designer & Developer crafting beautiful, minimal experiences
-            that make an impact
+            ESL Instructor, Trainer, Researcher and a Lifelong Learner
           </motion.p>
 
           {/* CTA Buttons */}
@@ -85,16 +84,16 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
           >
             <button onClick={scrollToContact} className="btn-primary">
-              Get in Touch
+              Start Your Language Journey Now
             </button>
             <button
               onClick={() => {
-                const element = document.querySelector('#portfolio');
+                const element = document.querySelector('#evaluations');
                 if (element) element.scrollIntoView({ behavior: 'smooth' });
               }}
               className="btn-secondary"
             >
-              View Work
+              Read Evaluations
             </button>
           </motion.div>
 
