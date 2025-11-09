@@ -56,15 +56,18 @@ export default function Hero() {
           </motion.div>
 
           {/* Main Heading */}
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl sm:text-6xl lg:text-7xl font-bold"
           >
-            Welcome to{' '}
-            <span className="gradient-text">Ms. Irene's Portfolio</span>
-          </motion.h1>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-4">
+              Welcome to
+            </h1>
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-bold gradient-text">
+              Ms. Irene's Portfolio
+            </h2>
+          </motion.div>
 
           {/* Subheading */}
           <motion.p
@@ -73,29 +76,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-lg sm:text-xl lg:text-2xl text-text-secondary max-w-3xl mx-auto"
           >
-            ESL Instructor, Trainer, Researcher and a Lifelong Learner
+            ESL Instructor, Trainer, Researcher and a Lifelong Learner.
           </motion.p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
-          >
-            <button onClick={scrollToContact} className="btn-primary">
-              Start Your Language Journey Now
-            </button>
-            <button
-              onClick={() => {
-                const element = document.querySelector('#portfolio');
-                if (element) element.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="btn-secondary"
-            >
-              View Portfolio
-            </button>
-          </motion.div>
 
           {/* Scroll Indicator */}
           <motion.div

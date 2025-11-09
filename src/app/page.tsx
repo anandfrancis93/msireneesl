@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import Evaluations from '@/components/Evaluations';
 import Tesol from '@/components/Tesol';
 import WorkExperience from '@/components/WorkExperience';
 import Portfolio from '@/components/Portfolio';
@@ -13,6 +14,7 @@ export default function Home() {
       <Navigation />
       <Hero />
       <About />
+      <Evaluations />
       <Tesol />
       <WorkExperience />
       <Portfolio />

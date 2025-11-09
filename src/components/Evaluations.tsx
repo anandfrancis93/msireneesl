@@ -54,51 +54,67 @@ export default function Evaluations() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
             <span className="gradient-text">Evaluations</span>
           </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-            What students and colleagues say about my teaching
-          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="max-w-5xl mx-auto space-y-8">
           {evaluations.map((evaluation, index) => (
             <motion.div
               key={evaluation.name}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="card-dark h-full flex flex-col"
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              className="bg-dark-surface border border-dark-border rounded-2xl p-6 md:p-8"
             >
               {/* Quote Icon */}
               <div className="mb-4">
-                <Quote className="w-10 h-10 text-accent-primary opacity-50" />
-              </div>
-
-              {/* Rating */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(evaluation.rating)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className="fill-accent-primary text-accent-primary"
-                  />
-                ))}
+                <Quote className="w-8 h-8 text-accent-primary opacity-50" />
               </div>
 
               {/* Content */}
-              <p className="text-text-secondary leading-relaxed mb-6 flex-1">
-                "{evaluation.content}"
+              <p className="text-text-secondary text-lg leading-relaxed mb-6">
+                {evaluation.content}
               </p>
 
               {/* Author */}
-              <div className="pt-4 border-t border-dark-border">
-                <div className="font-semibold text-text-primary">
-                  {evaluation.name}
+              <div className="flex items-center justify-between pt-4 border-t border-dark-border">
+                <div>
+                  <div className="font-bold text-text-primary text-lg">
+                    {evaluation.name}
+                  </div>
+                  <div className="text-sm text-text-tertiary">{evaluation.role}</div>
                 </div>
-                <div className="text-sm text-text-tertiary">{evaluation.role}</div>
+                {/* Rating */}
+                <div className="flex gap-1">
+                  {[...Array(evaluation.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={18}
+                      className="fill-accent-primary text-accent-primary"
+                    />
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-center mt-16"
+        >
+          <button
+            onClick={() => {
+              const element = document.querySelector('#contact');
+              if (element) element.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="btn-primary text-lg px-8 py-4"
+          >
+            Start Your Language Journey Now
+          </button>
+        </motion.div>
       </div>
     </section>
   );
