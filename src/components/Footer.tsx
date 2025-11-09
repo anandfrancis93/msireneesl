@@ -10,22 +10,24 @@ const socialLinks = [
 ];
 
 const footerLinks = [
-  { title: 'Home', href: '#home' },
-  { title: 'About Me', href: '#about' },
-  { title: 'TESOL', href: '#tesol' },
-  { title: 'Work Experience', href: '#experience' },
-  { title: 'Portfolio', href: '#portfolio' },
-  { title: 'Contact', href: '#contact' },
+  { title: 'Home', page: 'home' },
+  { title: 'About Me', page: 'about' },
+  { title: 'TESOL', page: 'tesol' },
+  { title: 'Work Experience', page: 'experience' },
+  { title: 'Portfolio', page: 'portfolio' },
+  { title: 'Contact', page: 'contact' },
 ];
 
-export default function Footer() {
+interface FooterProps {
+  setActivePage: (page: string) => void;
+}
+
+export default function Footer({ setActivePage }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handlePageChange = (page: string) => {
+    setActivePage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -47,7 +49,7 @@ export default function Footer() {
               {footerLinks.map((link) => (
                 <button
                   key={link.title}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => handlePageChange(link.page)}
                   className="block text-text-secondary hover:text-accent-primary transition-colors duration-300 text-sm"
                 >
                   {link.title}

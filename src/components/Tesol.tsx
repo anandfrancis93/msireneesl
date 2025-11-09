@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { GraduationCap, Award, BookOpen, Users, Globe2, Target } from 'lucide-react';
 
 const qualifications = [
@@ -41,12 +41,28 @@ const expertise = [
   },
 ];
 
-export default function Tesol() {
+interface TesolProps {
+  activePage: string;
+}
+
+export default function Tesol({ activePage }: TesolProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
+  // Scroll to the specific subsection when activePage changes
+  useEffect(() => {
+    if (activePage === 'book-reports' || activePage === 'lesson-plans' || activePage === 'test-manual') {
+      setTimeout(() => {
+        const element = document.getElementById(activePage);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [activePage]);
+
   return (
-    <section id="tesol" className="section-padding bg-dark-surface">
+    <section className="section-padding bg-dark-surface">
       <div className="container-custom" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}

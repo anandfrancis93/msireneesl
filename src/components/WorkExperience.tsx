@@ -53,7 +53,7 @@ export default function WorkExperience() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="experience" className="section-padding bg-dark-bg">
+    <section className="section-padding bg-dark-bg">
       <div className="container-custom" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}

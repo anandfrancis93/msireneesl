@@ -42,15 +42,8 @@ export default function Home() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const scrollToContact = () => {
-    const element = document.querySelector('#contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section id="home" className="min-h-screen flex flex-col">
+    <section className="min-h-screen flex flex-col">
       {/* Hero Section */}
       <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
         {/* Animated Background Elements */}
@@ -232,19 +225,16 @@ export default function Home() {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-center mt-16"
           >
-            <button
-              onClick={scrollToContact}
-              className="btn-primary text-lg px-8 py-4"
-            >
+            <p className="text-accent-primary text-2xl font-bold">
               Start Your Language Journey Now
-            </button>
+            </p>
           </motion.div>
         </div>
       </div>

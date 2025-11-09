@@ -60,7 +60,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-padding bg-dark-surface">
+    <section className="section-padding bg-dark-surface">
       <div className="container-custom" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}

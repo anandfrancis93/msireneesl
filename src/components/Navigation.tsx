@@ -5,23 +5,28 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
-  { name: 'Home', href: '#home' },
-  { name: 'About Me', href: '#about' },
+  { name: 'Home', page: 'home' },
+  { name: 'About Me', page: 'about' },
   {
     name: 'TESOL',
-    href: '#tesol',
+    page: 'tesol',
     submenu: [
-      { name: 'Book Reports', href: '#book-reports' },
-      { name: 'Lesson Plans', href: '#lesson-plans' },
-      { name: 'Test Technical Manual', href: '#test-manual' },
+      { name: 'Book Reports', page: 'book-reports' },
+      { name: 'Lesson Plans', page: 'lesson-plans' },
+      { name: 'Test Technical Manual', page: 'test-manual' },
     ]
   },
-  { name: 'Work Experience', href: '#experience' },
-  { name: 'Portfolio', href: '#portfolio' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Work Experience', page: 'experience' },
+  { name: 'Portfolio', page: 'portfolio' },
+  { name: 'Contact', page: 'contact' },
 ];
 
-export default function Navigation() {
+interface NavigationProps {
+  activePage: string;
+  setActivePage: (page: string) => void;
+}
+
+export default function Navigation({ activePage, setActivePage }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -35,12 +40,11 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
-    }
+  const handlePageChange = (page: string) => {
+    setActivePage(page);
+    setIsOpen(false);
+    setActiveDropdown(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -83,7 +87,11 @@ export default function Navigation() {
                 {item.submenu ? (
                   <>
                     <button
-                      className="text-text-secondary hover:text-text-primary transition-colors duration-300 text-sm font-medium flex items-center gap-1"
+                      className={`transition-colors duration-300 text-sm font-medium flex items-center gap-1 ${
+                        activePage === item.page || item.submenu.some(sub => sub.page === activePage)
+                          ? 'text-accent-primary'
+                          : 'text-text-secondary hover:text-text-primary'
+                      }`}
                     >
                       {item.name}
                       <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
@@ -100,11 +108,12 @@ export default function Navigation() {
                           {item.submenu.map((subItem) => (
                             <button
                               key={subItem.name}
-                              onClick={() => {
-                                scrollToSection(subItem.href);
-                                setActiveDropdown(null);
-                              }}
-                              className="block w-full text-left px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-dark-elevated transition-colors duration-200 text-sm"
+                              onClick={() => handlePageChange(subItem.page)}
+                              className={`block w-full text-left px-4 py-3 transition-colors duration-200 text-sm ${
+                                activePage === subItem.page
+                                  ? 'text-accent-primary bg-dark-elevated'
+                                  : 'text-text-secondary hover:text-text-primary hover:bg-dark-elevated'
+                              }`}
                             >
                               {subItem.name}
                             </button>
@@ -115,8 +124,12 @@ export default function Navigation() {
                   </>
                 ) : (
                   <motion.button
-                    onClick={() => scrollToSection(item.href)}
-                    className="text-text-secondary hover:text-text-primary transition-colors duration-300 text-sm font-medium"
+                    onClick={() => handlePageChange(item.page)}
+                    className={`transition-colors duration-300 text-sm font-medium ${
+                      activePage === item.page
+                        ? 'text-accent-primary'
+                        : 'text-text-secondary hover:text-text-primary'
+                    }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -158,7 +171,11 @@ export default function Navigation() {
                     <div>
                       <button
                         onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                        className="flex items-center justify-between w-full text-left text-text-secondary hover:text-text-primary transition-colors duration-300 py-2"
+                        className={`flex items-center justify-between w-full text-left transition-colors duration-300 py-2 ${
+                          activePage === item.page || item.submenu.some(sub => sub.page === activePage)
+                            ? 'text-accent-primary'
+                            : 'text-text-secondary hover:text-text-primary'
+                        }`}
                       >
                         {item.name}
                         <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
@@ -175,12 +192,12 @@ export default function Navigation() {
                             {item.submenu.map((subItem) => (
                               <motion.button
                                 key={subItem.name}
-                                onClick={() => {
-                                  scrollToSection(subItem.href);
-                                  setIsOpen(false);
-                                  setActiveDropdown(null);
-                                }}
-                                className="block w-full text-left text-text-secondary hover:text-text-primary transition-colors duration-300 py-2 text-sm"
+                                onClick={() => handlePageChange(subItem.page)}
+                                className={`block w-full text-left transition-colors duration-300 py-2 text-sm ${
+                                  activePage === subItem.page
+                                    ? 'text-accent-primary'
+                                    : 'text-text-secondary hover:text-text-primary'
+                                }`}
                                 whileHover={{ x: 10 }}
                                 whileTap={{ scale: 0.95 }}
                               >
@@ -193,11 +210,12 @@ export default function Navigation() {
                     </div>
                   ) : (
                     <motion.button
-                      onClick={() => {
-                        scrollToSection(item.href);
-                        setIsOpen(false);
-                      }}
-                      className="block w-full text-left text-text-secondary hover:text-text-primary transition-colors duration-300 py-2"
+                      onClick={() => handlePageChange(item.page)}
+                      className={`block w-full text-left transition-colors duration-300 py-2 ${
+                        activePage === item.page
+                          ? 'text-accent-primary'
+                          : 'text-text-secondary hover:text-text-primary'
+                      }`}
                       whileHover={{ x: 10 }}
                       whileTap={{ scale: 0.95 }}
                     >
