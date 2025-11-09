@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-dark-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-dark-bg text-text-primary antialiased;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-bg;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-elevated rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-dark-hover;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent;
+  }
+
+  .card-dark {
+    @apply bg-dark-surface border border-dark-border rounded-2xl p-6 hover:bg-dark-elevated transition-colors duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-accent-primary hover:bg-accent-hover text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105;
+  }
+
+  .btn-secondary {
+    @apply bg-dark-elevated hover:bg-dark-hover text-text-primary px-6 py-3 rounded-full font-medium border border-dark-border transition-all duration-300;
+  }
+}
