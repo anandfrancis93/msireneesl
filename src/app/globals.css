@@ -15,6 +15,18 @@
     @apply bg-dark-bg text-text-primary antialiased;
   }
 
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* Custom scrollbar for dark theme */
   ::-webkit-scrollbar {
     width: 10px;
@@ -51,10 +63,44 @@
   }
 
   .btn-primary {
-    @apply bg-accent-primary hover:bg-accent-hover text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105;
+    @apply bg-accent-primary hover:bg-accent-hover text-white px-6 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 min-h-[44px];
   }
 
   .btn-secondary {
-    @apply bg-dark-elevated hover:bg-dark-hover text-text-primary px-6 py-3 rounded-full font-medium border border-dark-border transition-all duration-300;
+    @apply bg-dark-elevated hover:bg-dark-hover text-text-primary px-6 py-3 rounded-full font-medium border border-dark-border transition-all duration-300 min-h-[44px];
+  }
+
+  /* Minimum touch target size for interactive elements */
+  button, a, input, textarea, select {
+    min-height: 44px;
+  }
+
+  /* Exception for inline text links */
+  a:not([class]) {
+    min-height: auto;
+  }
+
+  /* Screen reader only class */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
   }
 }

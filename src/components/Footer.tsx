@@ -50,7 +50,8 @@ export default function Footer({ setActivePage }: FooterProps) {
                 <button
                   key={link.title}
                   onClick={() => handlePageChange(link.page)}
-                  className="block text-text-secondary hover:text-accent-primary transition-colors duration-300 text-sm"
+                  className="block text-text-secondary hover:text-accent-primary transition-colors duration-300 text-sm text-left py-2 min-h-[44px]"
+                  aria-label={`Navigate to ${link.title}`}
                 >
                   {link.title}
                 </button>
@@ -70,10 +71,10 @@ export default function Footer({ setActivePage }: FooterProps) {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={social.label}
+                    aria-label={`Visit ${social.label} profile`}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-10 h-10 bg-dark-elevated border border-dark-border rounded-xl flex items-center justify-center hover:bg-dark-hover hover:border-accent-primary transition-all duration-300"
+                    className="min-w-[44px] min-h-[44px] w-11 h-11 bg-dark-elevated border border-dark-border rounded-xl flex items-center justify-center hover:bg-dark-hover hover:border-accent-primary transition-all duration-300"
                   >
                     <Icon size={18} className="text-text-secondary hover:text-accent-primary transition-colors" />
                   </motion.a>

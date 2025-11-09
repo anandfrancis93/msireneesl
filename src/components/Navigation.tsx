@@ -87,11 +87,14 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                 {item.submenu ? (
                   <>
                     <button
-                      className={`transition-colors duration-300 text-sm font-medium flex items-center gap-1 ${
+                      className={`transition-colors duration-300 text-sm font-medium flex items-center gap-1 min-h-[44px] px-2 ${
                         activePage === item.page || item.submenu.some(sub => sub.page === activePage)
                           ? 'text-accent-primary'
                           : 'text-text-secondary hover:text-text-primary'
                       }`}
+                      aria-label={`${item.name} menu`}
+                      aria-haspopup="true"
+                      aria-expanded={activeDropdown === item.name}
                     >
                       {item.name}
                       <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
@@ -125,13 +128,15 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                 ) : (
                   <motion.button
                     onClick={() => handlePageChange(item.page)}
-                    className={`transition-colors duration-300 text-sm font-medium ${
+                    className={`transition-colors duration-300 text-sm font-medium min-h-[44px] px-2 ${
                       activePage === item.page
                         ? 'text-accent-primary'
                         : 'text-text-secondary hover:text-text-primary'
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    aria-label={`Navigate to ${item.name}`}
+                    aria-current={activePage === item.page ? 'page' : undefined}
                   >
                     {item.name}
                   </motion.button>
@@ -146,8 +151,9 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-text-primary hover:text-accent-primary transition-colors"
-            aria-label="Toggle menu"
+            className="md:hidden p-3 text-text-primary hover:text-accent-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
@@ -171,11 +177,14 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                     <div>
                       <button
                         onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
-                        className={`flex items-center justify-between w-full text-left transition-colors duration-300 py-2 ${
+                        className={`flex items-center justify-between w-full text-left transition-colors duration-300 py-3 min-h-[44px] ${
                           activePage === item.page || item.submenu.some(sub => sub.page === activePage)
                             ? 'text-accent-primary'
                             : 'text-text-secondary hover:text-text-primary'
                         }`}
+                        aria-label={`${item.name} menu`}
+                        aria-haspopup="true"
+                        aria-expanded={activeDropdown === item.name}
                       >
                         {item.name}
                         <ChevronDown size={16} className={`transition-transform duration-300 ${activeDropdown === item.name ? 'rotate-180' : ''}`} />
@@ -193,13 +202,15 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                               <motion.button
                                 key={subItem.name}
                                 onClick={() => handlePageChange(subItem.page)}
-                                className={`block w-full text-left transition-colors duration-300 py-2 text-sm ${
+                                className={`block w-full text-left transition-colors duration-300 py-3 text-sm min-h-[44px] ${
                                   activePage === subItem.page
                                     ? 'text-accent-primary'
                                     : 'text-text-secondary hover:text-text-primary'
                                 }`}
                                 whileHover={{ x: 10 }}
                                 whileTap={{ scale: 0.95 }}
+                                aria-label={`Navigate to ${subItem.name}`}
+                                aria-current={activePage === subItem.page ? 'page' : undefined}
                               >
                                 {subItem.name}
                               </motion.button>
@@ -211,13 +222,15 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                   ) : (
                     <motion.button
                       onClick={() => handlePageChange(item.page)}
-                      className={`block w-full text-left transition-colors duration-300 py-2 ${
+                      className={`block w-full text-left transition-colors duration-300 py-3 min-h-[44px] ${
                         activePage === item.page
                           ? 'text-accent-primary'
                           : 'text-text-secondary hover:text-text-primary'
                       }`}
                       whileHover={{ x: 10 }}
                       whileTap={{ scale: 0.95 }}
+                      aria-label={`Navigate to ${item.name}`}
+                      aria-current={activePage === item.page ? 'page' : undefined}
                     >
                       {item.name}
                     </motion.button>

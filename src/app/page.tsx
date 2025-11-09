@@ -36,12 +36,17 @@ export default function Page() {
   };
 
   return (
-    <main className="min-h-screen bg-dark-bg flex flex-col">
+    <>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-accent-primary text-white px-4 py-2 rounded-lg z-50">
+        Skip to main content
+      </a>
       <Navigation activePage={activePage} setActivePage={setActivePage} />
-      <div className="flex-1">
-        {renderPage()}
-      </div>
+      <main id="main-content" className="min-h-screen bg-dark-bg flex flex-col flex-1">
+        <div className="flex-1">
+          {renderPage()}
+        </div>
+      </main>
       <Footer setActivePage={setActivePage} />
-    </main>
+    </>
   );
 }

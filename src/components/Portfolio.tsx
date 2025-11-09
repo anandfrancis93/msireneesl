@@ -75,15 +75,15 @@ export default function Portfolio() {
             {/* Navigation Arrows */}
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-dark-elevated/90 hover:bg-dark-hover border border-dark-border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-              aria-label="Previous image"
+              className="absolute left-4 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] w-12 h-12 bg-dark-elevated/90 hover:bg-dark-hover border border-dark-border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+              aria-label="View previous portfolio image"
             >
               <ChevronLeft className="w-6 h-6 text-accent-primary" />
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-dark-elevated/90 hover:bg-dark-hover border border-dark-border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-              aria-label="Next image"
+              className="absolute right-4 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] w-12 h-12 bg-dark-elevated/90 hover:bg-dark-hover border border-dark-border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+              aria-label="View next portfolio image"
             >
               <ChevronRight className="w-6 h-6 text-accent-primary" />
             </button>
@@ -105,11 +105,13 @@ export default function Portfolio() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                className={`aspect-video bg-dark-elevated border-2 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 flex items-center justify-center ${
+                className={`aspect-video bg-dark-elevated border-2 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 flex items-center justify-center min-h-[44px] ${
                   currentImageIndex === index
                     ? 'border-accent-primary ring-2 ring-accent-primary/50'
                     : 'border-dark-border hover:border-accent-primary/50'
                 }`}
+                aria-label={`View portfolio image ${index + 1}`}
+                aria-current={currentImageIndex === index ? 'true' : 'false'}
               >
                 {/* Placeholder for thumbnail */}
                 <ImageIcon
