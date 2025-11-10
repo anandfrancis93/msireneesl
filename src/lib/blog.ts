@@ -22,7 +22,7 @@ export function getAllBlogPosts(): BlogPost[] {
 
   const fileNames = fs.readdirSync(blogDirectory);
   const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith('.md'))
+    .filter((fileName) => fileName.endsWith('.md') && fileName !== 'README.md')
     .map((fileName) => {
       // Remove ".md" from file name to get slug
       const slug = fileName.replace(/\.md$/, '');
