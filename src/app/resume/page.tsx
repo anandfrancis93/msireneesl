@@ -1,13 +1,33 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
 export default function ResumePage() {
+  const router = useRouter();
+  const [activePage, setActivePage] = useState('resume');
+
+  const handleSetActivePage = (page: string) => {
+    if (page === 'resume') {
+      return;
+    }
+    setActivePage(page);
+    router.push('/');
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
-    <main className="min-h-screen bg-dark-bg py-12 px-4">
-      <div className="container-custom max-w-6xl">
+    <>
+      <Navigation activePage={activePage} setActivePage={handleSetActivePage} />
+      <main className="min-h-screen bg-dark-bg py-12 px-4 mt-20">
+        <div className="container-custom max-w-6xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,7 +89,9 @@ export default function ResumePage() {
         >
           If the PDF doesn't display properly, please use the Download button above
         </motion.p>
-      </div>
-    </main>
+        </div>
+      </main>
+      <Footer setActivePage={handleSetActivePage} />
+    </>
   );
 }
