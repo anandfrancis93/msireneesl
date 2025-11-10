@@ -94,9 +94,21 @@ export default function Footer({ setActivePage }: FooterProps) {
               className="block"
               aria-label="Download resume via QR code"
             >
-              <div className="bg-white p-3 rounded-xl w-32 h-32 flex items-center justify-center border-2 border-dark-border hover:border-accent-primary transition-all duration-300">
-                {/* Placeholder - Replace with actual QR code image */}
-                <QrCode size={100} className="text-dark-bg" />
+              <div className="bg-white p-3 rounded-xl w-32 h-32 flex items-center justify-center border-2 border-dark-border hover:border-accent-primary transition-all duration-300 relative overflow-hidden">
+                {/* Replace '/qr-code-resume.png' with your actual QR code image path */}
+                <Image
+                  src="/qr-code-resume.png"
+                  alt="QR code to download Ms. Irene's resume"
+                  width={104}
+                  height={104}
+                  className="object-contain"
+                  onError={(e) => {
+                    // Fallback to placeholder if image not found
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+                {/* Fallback placeholder - will show until you add qr-code-resume.png */}
+                <QrCode size={100} className="text-dark-bg absolute inset-0 m-auto" />
               </div>
               <p className="text-text-tertiary text-xs mt-2">Scan to view resume</p>
             </a>
