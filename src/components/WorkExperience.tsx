@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Briefcase, MapPin, Calendar } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Briefcase, MapPin, Calendar, ChevronDown } from 'lucide-react';
 
 const experiences = [
   {
@@ -51,6 +51,11 @@ const experiences = [
 export default function WorkExperience() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const toggleExpanded = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
 
   return (
     <section className="section-padding bg-dark-bg">
@@ -99,20 +104,57 @@ export default function WorkExperience() {
                   </div>
 
                   {/* Responsibilities */}
-                  <ul className="space-y-2">
-                    {exp.responsibilities.map((resp, idx) => (
-                      <motion.li
-                        key={idx}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.4, delay: index * 0.2 + 0.1 + idx * 0.1 }}
-                        className="flex items-start gap-3 text-text-secondary"
+                  <div>
+                    <ul className="space-y-2">
+                      {exp.responsibilities.slice(0, 4).map((resp, idx) => (
+                        <motion.li
+                          key={idx}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={isInView ? { opacity: 1, x: 0 } : {}}
+                          transition={{ duration: 0.4, delay: index * 0.2 + 0.1 + idx * 0.1 }}
+                          className="flex items-start gap-3 text-text-secondary"
+                        >
+                          <div className="w-1.5 h-1.5 bg-accent-primary rounded-full mt-2 flex-shrink-0" />
+                          <span>{resp}</span>
+                        </motion.li>
+                      ))}
+                      {expandedIndex === index && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="space-y-2 overflow-hidden"
+                        >
+                          {exp.responsibilities.slice(4).map((resp, idx) => (
+                            <li
+                              key={idx + 4}
+                              className="flex items-start gap-3 text-text-secondary"
+                            >
+                              <div className="w-1.5 h-1.5 bg-accent-primary rounded-full mt-2 flex-shrink-0" />
+                              <span>{resp}</span>
+                            </li>
+                          ))}
+                        </motion.div>
+                      )}
+                    </ul>
+                    {exp.responsibilities.length > 4 && (
+                      <motion.button
+                        onClick={() => toggleExpanded(index)}
+                        className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2 mt-4"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        aria-expanded={expandedIndex === index}
+                        aria-label={expandedIndex === index ? "Show fewer responsibilities" : "Show more responsibilities"}
                       >
-                        <div className="w-1.5 h-1.5 bg-accent-primary rounded-full mt-2 flex-shrink-0" />
-                        <span>{resp}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+                        {expandedIndex === index ? 'Read Less' : 'Read More'}
+                        <ChevronDown
+                          size={16}
+                          className={`transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`}
+                        />
+                      </motion.button>
+                    )}
+                  </div>
                 </div>
 
                 {/* Right side - Period */}
