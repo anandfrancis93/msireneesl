@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { Github, Linkedin, Twitter, Heart, QrCode } from 'lucide-react';
+import { Github, Linkedin, Twitter, Heart } from 'lucide-react';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com', label: 'GitHub' },
@@ -17,6 +16,7 @@ const footerLinks = [
   { title: 'Work Experience', page: 'experience' },
   { title: 'Portfolio', page: 'portfolio' },
   { title: 'Contact', page: 'contact' },
+  { title: 'Resume', page: 'resume', isExternal: true },
 ];
 
 interface FooterProps {
@@ -31,10 +31,18 @@ export default function Footer({ setActivePage }: FooterProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleLinkClick = (link: any) => {
+    if (link.isExternal) {
+      window.open(`/${link.page}`, '_blank');
+    } else {
+      handlePageChange(link.page);
+    }
+  };
+
   return (
     <footer className="bg-dark-bg border-t border-dark-border">
       <div className="container-custom py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-bold gradient-text mb-4">Ms. Irene</h3>
@@ -50,7 +58,7 @@ export default function Footer({ setActivePage }: FooterProps) {
               {footerLinks.map((link) => (
                 <button
                   key={link.title}
-                  onClick={() => handlePageChange(link.page)}
+                  onClick={() => handleLinkClick(link)}
                   className="block text-text-secondary hover:text-accent-primary transition-colors duration-300 text-sm text-left py-2 min-h-[44px]"
                   aria-label={`Navigate to ${link.title}`}
                 >
@@ -82,36 +90,6 @@ export default function Footer({ setActivePage }: FooterProps) {
                 );
               })}
             </div>
-          </div>
-
-          {/* QR Code Resume */}
-          <div>
-            <h4 className="font-semibold mb-4">Resume</h4>
-            <a
-              href="/resume"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-              aria-label="View resume page"
-            >
-              <div className="bg-white p-3 rounded-xl w-32 h-32 flex items-center justify-center border-2 border-dark-border hover:border-accent-primary transition-all duration-300 relative overflow-hidden">
-                {/* QR code should link to: https://yourdomain.com/resume */}
-                <Image
-                  src="/qr-code-resume.png"
-                  alt="QR code to view Ms. Irene's resume"
-                  width={104}
-                  height={104}
-                  className="object-contain"
-                  onError={(e) => {
-                    // Fallback to placeholder if image not found
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-                {/* Fallback placeholder - will show until you add qr-code-resume.png */}
-                <QrCode size={100} className="text-dark-bg absolute inset-0 m-auto" />
-              </div>
-              <p className="text-text-tertiary text-xs mt-2">Scan to view resume</p>
-            </a>
           </div>
         </div>
 
