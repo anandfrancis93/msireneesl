@@ -34,6 +34,9 @@ export default function AboutMe() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isEducationExpanded, setIsEducationExpanded] = useState(false);
+  const [isTesolExpanded, setIsTesolExpanded] = useState(false);
+  const [isPsychologyExpanded, setIsPsychologyExpanded] = useState(false);
 
   return (
     <section className="section-padding bg-dark-bg">
@@ -155,12 +158,41 @@ export default function AboutMe() {
                 <h4 className="text-xl font-bold">Education Classes</h4>
               </div>
               <ul className="space-y-3">
-                {educationCourses.education.map((course, index) => (
+                {educationCourses.education.slice(0, 3).map((course, index) => (
                   <li key={index} className="text-text-secondary text-sm leading-relaxed">
                     {course}
                   </li>
                 ))}
+                {isEducationExpanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-3 overflow-hidden"
+                  >
+                    {educationCourses.education.slice(3).map((course, index) => (
+                      <li key={index + 3} className="text-text-secondary text-sm leading-relaxed">
+                        {course}
+                      </li>
+                    ))}
+                  </motion.div>
+                )}
               </ul>
+              <motion.button
+                onClick={() => setIsEducationExpanded(!isEducationExpanded)}
+                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2 mt-4"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-expanded={isEducationExpanded}
+                aria-label={isEducationExpanded ? "Show fewer education classes" : "Show more education classes"}
+              >
+                {isEducationExpanded ? 'Read Less' : 'Read More'}
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-300 ${isEducationExpanded ? 'rotate-180' : ''}`}
+                />
+              </motion.button>
             </motion.div>
 
             {/* TESOL Classes */}
@@ -177,12 +209,41 @@ export default function AboutMe() {
                 <h4 className="text-xl font-bold">TESOL Classes</h4>
               </div>
               <ul className="space-y-3">
-                {educationCourses.tesol.map((course, index) => (
+                {educationCourses.tesol.slice(0, 3).map((course, index) => (
                   <li key={index} className="text-text-secondary text-sm leading-relaxed">
                     {course}
                   </li>
                 ))}
+                {isTesolExpanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-3 overflow-hidden"
+                  >
+                    {educationCourses.tesol.slice(3).map((course, index) => (
+                      <li key={index + 3} className="text-text-secondary text-sm leading-relaxed">
+                        {course}
+                      </li>
+                    ))}
+                  </motion.div>
+                )}
               </ul>
+              <motion.button
+                onClick={() => setIsTesolExpanded(!isTesolExpanded)}
+                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2 mt-4"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-expanded={isTesolExpanded}
+                aria-label={isTesolExpanded ? "Show fewer TESOL classes" : "Show more TESOL classes"}
+              >
+                {isTesolExpanded ? 'Read Less' : 'Read More'}
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-300 ${isTesolExpanded ? 'rotate-180' : ''}`}
+                />
+              </motion.button>
             </motion.div>
 
             {/* Psychology Classes */}
@@ -199,12 +260,41 @@ export default function AboutMe() {
                 <h4 className="text-xl font-bold">Psychology Classes</h4>
               </div>
               <ul className="space-y-3">
-                {educationCourses.psychology.map((course, index) => (
+                {educationCourses.psychology.slice(0, 2).map((course, index) => (
                   <li key={index} className="text-text-secondary text-sm leading-relaxed">
                     {course}
                   </li>
                 ))}
+                {isPsychologyExpanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-3 overflow-hidden"
+                  >
+                    {educationCourses.psychology.slice(2).map((course, index) => (
+                      <li key={index + 2} className="text-text-secondary text-sm leading-relaxed">
+                        {course}
+                      </li>
+                    ))}
+                  </motion.div>
+                )}
               </ul>
+              <motion.button
+                onClick={() => setIsPsychologyExpanded(!isPsychologyExpanded)}
+                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2 mt-4"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-expanded={isPsychologyExpanded}
+                aria-label={isPsychologyExpanded ? "Show fewer psychology classes" : "Show more psychology classes"}
+              >
+                {isPsychologyExpanded ? 'Read Less' : 'Read More'}
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-300 ${isPsychologyExpanded ? 'rotate-180' : ''}`}
+                />
+              </motion.button>
             </motion.div>
           </div>
         </motion.div>
