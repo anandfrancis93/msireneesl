@@ -16,7 +16,7 @@ export default function Page() {
   const renderPage = () => {
     switch (activePage) {
       case 'home':
-        return <Home />;
+        return <Home setActivePage={setActivePage} />;
       case 'about':
         return <AboutMe />;
       case 'tesol':
@@ -31,7 +31,7 @@ export default function Page() {
       case 'contact':
         return <Contact />;
       default:
-        return <Home />;
+        return <Home setActivePage={setActivePage} />;
     }
   };
 

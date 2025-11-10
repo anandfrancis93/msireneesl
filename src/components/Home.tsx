@@ -38,7 +38,11 @@ const evaluations = [
   },
 ];
 
-export default function Home() {
+interface HomeProps {
+  setActivePage: (page: string) => void;
+}
+
+export default function Home({ setActivePage }: HomeProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -141,6 +145,24 @@ export default function Home() {
             >
               I am a dedicated professional with extensive experience in education, language instruction, and customer service. With academic credentials in TESOL, Education, and minors in Psychology and Special Education, I have consistently demonstrated a strong commitment to creating inclusive and effective learning environments. Over the years, I have honed my expertise in teaching English as a Second Language (ESL) through roles at institutions like Brigham Young University and Utah Valley University, as well as through international teaching experiences spanning more than a decade.
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="flex justify-center"
+            >
+              <button
+                onClick={() => {
+                  setActivePage('about');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="btn-primary"
+                aria-label="Learn more about Ms. Irene"
+              >
+                Learn More
+              </button>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
