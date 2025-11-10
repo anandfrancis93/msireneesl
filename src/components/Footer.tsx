@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Twitter, Heart } from 'lucide-react';
+import Image from 'next/image';
+import { Github, Linkedin, Twitter, Heart, QrCode } from 'lucide-react';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com', label: 'GitHub' },
@@ -33,7 +34,7 @@ export default function Footer({ setActivePage }: FooterProps) {
   return (
     <footer className="bg-dark-bg border-t border-dark-border">
       <div className="container-custom py-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-bold gradient-text mb-4">Ms. Irene</h3>
@@ -81,6 +82,24 @@ export default function Footer({ setActivePage }: FooterProps) {
                 );
               })}
             </div>
+          </div>
+
+          {/* QR Code Resume */}
+          <div>
+            <h4 className="font-semibold mb-4">Resume</h4>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+              aria-label="Download resume via QR code"
+            >
+              <div className="bg-white p-3 rounded-xl w-32 h-32 flex items-center justify-center border-2 border-dark-border hover:border-accent-primary transition-all duration-300">
+                {/* Placeholder - Replace with actual QR code image */}
+                <QrCode size={100} className="text-dark-bg" />
+              </div>
+              <p className="text-text-tertiary text-xs mt-2">Scan to view resume</p>
+            </a>
           </div>
         </div>
 
