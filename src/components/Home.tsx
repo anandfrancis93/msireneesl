@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Sparkles, Quote, Star } from 'lucide-react';
+import { Sparkles, Quote, Star, BookOpen, FileText, Users, Presentation } from 'lucide-react';
 
 const evaluations = [
   {
@@ -163,7 +163,100 @@ export default function Home({ setActivePage }: HomeProps) {
                 Learn More
               </button>
             </motion.div>
+          </div>
+        </div>
+      </div>
 
+      {/* TESOL & ME Section */}
+      <div className="section-padding bg-dark-surface">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+              <span className="gradient-text">TESOL & ME</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <motion.button
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
+              aria-label="View Teaching Philosophy"
+            >
+              <div className="mb-4">
+                <div className="w-16 h-16 bg-accent-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <BookOpen className="w-8 h-8 text-accent-primary" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold group-hover:text-accent-primary transition-colors duration-300">
+                Teaching Philosophy
+              </h3>
+            </motion.button>
+
+            <motion.button
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
+              aria-label="View Lesson Plans and Syllabi"
+            >
+              <div className="mb-4">
+                <div className="w-16 h-16 bg-accent-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <FileText className="w-8 h-8 text-accent-primary" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold group-hover:text-accent-primary transition-colors duration-300">
+                Lesson Plans & Syllabi
+              </h3>
+            </motion.button>
+
+            <motion.button
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
+              aria-label="View Case Studies"
+            >
+              <div className="mb-4">
+                <div className="w-16 h-16 bg-accent-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <Users className="w-8 h-8 text-accent-primary" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold group-hover:text-accent-primary transition-colors duration-300">
+                Case Studies
+              </h3>
+            </motion.button>
+
+            <motion.button
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
+              aria-label="View Presentations and Publications"
+            >
+              <div className="mb-4">
+                <div className="w-16 h-16 bg-accent-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                  <Presentation className="w-8 h-8 text-accent-primary" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold group-hover:text-accent-primary transition-colors duration-300">
+                Presentations & Publications
+              </h3>
+            </motion.button>
+          </div>
+        </div>
+      </div>
+
+      {/* Quote and Additional Content */}
+      <div className="section-padding bg-dark-bg">
+        <div className="container-custom">
+          <div className="max-w-4xl mx-auto space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
