@@ -3,16 +3,12 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react';
+import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Placeholder images - replace with actual image paths later
 const portfolioImages = [
-  { id: 1, alt: 'Portfolio Image 1' },
-  { id: 2, alt: 'Portfolio Image 2' },
-  { id: 3, alt: 'Portfolio Image 3' },
-  { id: 4, alt: 'Portfolio Image 4' },
-  { id: 5, alt: 'Portfolio Image 5' },
-  { id: 6, alt: 'Portfolio Image 6' },
+  { id: 1, src: '/BA.avif', alt: 'BA Portfolio Image' },
+  { id: 2, src: '/Workshop.avif', alt: 'Workshop Portfolio Image' },
 ];
 
 export default function Portfolio() {
@@ -62,14 +58,14 @@ export default function Portfolio() {
         >
           {/* Main Image Display */}
           <div className="relative bg-dark-bg border border-dark-border rounded-2xl overflow-hidden mb-6">
-            <div className="aspect-video flex items-center justify-center bg-dark-elevated">
-              {/* Placeholder for main image */}
-              <div className="flex flex-col items-center gap-4">
-                <ImageIcon className="w-24 h-24 text-text-tertiary" />
-                <p className="text-text-tertiary text-sm">
-                  Portfolio Image {currentImageIndex + 1}
-                </p>
-              </div>
+            <div className="aspect-video relative bg-dark-elevated">
+              <Image
+                src={portfolioImages[currentImageIndex].src}
+                alt={portfolioImages[currentImageIndex].alt}
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
 
             {/* Navigation Arrows */}
@@ -97,7 +93,7 @@ export default function Portfolio() {
           </div>
 
           {/* Thumbnail Strip */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             {portfolioImages.map((image, index) => (
               <motion.button
                 key={image.id}
@@ -105,7 +101,7 @@ export default function Portfolio() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                className={`aspect-video bg-dark-elevated border-2 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 flex items-center justify-center min-h-[44px] ${
+                className={`aspect-video bg-dark-elevated border-2 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 relative min-h-[44px] ${
                   currentImageIndex === index
                     ? 'border-accent-primary ring-2 ring-accent-primary/50'
                     : 'border-dark-border hover:border-accent-primary/50'
@@ -113,13 +109,11 @@ export default function Portfolio() {
                 aria-label={`View portfolio image ${index + 1}`}
                 aria-current={currentImageIndex === index ? 'true' : 'false'}
               >
-                {/* Placeholder for thumbnail */}
-                <ImageIcon
-                  className={`w-8 h-8 ${
-                    currentImageIndex === index
-                      ? 'text-accent-primary'
-                      : 'text-text-tertiary'
-                  }`}
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover"
                 />
               </motion.button>
             ))}
