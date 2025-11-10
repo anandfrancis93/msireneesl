@@ -88,17 +88,17 @@ export default function Footer({ setActivePage }: FooterProps) {
           <div>
             <h4 className="font-semibold mb-4">Resume</h4>
             <a
-              href="/resume.pdf"
+              href="/resume"
               target="_blank"
               rel="noopener noreferrer"
               className="block"
-              aria-label="Download resume via QR code"
+              aria-label="View resume page"
             >
               <div className="bg-white p-3 rounded-xl w-32 h-32 flex items-center justify-center border-2 border-dark-border hover:border-accent-primary transition-all duration-300 relative overflow-hidden">
-                {/* Replace '/qr-code-resume.png' with your actual QR code image path */}
+                {/* QR code should link to: https://yourdomain.com/resume */}
                 <Image
                   src="/qr-code-resume.png"
-                  alt="QR code to download Ms. Irene's resume"
+                  alt="QR code to view Ms. Irene's resume"
                   width={104}
                   height={104}
                   className="object-contain"
