@@ -113,7 +113,7 @@ export default function Portfolio() {
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </motion.button>
             ))}
