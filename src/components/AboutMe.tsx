@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { GraduationCap, BookOpen, Image as ImageIcon } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { GraduationCap, BookOpen, Image as ImageIcon, ChevronDown } from 'lucide-react';
 
 const educationCourses = {
   education: [
@@ -33,6 +33,7 @@ const educationCourses = {
 export default function AboutMe() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <section className="section-padding bg-dark-bg">
@@ -77,25 +78,50 @@ export default function AboutMe() {
               Growing up in India, I, Irene, always had a fascination with languages and the connections they foster. In a country as diverse as India, where languages and cultures intersect at every turn, I developed a deep appreciation for communication and its power to bring people together. My journey to becoming an ESL teacher was not linear, but it was driven by my unwavering desire to help others find their voice in a globalized world.
             </p>
 
-            <p>
-              After completing my education in India, I started my career in corporate roles, including customer service and sales management. These positions taught me the value of clear communication and understanding cultural nuances. However, I felt a pull toward a profession that would allow me to make a more direct impact on individuals' lives. That calling led me to teaching, and I began as an instructor at Manipal Institute of Computer Education in Goa. It was during this time that I discovered my passion for education.
-            </p>
+            <motion.button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              aria-expanded={isExpanded}
+              aria-label={isExpanded ? "Read less about my story" : "Read more about my story"}
+            >
+              {isExpanded ? 'Read Less' : 'Read More'}
+              <ChevronDown
+                size={20}
+                className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+              />
+            </motion.button>
 
-            <p>
-              In 2013, I joined Inlingua, a language school, as an English instructor, marking my formal entry into the world of language teaching. Teaching English opened my eyes to the challenges learners face when navigating a new language and culture. I found immense satisfaction in helping my students overcome those barriers and achieve their goals. Yet, I wanted to expand my horizons further and develop my skills on an international scale.
-            </p>
+            {isExpanded && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.4 }}
+                className="space-y-6 overflow-hidden"
+              >
+                <p>
+                  After completing my education in India, I started my career in corporate roles, including customer service and sales management. These positions taught me the value of clear communication and understanding cultural nuances. However, I felt a pull toward a profession that would allow me to make a more direct impact on individuals' lives. That calling led me to teaching, and I began as an instructor at Manipal Institute of Computer Education in Goa. It was during this time that I discovered my passion for education.
+                </p>
 
-            <p>
-              In 2017, I moved to the United States to pursue higher education and broaden my teaching experience. My time at Brigham Young University-Hawaii proved pivotal. While completing my studies, I worked as an ESL tutor and teaching assistant, honing my expertise and gaining deeper insights into pedagogical strategies. I also had the opportunity to serve as the President of the BYU-Hawaii TESOL Society, where I collaborated with peers to promote best practices in language instruction.
-            </p>
+                <p>
+                  In 2013, I joined Inlingua, a language school, as an English instructor, marking my formal entry into the world of language teaching. Teaching English opened my eyes to the challenges learners face when navigating a new language and culture. I found immense satisfaction in helping my students overcome those barriers and achieve their goals. Yet, I wanted to expand my horizons further and develop my skills on an international scale.
+                </p>
 
-            <p>
-              Teaching adults at the US Ling Institute and other institutions further enriched my journey, exposing me to learners from diverse backgrounds with unique aspirations. Each role deepened my commitment to creating inclusive and supportive learning environments. Today, as an ESL instructor at Utah Valley University and Brigham Young University-Provo, I feel incredibly grateful for how far I have come.
-            </p>
+                <p>
+                  In 2017, I moved to the United States to pursue higher education and broaden my teaching experience. My time at Brigham Young University-Hawaii proved pivotal. While completing my studies, I worked as an ESL tutor and teaching assistant, honing my expertise and gaining deeper insights into pedagogical strategies. I also had the opportunity to serve as the President of the BYU-Hawaii TESOL Society, where I collaborated with peers to promote best practices in language instruction.
+                </p>
 
-            <p>
-              What started as a fascination with language in India has transformed into a meaningful career that spans continents. My journey from India to becoming an ESL teacher has not only shaped my professional identity but also affirmed my belief in the power of education to change lives. I am proud to help my students find their voice, just as I found mine in this incredible journey.
-            </p>
+                <p>
+                  Teaching adults at the US Ling Institute and other institutions further enriched my journey, exposing me to learners from diverse backgrounds with unique aspirations. Each role deepened my commitment to creating inclusive and supportive learning environments. Today, as an ESL instructor at Utah Valley University and Brigham Young University-Provo, I feel incredibly grateful for how far I have come.
+                </p>
+
+                <p>
+                  What started as a fascination with language in India has transformed into a meaningful career that spans continents. My journey from India to becoming an ESL teacher has not only shaped my professional identity but also affirmed my belief in the power of education to change lives. I am proud to help my students find their voice, just as I found mine in this incredible journey.
+                </p>
+              </motion.div>
+            )}
           </div>
         </motion.div>
 
