@@ -5,6 +5,7 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Calendar, Clock, Tag } from 'lucide-react';
 import { BlogPost } from '@/lib/blog';
+import Link from 'next/link';
 
 interface BlogProps {
   posts: BlogPost[];
@@ -45,43 +46,44 @@ export default function Blog({ posts }: BlogProps) {
         {posts.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {posts.map((post, index) => (
-              <motion.article
-                key={post.slug}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="card-dark group cursor-pointer hover:border-accent-primary/50 transition-all duration-300"
-              >
-                {/* Category Tag */}
-                <div className="flex items-center gap-2 mb-4">
-                  <Tag size={16} className="text-accent-primary" />
-                  <span className="text-accent-primary text-sm font-medium">
-                    {post.category}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold mb-3 group-hover:text-accent-primary transition-colors duration-300">
-                  {post.title}
-                </h3>
-
-                {/* Excerpt */}
-                <p className="text-text-secondary mb-4 leading-relaxed">
-                  {post.excerpt}
-                </p>
-
-                {/* Meta Information */}
-                <div className="flex flex-wrap items-center gap-4 text-sm text-text-tertiary pt-4 border-t border-dark-border">
-                  <div className="flex items-center gap-2">
-                    <Calendar size={14} />
-                    <span>{formatDate(post.date)}</span>
+              <Link key={post.slug} href={`/blog/${post.slug}`}>
+                <motion.article
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="card-dark group cursor-pointer hover:border-accent-primary/50 transition-all duration-300 h-full"
+                >
+                  {/* Category Tag */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <Tag size={16} className="text-accent-primary" />
+                    <span className="text-accent-primary text-sm font-medium">
+                      {post.category}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Clock size={14} />
-                    <span>{post.readTime}</span>
+
+                  {/* Title */}
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-accent-primary transition-colors duration-300">
+                    {post.title}
+                  </h3>
+
+                  {/* Excerpt */}
+                  <p className="text-text-secondary mb-4 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+
+                  {/* Meta Information */}
+                  <div className="flex flex-wrap items-center gap-4 text-sm text-text-tertiary pt-4 border-t border-dark-border">
+                    <div className="flex items-center gap-2">
+                      <Calendar size={14} />
+                      <span>{formatDate(post.date)}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock size={14} />
+                      <span>{post.readTime}</span>
+                    </div>
                   </div>
-                </div>
-              </motion.article>
+                </motion.article>
+              </Link>
             ))}
           </div>
         ) : (
