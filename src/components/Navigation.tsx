@@ -12,7 +12,7 @@ const navItems = [
     page: 'tesol',
     href: '/tesol',
     submenu: [
-      { name: 'Book Reports', page: 'book-reports', href: '/tesol#book-reports' },
+      { name: 'Book Reports', page: 'book-reports', href: '/tesol/book-reports' },
       { name: 'Lesson Plans', page: 'lesson-plans', href: '/tesol/lesson-plans' },
       { name: 'Test Technical Manual', page: 'test-manual', href: '/tesol#test-manual' },
     ]
