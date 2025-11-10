@@ -11,12 +11,6 @@ const socialLinks = [
 ];
 
 const footerLinks = [
-  { title: 'Home', page: 'home', href: '/home' },
-  { title: 'About Me', page: 'about-me', href: '/about-me' },
-  { title: 'TESOL', page: 'tesol', href: '/tesol' },
-  { title: 'Work Experience', page: 'work-experience', href: '/work-experience' },
-  { title: 'Portfolio', page: 'portfolio', href: '/portfolio' },
-  { title: 'Contact', page: 'contactus', href: '/contactus' },
   { title: 'Resume', page: 'resume', href: '/resume', isExternal: true },
 ];
 
