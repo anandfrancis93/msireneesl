@@ -1,18 +1,52 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Lock } from 'lucide-react';
+import { Send, Lock, Edit, Plus, List } from 'lucide-react';
+
+interface BlogPost {
+  slug: string;
+  title: string;
+  date: string;
+  category: string;
+  excerpt?: string;
+  content: string;
+}
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
+  const [view, setView] = useState<'list' | 'create' | 'edit'>('list');
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [currentSlug, setCurrentSlug] = useState<string>('');
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('Teaching');
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      loadBlogPosts();
+    }
+  }, [isAuthenticated]);
+
+  const loadBlogPosts = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/get-blog-posts');
+      const data = await response.json();
+      if (response.ok) {
+        setBlogPosts(data.posts);
+      }
+    } catch (error) {
+      console.error('Error loading blog posts:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +57,26 @@ export default function AdminPage() {
     } else {
       setMessage('Incorrect password');
     }
+  };
+
+  const handleEdit = (post: BlogPost) => {
+    setCurrentSlug(post.slug);
+    setTitle(post.title);
+    setCategory(post.category);
+    setExcerpt(post.excerpt || '');
+    setContent(post.content);
+    setView('edit');
+    setMessage('');
+  };
+
+  const handleNew = () => {
+    setCurrentSlug('');
+    setTitle('');
+    setCategory('Teaching');
+    setExcerpt('');
+    setContent('');
+    setView('create');
+    setMessage('');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -37,6 +91,7 @@ export default function AdminPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          slug: currentSlug || undefined,
           title,
           category,
           excerpt: excerpt || content.substring(0, 150) + '...',
@@ -47,11 +102,18 @@ export default function AdminPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage('✅ Blog post published successfully! It will appear on the site in 1-2 minutes.');
+        setMessage(
+          view === 'edit'
+            ? '✅ Blog post updated successfully! It will appear on the site in 1-2 minutes.'
+            : '✅ Blog post published successfully! It will appear on the site in 1-2 minutes.'
+        );
         setTitle('');
         setCategory('Teaching');
         setExcerpt('');
         setContent('');
+        setCurrentSlug('');
+        loadBlogPosts();
+        setTimeout(() => setView('list'), 2000);
       } else {
         setMessage(`❌ Error: ${data.error || 'Failed to publish blog post'}`);
       }
@@ -104,6 +166,85 @@ export default function AdminPage() {
     );
   }
 
+  // List View
+  if (view === 'list') {
+    return (
+      <div className="min-h-screen bg-dark-bg py-12 px-4">
+        <div className="container-custom max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="flex items-center justify-between mb-8">
+              <div>
+                <h1 className="text-3xl sm:text-4xl font-bold mb-2">
+                  Blog <span className="gradient-text">Posts</span>
+                </h1>
+                <p className="text-text-secondary">
+                  Manage your blog posts
+                </p>
+              </div>
+              <button
+                onClick={handleNew}
+                className="bg-accent-primary hover:bg-accent-secondary text-white font-medium px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2"
+              >
+                <Plus size={20} />
+                New Post
+              </button>
+            </div>
+
+            {isLoading ? (
+              <div className="text-center py-12">
+                <div className="w-12 h-12 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                <p className="text-text-secondary">Loading blog posts...</p>
+              </div>
+            ) : blogPosts.length === 0 ? (
+              <div className="text-center py-12 card-dark">
+                <p className="text-text-secondary mb-4">No blog posts yet.</p>
+                <button
+                  onClick={handleNew}
+                  className="bg-accent-primary hover:bg-accent-secondary text-white font-medium px-6 py-3 rounded-xl transition-colors duration-300"
+                >
+                  Create Your First Post
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {blogPosts.map((post) => (
+                  <motion.div
+                    key={post.slug}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="card-dark flex items-center justify-between"
+                  >
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-1">{post.title}</h3>
+                      <p className="text-text-secondary text-sm mb-2">
+                        {post.category} • {new Date(post.date).toLocaleDateString()}
+                      </p>
+                      <p className="text-text-tertiary text-sm line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => handleEdit(post)}
+                      className="ml-4 bg-dark-elevated hover:bg-dark-hover border border-dark-border text-text-primary font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
+                    >
+                      <Edit size={16} />
+                      Edit
+                    </button>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
+  // Create/Edit Form View
   return (
     <div className="min-h-screen bg-dark-bg py-12 px-4">
       <div className="container-custom max-w-4xl">
@@ -112,11 +253,21 @@ export default function AdminPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
+          <div className="flex items-center gap-4 mb-8">
+            <button
+              onClick={() => setView('list')}
+              className="bg-dark-elevated hover:bg-dark-hover border border-dark-border text-text-primary font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
+            >
+              <List size={16} />
+              Back to List
+            </button>
+          </div>
+
           <h1 className="text-3xl sm:text-4xl font-bold mb-2">
-            Create <span className="gradient-text">Blog Post</span>
+            {view === 'edit' ? 'Edit' : 'Create'} <span className="gradient-text">Blog Post</span>
           </h1>
           <p className="text-text-secondary mb-8">
-            Add a new blog post to your website
+            {view === 'edit' ? 'Update your blog post' : 'Add a new blog post to your website'}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">

@@ -3,7 +3,7 @@ import { Octokit } from '@octokit/rest';
 
 export async function POST(request: NextRequest) {
   try {
-    const { title, category, excerpt, content } = await request.json();
+    const { slug: providedSlug, title, category, excerpt, content } = await request.json();
 
     // Validate required fields
     if (!title || !content) {
@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate slug from title
-    const slug = title
+    // Use provided slug (for updates) or generate from title (for new posts)
+    const slug = providedSlug || title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
@@ -64,7 +64,7 @@ ${content}
       owner,
       repo,
       path,
-      message: `Add blog post: ${title}`,
+      message: sha ? `Update blog post: ${title}` : `Add blog post: ${title}`,
       content: Buffer.from(markdownContent).toString('base64'),
       branch,
       ...(sha && { sha }), // Include sha if file exists (for updates)
