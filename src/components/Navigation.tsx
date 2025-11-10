@@ -20,6 +20,7 @@ const navItems = [
   },
   { name: 'Work Experience', page: 'work-experience', href: '/work-experience' },
   { name: 'Portfolio', page: 'portfolio', href: '/portfolio' },
+  { name: 'Blog', page: 'blog', href: '/blog' },
   { name: 'Contact', page: 'contactus', href: '/contactus' },
 ];
 
