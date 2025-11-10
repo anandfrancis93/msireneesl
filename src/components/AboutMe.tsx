@@ -81,21 +81,6 @@ export default function AboutMe() {
               Growing up in India, I, Irene, always had a fascination with languages and the connections they foster. In a country as diverse as India, where languages and cultures intersect at every turn, I developed a deep appreciation for communication and its power to bring people together. My journey to becoming an ESL teacher was not linear, but it was driven by my unwavering desire to help others find their voice in a globalized world.
             </p>
 
-            <motion.button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-expanded={isExpanded}
-              aria-label={isExpanded ? "Read less about my story" : "Read more about my story"}
-            >
-              {isExpanded ? 'Read Less' : 'Read More'}
-              <ChevronDown
-                size={20}
-                className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
-              />
-            </motion.button>
-
             {isExpanded && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
@@ -125,6 +110,21 @@ export default function AboutMe() {
                 </p>
               </motion.div>
             )}
+
+            <motion.button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              aria-expanded={isExpanded}
+              aria-label={isExpanded ? "Read less about my story" : "Read more about my story"}
+            >
+              {isExpanded ? 'Read Less' : 'Read More'}
+              <ChevronDown
+                size={20}
+                className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+              />
+            </motion.button>
           </div>
         </motion.div>
 
