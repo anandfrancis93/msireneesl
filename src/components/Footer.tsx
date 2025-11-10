@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Heart } from 'lucide-react';
+import Link from 'next/link';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com', label: 'GitHub' },
@@ -10,13 +11,13 @@ const socialLinks = [
 ];
 
 const footerLinks = [
-  { title: 'Home', page: 'home' },
-  { title: 'About Me', page: 'about' },
-  { title: 'TESOL', page: 'tesol' },
-  { title: 'Work Experience', page: 'experience' },
-  { title: 'Portfolio', page: 'portfolio' },
-  { title: 'Contact', page: 'contact' },
-  { title: 'Resume', page: 'resume', isExternal: true },
+  { title: 'Home', page: 'home', href: '/home' },
+  { title: 'About Me', page: 'about-me', href: '/about-me' },
+  { title: 'TESOL', page: 'tesol', href: '/tesol' },
+  { title: 'Work Experience', page: 'work-experience', href: '/work-experience' },
+  { title: 'Portfolio', page: 'portfolio', href: '/portfolio' },
+  { title: 'Contact', page: 'contactus', href: '/contactus' },
+  { title: 'Resume', page: 'resume', href: '/resume', isExternal: true },
 ];
 
 interface FooterProps {
@@ -25,19 +26,6 @@ interface FooterProps {
 
 export default function Footer({ setActivePage }: FooterProps) {
   const currentYear = new Date().getFullYear();
-
-  const handlePageChange = (page: string) => {
-    setActivePage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleLinkClick = (link: any) => {
-    if (link.isExternal) {
-      window.open(`/${link.page}`, '_blank');
-    } else {
-      handlePageChange(link.page);
-    }
-  };
 
   return (
     <footer className="bg-dark-bg border-t border-dark-border">
@@ -56,14 +44,16 @@ export default function Footer({ setActivePage }: FooterProps) {
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <div className="space-y-2">
               {footerLinks.map((link) => (
-                <button
+                <Link
                   key={link.title}
-                  onClick={() => handleLinkClick(link)}
+                  href={link.href}
+                  target={link.isExternal ? '_blank' : undefined}
+                  rel={link.isExternal ? 'noopener noreferrer' : undefined}
                   className="block text-text-secondary hover:text-accent-primary transition-colors duration-300 text-sm text-left py-2 min-h-[44px]"
                   aria-label={`Navigate to ${link.title}`}
                 >
                   {link.title}
-                </button>
+                </Link>
               ))}
             </div>
           </div>

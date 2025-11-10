@@ -3,22 +3,24 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 const navItems = [
-  { name: 'Home', page: 'home' },
-  { name: 'About Me', page: 'about' },
+  { name: 'Home', page: 'home', href: '/home' },
+  { name: 'About Me', page: 'about-me', href: '/about-me' },
   {
     name: 'TESOL',
     page: 'tesol',
+    href: '/tesol',
     submenu: [
-      { name: 'Book Reports', page: 'book-reports' },
-      { name: 'Lesson Plans', page: 'lesson-plans' },
-      { name: 'Test Technical Manual', page: 'test-manual' },
+      { name: 'Book Reports', page: 'book-reports', href: '/tesol#book-reports' },
+      { name: 'Lesson Plans', page: 'lesson-plans', href: '/tesol#lesson-plans' },
+      { name: 'Test Technical Manual', page: 'test-manual', href: '/tesol#test-manual' },
     ]
   },
-  { name: 'Work Experience', page: 'experience' },
-  { name: 'Portfolio', page: 'portfolio' },
-  { name: 'Contact', page: 'contact' },
+  { name: 'Work Experience', page: 'work-experience', href: '/work-experience' },
+  { name: 'Portfolio', page: 'portfolio', href: '/portfolio' },
+  { name: 'Contact', page: 'contactus', href: '/contactus' },
 ];
 
 interface NavigationProps {
@@ -41,10 +43,8 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
   }, []);
 
   const handlePageChange = (page: string) => {
-    setActivePage(page);
     setIsOpen(false);
     setActiveDropdown(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -109,8 +109,9 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                           className="absolute top-full left-0 mt-2 bg-dark-surface border border-dark-border rounded-xl shadow-xl overflow-hidden min-w-[200px]"
                         >
                           {item.submenu.map((subItem) => (
-                            <button
+                            <Link
                               key={subItem.name}
+                              href={subItem.href}
                               onClick={() => handlePageChange(subItem.page)}
                               className={`block w-full text-left px-4 py-3 transition-colors duration-200 text-sm ${
                                 activePage === subItem.page
@@ -119,27 +120,26 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                               }`}
                             >
                               {subItem.name}
-                            </button>
+                            </Link>
                           ))}
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </>
                 ) : (
-                  <motion.button
+                  <Link
+                    href={item.href}
                     onClick={() => handlePageChange(item.page)}
-                    className={`transition-colors duration-300 text-sm font-medium min-h-[44px] px-2 ${
+                    className={`transition-colors duration-300 text-sm font-medium min-h-[44px] px-2 flex items-center ${
                       activePage === item.page
                         ? 'text-accent-primary'
                         : 'text-text-secondary hover:text-text-primary'
                     }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
                     aria-label={`Navigate to ${item.name}`}
                     aria-current={activePage === item.page ? 'page' : undefined}
                   >
                     {item.name}
-                  </motion.button>
+                  </Link>
                 )}
               </motion.div>
             ))}
@@ -199,41 +199,39 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                             className="pl-4 space-y-2 overflow-hidden"
                           >
                             {item.submenu.map((subItem) => (
-                              <motion.button
+                              <Link
                                 key={subItem.name}
+                                href={subItem.href}
                                 onClick={() => handlePageChange(subItem.page)}
                                 className={`block w-full text-left transition-colors duration-300 py-3 text-sm min-h-[44px] ${
                                   activePage === subItem.page
                                     ? 'text-accent-primary'
                                     : 'text-text-secondary hover:text-text-primary'
                                 }`}
-                                whileHover={{ x: 10 }}
-                                whileTap={{ scale: 0.95 }}
                                 aria-label={`Navigate to ${subItem.name}`}
                                 aria-current={activePage === subItem.page ? 'page' : undefined}
                               >
                                 {subItem.name}
-                              </motion.button>
+                              </Link>
                             ))}
                           </motion.div>
                         )}
                       </AnimatePresence>
                     </div>
                   ) : (
-                    <motion.button
+                    <Link
+                      href={item.href}
                       onClick={() => handlePageChange(item.page)}
                       className={`block w-full text-left transition-colors duration-300 py-3 min-h-[44px] ${
                         activePage === item.page
                           ? 'text-accent-primary'
                           : 'text-text-secondary hover:text-text-primary'
                       }`}
-                      whileHover={{ x: 10 }}
-                      whileTap={{ scale: 0.95 }}
                       aria-label={`Navigate to ${item.name}`}
                       aria-current={activePage === item.page ? 'page' : undefined}
                     >
                       {item.name}
-                    </motion.button>
+                    </Link>
                   )}
                 </div>
               ))}
