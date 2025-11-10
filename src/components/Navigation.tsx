@@ -7,7 +7,6 @@ import Link from 'next/link';
 
 const navItems = [
   { name: 'Home', page: 'home', href: '/home' },
-  { name: 'About Me', page: 'about-me', href: '/about-me' },
   {
     name: 'TESOL',
     page: 'tesol',
@@ -21,7 +20,15 @@ const navItems = [
   { name: 'Work Experience', page: 'work-experience', href: '/work-experience' },
   { name: 'Portfolio', page: 'portfolio', href: '/portfolio' },
   { name: 'Blog', page: 'blog', href: '/blog' },
-  { name: 'Contact', page: 'contactus', href: '/contactus' },
+  {
+    name: 'More',
+    page: 'more',
+    href: '#',
+    submenu: [
+      { name: 'About Me', page: 'about-me', href: '/about-me' },
+      { name: 'Contact', page: 'contactus', href: '/contactus' },
+    ]
+  },
 ];
 
 interface NavigationProps {
