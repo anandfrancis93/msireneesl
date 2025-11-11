@@ -1,11 +1,10 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Linkedin, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import Link from 'next/link';
 
 const socialLinks = [
-  { icon: Linkedin, href: 'https://www.linkedin.com/in/vidya-irene-584680a6/', label: 'LinkedIn' },
+  { href: 'https://www.linkedin.com/in/vidya-irene-584680a6/', label: 'LinkedIn' },
 ];
 
 const footerLinks = [
@@ -53,24 +52,19 @@ export default function Footer({ setActivePage }: FooterProps) {
           {/* Social Links */}
           <div>
             <h4 className="font-semibold mb-4">Connect</h4>
-            <div className="flex gap-4">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit ${social.label} profile`}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="min-w-[44px] min-h-[44px] w-11 h-11 bg-dark-elevated border border-dark-border rounded-xl flex items-center justify-center hover:bg-dark-hover hover:border-accent-primary transition-all duration-300"
-                  >
-                    <Icon size={18} className="text-text-secondary hover:text-accent-primary transition-colors" />
-                  </motion.a>
-                );
-              })}
+            <div className="space-y-2">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-text-secondary hover:text-accent-primary transition-colors duration-300 text-sm text-left py-2 min-h-[44px]"
+                  aria-label={`Visit ${social.label} profile`}
+                >
+                  {social.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>
