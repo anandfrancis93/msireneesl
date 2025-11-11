@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const navItems = [
   { name: 'Home', page: 'home', href: '/home' },
@@ -40,6 +41,7 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,6 +132,17 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                               {subItem.name}
                             </Link>
                           ))}
+                          {item.name === 'More' && (
+                            <button
+                              onClick={() => {
+                                toggleTheme();
+                                setActiveDropdown(null);
+                              }}
+                              className="block w-full text-left px-4 py-3 transition-colors duration-200 text-sm text-text-secondary hover:text-text-primary hover:bg-dark-elevated"
+                            >
+                              {theme === 'dark' ? 'Light Theme' : 'Dark Theme'}
+                            </button>
+                          )}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -222,6 +235,19 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                                 {subItem.name}
                               </Link>
                             ))}
+                            {item.name === 'More' && (
+                              <button
+                                onClick={() => {
+                                  toggleTheme();
+                                  setActiveDropdown(null);
+                                  setIsOpen(false);
+                                }}
+                                className="block w-full text-left transition-colors duration-300 py-3 text-sm min-h-[44px] text-text-secondary hover:text-text-primary"
+                                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+                              >
+                                {theme === 'dark' ? 'Light Theme' : 'Dark Theme'}
+                              </button>
+                            )}
                           </motion.div>
                         )}
                       </AnimatePresence>
