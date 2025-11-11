@@ -106,7 +106,7 @@ export default function WorkExperience() {
                   {/* Responsibilities */}
                   <div>
                     <ul className="space-y-2">
-                      {exp.responsibilities.slice(0, 4).map((resp, idx) => (
+                      {exp.responsibilities.slice(0, 3).map((resp, idx) => (
                         <motion.li
                           key={idx}
                           initial={{ opacity: 0, x: -20 }}
@@ -126,9 +126,9 @@ export default function WorkExperience() {
                           transition={{ duration: 0.3 }}
                           className="space-y-2 overflow-hidden"
                         >
-                          {exp.responsibilities.slice(4).map((resp, idx) => (
+                          {exp.responsibilities.slice(3).map((resp, idx) => (
                             <li
-                              key={idx + 4}
+                              key={idx + 3}
                               className="flex items-start gap-3 text-text-secondary"
                             >
                               <div className="w-1.5 h-1.5 bg-accent-primary rounded-full mt-2 flex-shrink-0" />
@@ -138,7 +138,7 @@ export default function WorkExperience() {
                         </motion.div>
                       )}
                     </ul>
-                    {exp.responsibilities.length > 4 && (
+                    {exp.responsibilities.length > 3 && (
                       <motion.button
                         onClick={() => toggleExpanded(index)}
                         className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2 mt-4"
