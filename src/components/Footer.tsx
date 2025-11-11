@@ -5,7 +5,7 @@ import { Linkedin, Heart } from 'lucide-react';
 import Link from 'next/link';
 
 const socialLinks = [
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/vidya-irene-584680a6/', label: 'LinkedIn' },
 ];
 
 const footerLinks = [
