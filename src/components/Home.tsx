@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Sparkles, BookOpen, FileText, Users, Presentation } from 'lucide-react';
+import { BookOpen, FileText, Users, Presentation } from 'lucide-react';
 
 interface HomeProps {
   setActivePage: (page: string) => void;
@@ -47,23 +47,11 @@ export default function Home({ setActivePage }: HomeProps) {
 
         <div className="container-custom relative z-10">
           <div className="text-center space-y-8">
-            {/* Icon */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex justify-center"
-            >
-              <div className="bg-dark-elevated p-4 rounded-2xl border border-dark-border">
-                <Sparkles className="w-8 h-8 text-accent-primary" />
-              </div>
-            </motion.div>
-
             {/* Main Heading */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-4">
                 Welcome to
@@ -77,7 +65,7 @@ export default function Home({ setActivePage }: HomeProps) {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg sm:text-xl lg:text-2xl text-text-secondary max-w-3xl mx-auto"
             >
               ESL Instructor, Trainer, Researcher and a Lifelong Learner.
