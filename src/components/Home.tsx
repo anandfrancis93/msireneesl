@@ -250,6 +250,96 @@ export default function Home({ setActivePage }: HomeProps) {
           </div>
         </div>
       </div>
+
+      {/* Start Your Language Journey Section */}
+      <div className="section-padding bg-dark-surface">
+        <div className="container-custom">
+          {/* CTA Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="text-center mb-16"
+          >
+            <p className="text-accent-primary text-2xl font-bold">
+              Start Your Language Journey Now
+            </p>
+          </motion.div>
+
+          {/* Service Cards */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {/* English Tutoring */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              className="card-dark text-center flex flex-col"
+            >
+              <h3 className="text-2xl font-bold mb-3">English Tutoring</h3>
+              <p className="text-text-secondary mb-6 flex-1">
+                Unlock the Power of English
+              </p>
+              <div className="mb-6">
+                <p className="text-4xl font-bold text-accent-primary">$50</p>
+              </div>
+              <button
+                className="btn-primary w-full"
+                aria-label="Book English Tutoring session"
+              >
+                Book Now
+              </button>
+            </motion.div>
+
+            {/* Conversation Class */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 1.0 }}
+              className="card-dark text-center flex flex-col"
+            >
+              <h3 className="text-2xl font-bold mb-3">Conversation Class</h3>
+              <p className="text-text-secondary mb-6 flex-1">
+                Engage with English
+              </p>
+              <div className="mb-6">
+                <p className="text-4xl font-bold text-accent-primary">$30</p>
+              </div>
+              <button
+                className="btn-primary w-full"
+                aria-label="Book Conversation Class session"
+              >
+                Book Now
+              </button>
+            </motion.div>
+
+            {/* Skill Building Course */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 1.1 }}
+              className="card-dark text-center flex flex-col relative"
+            >
+              {/* Ended Badge */}
+              <div className="absolute top-4 right-4 bg-text-tertiary px-3 py-1 rounded-full text-xs text-dark-bg font-medium">
+                Ended
+              </div>
+              <h3 className="text-2xl font-bold mb-3">Skill Building Course</h3>
+              <p className="text-text-secondary mb-6 flex-1">
+                From Novice to Natural
+              </p>
+              <div className="mb-6">
+                <p className="text-4xl font-bold text-accent-primary">$150</p>
+              </div>
+              <button
+                className="btn-secondary w-full"
+                aria-label="View Skill Building Course details"
+              >
+                View Course
+              </button>
+            </motion.div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
