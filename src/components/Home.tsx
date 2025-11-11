@@ -141,6 +141,10 @@ export default function Home({ setActivePage }: HomeProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.4 }}
+              onClick={() => {
+                setActivePage('teaching-philosophy');
+                window.location.href = '/teaching-philosophy';
+              }}
               className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
               aria-label="View Teaching Philosophy"
             >
