@@ -97,18 +97,6 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </div>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-16"
-        >
-          <a href="/contactus" className="btn-primary text-lg px-8 py-4 inline-block">
-            Start Your Language Journey Now
-          </a>
-        </motion.div>
       </div>
     </section>
   );
