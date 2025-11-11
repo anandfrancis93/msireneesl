@@ -162,6 +162,10 @@ export default function Home({ setActivePage }: HomeProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.5 }}
+              onClick={() => {
+                setActivePage('lesson-plans');
+                window.location.href = '/tesol/lesson-plans';
+              }}
               className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
               aria-label="View Lesson Plans and Syllabi"
             >
