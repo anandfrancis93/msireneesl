@@ -62,7 +62,7 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-dark-surface/80 backdrop-blur-xl border-b border-dark-border'
+          ? 'bg-white/80 dark:bg-dark-surface/80 backdrop-blur-xl border-b border-gray-200 dark:border-dark-border'
           : 'bg-transparent'
       }`}
     >
@@ -117,7 +117,7 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-2 bg-dark-surface border border-dark-border rounded-xl shadow-xl overflow-hidden min-w-[200px]"
+                          className="absolute top-full left-0 mt-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-xl shadow-xl overflow-hidden min-w-[200px]"
                         >
                           {item.submenu.map((subItem) => (
                             <Link
@@ -126,8 +126,8 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                               onClick={() => handlePageChange(subItem.page)}
                               className={`block w-full text-left px-4 py-3 transition-colors duration-200 text-sm ${
                                 activePage === subItem.page
-                                  ? 'text-accent-primary bg-dark-elevated'
-                                  : 'text-text-secondary hover:text-text-primary hover:bg-dark-elevated'
+                                  ? 'text-accent-primary bg-gray-100 dark:bg-dark-elevated'
+                                  : 'text-text-secondary hover:text-text-primary hover:bg-gray-100 dark:hover:bg-dark-elevated'
                               }`}
                             >
                               {subItem.name}
@@ -139,7 +139,7 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                                 toggleTheme();
                                 setActiveDropdown(null);
                               }}
-                              className="block w-full text-left px-4 py-3 transition-colors duration-200 text-sm text-text-secondary hover:text-text-primary hover:bg-dark-elevated"
+                              className="block w-full text-left px-4 py-3 transition-colors duration-200 text-sm text-text-secondary hover:text-text-primary hover:bg-gray-100 dark:hover:bg-dark-elevated"
                             >
                               {theme === 'dark' ? 'Light Theme' : 'Dark Theme'}
                             </button>
@@ -190,7 +190,7 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-dark-surface border-b border-dark-border"
+            className="md:hidden bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border"
           >
             <div className="container-custom py-4 space-y-2">
               {navItems.map((item) => (
