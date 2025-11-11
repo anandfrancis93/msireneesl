@@ -117,7 +117,9 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute top-full left-0 mt-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-xl shadow-xl overflow-hidden min-w-[200px]"
+                          className={`absolute top-full mt-2 bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-xl shadow-xl overflow-hidden min-w-[200px] ${
+                            item.name === 'More' ? 'right-0' : 'left-0'
+                          }`}
                         >
                           {item.submenu.map((subItem) => (
                             <Link
