@@ -121,7 +121,7 @@ export default function Home({ setActivePage }: HomeProps) {
             >
               <button
                 onClick={() => {
-                  setActivePage('about');
+                  setActivePage('about-me');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
                 className="btn-primary"
