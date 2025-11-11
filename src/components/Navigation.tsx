@@ -27,6 +27,7 @@ const navItems = [
     href: '#',
     submenu: [
       { name: 'About Me', page: 'about-me', href: '/about-me' },
+      { name: 'Testimonials', page: 'testimonials', href: '/testimonials' },
       { name: 'Contact', page: 'contactus', href: '/contactus' },
     ]
   },
