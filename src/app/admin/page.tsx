@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Lock, Edit, Plus, List } from 'lucide-react';
+import { Send, Lock, Edit, Plus, List, Trash2 } from 'lucide-react';
 
 interface BlogPost {
   slug: string;
@@ -77,6 +77,39 @@ export default function AdminPage() {
     setContent('');
     setView('create');
     setMessage('');
+  };
+
+  const handleDelete = async (slug: string, title: string) => {
+    if (!confirm(`Are you sure you want to delete "${title}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    setIsLoading(true);
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/delete-blog-post', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ slug }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage('✅ Blog post deleted successfully!');
+        loadBlogPosts();
+        setTimeout(() => setMessage(''), 3000);
+      } else {
+        setMessage(`❌ Error: ${data.error || 'Failed to delete blog post'}`);
+      }
+    } catch (error) {
+      setMessage('❌ Error: Failed to connect to server');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -194,6 +227,21 @@ export default function AdminPage() {
               </button>
             </div>
 
+            {/* Message */}
+            {message && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mb-6 p-4 rounded-xl ${
+                  message.startsWith('✅')
+                    ? 'bg-green-500/10 border border-green-500/20 text-green-400'
+                    : 'bg-red-500/10 border border-red-500/20 text-red-400'
+                }`}
+              >
+                {message}
+              </motion.div>
+            )}
+
             {isLoading ? (
               <div className="text-center py-12">
                 <div className="w-12 h-12 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
@@ -227,13 +275,22 @@ export default function AdminPage() {
                         {post.excerpt}
                       </p>
                     </div>
-                    <button
-                      onClick={() => handleEdit(post)}
-                      className="ml-4 bg-dark-elevated hover:bg-dark-hover border border-dark-border text-text-primary font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
-                    >
-                      <Edit size={16} />
-                      Edit
-                    </button>
+                    <div className="ml-4 flex gap-2">
+                      <button
+                        onClick={() => handleEdit(post)}
+                        className="bg-dark-elevated hover:bg-dark-hover border border-dark-border text-text-primary font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
+                      >
+                        <Edit size={16} />
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(post.slug, post.title)}
+                        className="bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
+                      >
+                        <Trash2 size={16} />
+                        Delete
+                      </button>
+                    </div>
                   </motion.div>
                 ))}
               </div>
