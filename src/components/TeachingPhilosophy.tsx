@@ -105,6 +105,21 @@ export default function TeachingPhilosophy() {
               It is crucial to handle this situation with compassion and offer realistic solutions, such as academic adjustments, counseling, and emotional support. By addressing these needs, our goal is to help Bao feel more at ease in her new surroundings and be able to focus on her academic goals.
             </p>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex justify-center mt-8"
+          >
+            <a
+              href="/tesol/lesson-plans"
+              className="btn-primary"
+              aria-label="View Lesson Plans"
+            >
+              Lesson Plans
+            </a>
+          </motion.div>
         </div>
       </div>
     </section>
