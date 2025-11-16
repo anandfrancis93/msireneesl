@@ -26,12 +26,50 @@ export default function TeachingCurriculum() {
           </p>
         </motion.div>
 
+        {/* Navigation Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-4 mb-12"
+        >
+          <button
+            onClick={() => {
+              const element = document.getElementById('teaching-experience');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            Teaching Experience
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('lesson-plans');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            Lesson Plans & Classroom Materials
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('curriculum-design');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            Curriculum & Course Design
+          </button>
+        </motion.div>
+
         {/* Teaching Experience Section */}
         <motion.div
+          id="teaching-experience"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
@@ -129,10 +167,12 @@ export default function TeachingCurriculum() {
 
         {/* Lesson Plans & Classroom Materials Section */}
         <motion.div
+          id="lesson-plans"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
@@ -229,10 +269,12 @@ export default function TeachingCurriculum() {
 
         {/* Curriculum & Course Design Section */}
         <motion.div
+          id="curriculum-design"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 1.2 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
