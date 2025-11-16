@@ -68,6 +68,7 @@ export default function AboutMe() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mx-auto mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
             About Us
@@ -120,6 +121,7 @@ export default function AboutMe() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="max-w-4xl mx-auto mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
             Teaching Philosophy & Approach
@@ -190,6 +192,7 @@ export default function AboutMe() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
             Highlights / Featured Work
@@ -351,6 +354,7 @@ export default function AboutMe() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.9 }}
+          style={{ scrollMarginTop: '100px' }}
         >
           <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Gallery</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
