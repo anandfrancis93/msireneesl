@@ -55,6 +55,45 @@ export default function AboutMe() {
           </p>
         </motion.div>
 
+        {/* Navigation Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+        >
+          <button
+            onClick={() => {
+              const element = document.getElementById('teaching-philosophy');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary inline-flex items-center justify-center"
+            aria-label="Jump to Teaching Philosophy & Approach section"
+          >
+            Teaching Philosophy & Approach
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('highlights');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary inline-flex items-center justify-center"
+            aria-label="Jump to Highlights / Featured Work section"
+          >
+            Highlights / Featured Work
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('photo-gallery');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary inline-flex items-center justify-center"
+            aria-label="Jump to Photo Gallery section"
+          >
+            Photo Gallery
+          </button>
+        </motion.div>
+
         {/* Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -69,6 +108,7 @@ export default function AboutMe() {
 
         {/* My Story */}
         <motion.div
+          id="teaching-philosophy"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -130,6 +170,7 @@ export default function AboutMe() {
 
         {/* Education Section */}
         <motion.div
+          id="highlights"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -301,6 +342,7 @@ export default function AboutMe() {
 
         {/* Gallery Section */}
         <motion.div
+          id="photo-gallery"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.9 }}
