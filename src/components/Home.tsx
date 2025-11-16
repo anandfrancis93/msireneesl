@@ -203,7 +203,7 @@ export default function Home({ setActivePage }: HomeProps) {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.7 }}
               onClick={() => {
-                window.location.href = '/work-experience';
+                window.location.href = '/professional-experience';
               }}
               className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
               aria-label="View Professional Experience & Development"
