@@ -158,19 +158,19 @@ export default function AboutMe() {
               <h4 className="text-xl font-bold mb-4">Key TESOL Principles I Value</h4>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
-                  <h5 className="font-bold text-accent-primary mb-3">Communicative Approach</h5>
+                  <h5 className="font-bold text-text-primary mb-3">Communicative Approach</h5>
                   <p className="text-text-secondary text-sm leading-relaxed">
                     I emphasize real-world communication and functional language use, encouraging students to use English meaningfully through role-playing, discussions, and authentic interactions.
                   </p>
                 </div>
                 <div>
-                  <h5 className="font-bold text-accent-primary mb-3">Task-Based Learning</h5>
+                  <h5 className="font-bold text-text-primary mb-3">Task-Based Learning</h5>
                   <p className="text-text-secondary text-sm leading-relaxed">
                     My lessons are oriented around practical tasks that prompt students to use English in real-world situations, such as ordering food, job interviews, or group problem-solving exercises.
                   </p>
                 </div>
                 <div>
-                  <h5 className="font-bold text-accent-primary mb-3">Inclusive Practices</h5>
+                  <h5 className="font-bold text-text-primary mb-3">Inclusive Practices</h5>
                   <p className="text-text-secondary text-sm leading-relaxed">
                     I create a supportive, positive classroom environment where humor and connection are essential, encouraging students to take risks, face challenges with confidence, and learn from mistakes.
                   </p>
