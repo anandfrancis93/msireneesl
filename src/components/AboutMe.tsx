@@ -71,7 +71,7 @@ export default function AboutMe() {
           style={{ scrollMarginTop: '100px' }}
         >
           <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
-            About Us
+            About Me
           </h3>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
