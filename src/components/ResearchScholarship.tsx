@@ -26,12 +26,59 @@ export default function ResearchScholarship() {
           </p>
         </motion.div>
 
+        {/* Navigation Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-4 mb-12"
+        >
+          <button
+            onClick={() => {
+              const element = document.getElementById('research-writing');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            Research & Academic Writing
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('book-reports');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            Book Reports & Critical Reviews
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('presentations');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            Presentations & Publications
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('assessment');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            Assessment & Evaluation
+          </button>
+        </motion.div>
+
         {/* Research & Academic Writing Section */}
         <motion.div
+          id="research-writing"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
@@ -108,10 +155,12 @@ export default function ResearchScholarship() {
 
         {/* Book Reports & Critical Reviews Section */}
         <motion.div
+          id="book-reports"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
@@ -209,10 +258,12 @@ export default function ResearchScholarship() {
 
         {/* Presentations & Publications Section */}
         <motion.div
+          id="presentations"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 1.1 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
@@ -281,10 +332,12 @@ export default function ResearchScholarship() {
 
         {/* Assessment & Evaluation Section */}
         <motion.div
+          id="assessment"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 1.5 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
