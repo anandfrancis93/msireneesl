@@ -21,6 +21,16 @@ export default function AboutMe() {
         >
           <button
             onClick={() => {
+              const element = document.getElementById('about-me');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary inline-flex items-center justify-center"
+            aria-label="Jump to About Me section"
+          >
+            About Me
+          </button>
+          <button
+            onClick={() => {
               const element = document.getElementById('teaching-philosophy');
               element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }}
@@ -53,6 +63,7 @@ export default function AboutMe() {
 
         {/* About Me Section */}
         <motion.div
+          id="about-me"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
