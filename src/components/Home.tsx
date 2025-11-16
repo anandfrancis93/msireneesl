@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { BookOpen, FileText, Users, Presentation } from 'lucide-react';
+import { BookOpen, FileText, Briefcase, User } from 'lucide-react';
 
 interface HomeProps {
   setActivePage: (page: string) => void;
@@ -142,19 +142,19 @@ export default function Home({ setActivePage }: HomeProps) {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.4 }}
               onClick={() => {
-                setActivePage('teaching-philosophy');
-                window.location.href = '/teaching-philosophy';
+                setActivePage('about-me');
+                window.location.href = '/about-me';
               }}
               className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
-              aria-label="View Teaching Philosophy"
+              aria-label="View About Me"
             >
               <div className="mb-4">
                 <div className="w-16 h-16 bg-accent-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                  <BookOpen className="w-8 h-8 text-accent-primary" />
+                  <User className="w-8 h-8 text-accent-primary" />
                 </div>
               </div>
               <h3 className="text-xl font-bold group-hover:text-accent-primary transition-colors duration-300">
-                Teaching Philosophy
+                About Me
               </h3>
             </motion.button>
 
@@ -163,18 +163,18 @@ export default function Home({ setActivePage }: HomeProps) {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.5 }}
               onClick={() => {
-                window.location.href = '/tesol/lesson-plans';
+                window.location.href = '/tesol';
               }}
               className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
-              aria-label="View Lesson Plans and Syllabi"
+              aria-label="View Teaching & Curriculum Practice"
             >
               <div className="mb-4">
                 <div className="w-16 h-16 bg-accent-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                  <FileText className="w-8 h-8 text-accent-primary" />
+                  <BookOpen className="w-8 h-8 text-accent-primary" />
                 </div>
               </div>
               <h3 className="text-xl font-bold group-hover:text-accent-primary transition-colors duration-300">
-                Lesson Plans & Syllabi
+                Teaching & Curriculum Practice
               </h3>
             </motion.button>
 
@@ -182,16 +182,19 @@ export default function Home({ setActivePage }: HomeProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.6 }}
+              onClick={() => {
+                window.location.href = '/portfolio';
+              }}
               className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
-              aria-label="View Case Studies"
+              aria-label="View Research, Assessment & Scholarship"
             >
               <div className="mb-4">
                 <div className="w-16 h-16 bg-accent-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                  <Users className="w-8 h-8 text-accent-primary" />
+                  <FileText className="w-8 h-8 text-accent-primary" />
                 </div>
               </div>
               <h3 className="text-xl font-bold group-hover:text-accent-primary transition-colors duration-300">
-                Case Studies
+                Research, Assessment & Scholarship
               </h3>
             </motion.button>
 
@@ -199,16 +202,19 @@ export default function Home({ setActivePage }: HomeProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.7 }}
+              onClick={() => {
+                window.location.href = '/work-experience';
+              }}
               className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
-              aria-label="View Presentations and Publications"
+              aria-label="View Professional Experience & Development"
             >
               <div className="mb-4">
                 <div className="w-16 h-16 bg-accent-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                  <Presentation className="w-8 h-8 text-accent-primary" />
+                  <Briefcase className="w-8 h-8 text-accent-primary" />
                 </div>
               </div>
               <h3 className="text-xl font-bold group-hover:text-accent-primary transition-colors duration-300">
-                Presentations & Publications
+                Professional Experience & Development
               </h3>
             </motion.button>
           </div>
