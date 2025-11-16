@@ -350,13 +350,11 @@ export default function ProfessionalExperience() {
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary w-full flex items-center justify-center gap-2"
+                  className="btn-primary w-full"
                 >
-                  <FileDown size={18} />
                   Download CV
                 </a>
-                <button className="btn-secondary w-full flex items-center justify-center gap-2">
-                  <FileDown size={18} />
+                <button className="btn-secondary w-full">
                   Download Résumé
                 </button>
               </div>
