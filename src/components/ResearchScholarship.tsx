@@ -80,12 +80,7 @@ export default function ResearchScholarship() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <BookOpen className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">Research & Academic Writing</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">Research & Academic Writing</h3>
 
           <div className="space-y-6">
             {/* Research Project 1 */}
@@ -162,12 +157,7 @@ export default function ResearchScholarship() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <FileText className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">Book Reports & Critical Reviews</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">Book Reports & Critical Reviews</h3>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Book Report 1 */}
@@ -265,12 +255,7 @@ export default function ResearchScholarship() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <Presentation className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">Presentations & Publications</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">Presentations & Publications</h3>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Conference Presentations */}
@@ -339,12 +324,7 @@ export default function ResearchScholarship() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <ClipboardCheck className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">Assessment & Evaluation</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">Assessment & Evaluation</h3>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Quizzes, Tests, and Exams */}
