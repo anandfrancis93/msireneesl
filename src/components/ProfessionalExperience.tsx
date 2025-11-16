@@ -26,12 +26,59 @@ export default function ProfessionalExperience() {
           </p>
         </motion.div>
 
+        {/* Navigation Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-4 mb-12"
+        >
+          <button
+            onClick={() => {
+              const element = document.getElementById('tesol-roles');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            TESOL-Related Roles
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('other-experience');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            Other Professional Experience
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('professional-development');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            Professional Development & Service
+          </button>
+          <button
+            onClick={() => {
+              const element = document.getElementById('cv-contact');
+              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className="btn-secondary"
+          >
+            CV & Contact
+          </button>
+        </motion.div>
+
         {/* TESOL-Related Roles Section */}
         <motion.div
+          id="tesol-roles"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
@@ -129,10 +176,12 @@ export default function ProfessionalExperience() {
 
         {/* Other Professional Experience Section */}
         <motion.div
+          id="other-experience"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
@@ -202,10 +251,12 @@ export default function ProfessionalExperience() {
 
         {/* Professional Development & Service Section */}
         <motion.div
+          id="professional-development"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.9 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
@@ -288,10 +339,12 @@ export default function ProfessionalExperience() {
 
         {/* CV & Contact Section */}
         <motion.div
+          id="cv-contact"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 1.3 }}
           className="mb-20"
+          style={{ scrollMarginTop: '100px' }}
         >
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
