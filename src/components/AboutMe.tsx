@@ -69,6 +69,10 @@ export default function AboutMe() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mx-auto mb-20"
         >
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
+            About Us
+          </h3>
+
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {/* Professional Bio */}
             <motion.div
