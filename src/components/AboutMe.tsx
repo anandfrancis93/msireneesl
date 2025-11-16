@@ -12,20 +12,6 @@ export default function AboutMe() {
   return (
     <section className="section-padding bg-dark-bg">
       <div className="container-custom" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-            Finding Inspiration in Every Turn
-          </p>
-        </motion.div>
-
         {/* Navigation Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
