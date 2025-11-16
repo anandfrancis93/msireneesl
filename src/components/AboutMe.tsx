@@ -204,12 +204,7 @@ export default function AboutMe() {
               transition={{ duration: 0.5, delay: 0.8 }}
               className="card-dark hover:border-accent-primary/50 transition-all duration-300"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-                  <BookOpen className="w-5 h-5 text-accent-primary" />
-                </div>
-                <h4 className="text-lg font-bold">Featured Lesson Plans</h4>
-              </div>
+              <h4 className="text-lg font-bold mb-4">Featured Lesson Plans</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-4">
                 Comprehensive lesson plans demonstrating communicative language teaching and task-based learning approaches for various proficiency levels.
               </p>
@@ -228,12 +223,7 @@ export default function AboutMe() {
               transition={{ duration: 0.5, delay: 0.9 }}
               className="card-dark hover:border-accent-primary/50 transition-all duration-300"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-                  <GraduationCap className="w-5 h-5 text-accent-primary" />
-                </div>
-                <h4 className="text-lg font-bold">TESOL Book Reports</h4>
-              </div>
+              <h4 className="text-lg font-bold mb-4">TESOL Book Reports</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-4">
                 In-depth analysis and reflections on influential TESOL literature, demonstrating theoretical understanding and practical application.
               </p>
@@ -252,12 +242,7 @@ export default function AboutMe() {
               transition={{ duration: 0.5, delay: 1.0 }}
               className="card-dark hover:border-accent-primary/50 transition-all duration-300"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-                  <BookOpen className="w-5 h-5 text-accent-primary" />
-                </div>
-                <h4 className="text-lg font-bold">Teaching Philosophy</h4>
-              </div>
+              <h4 className="text-lg font-bold mb-4">Teaching Philosophy</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-4">
                 Detailed philosophy statement and action research case studies showcasing my student-centered approach to language education.
               </p>
@@ -276,12 +261,7 @@ export default function AboutMe() {
               transition={{ duration: 0.5, delay: 1.1 }}
               className="card-dark hover:border-accent-primary/50 transition-all duration-300"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-                  <GraduationCap className="w-5 h-5 text-accent-primary" />
-                </div>
-                <h4 className="text-lg font-bold">Professional Experience</h4>
-              </div>
+              <h4 className="text-lg font-bold mb-4">Professional Experience</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-4">
                 Over 13 years of experience in ESL teaching, training, and curriculum development across multiple countries and educational contexts.
               </p>
@@ -300,12 +280,7 @@ export default function AboutMe() {
               transition={{ duration: 0.5, delay: 1.2 }}
               className="card-dark hover:border-accent-primary/50 transition-all duration-300"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-                  <BookOpen className="w-5 h-5 text-accent-primary" />
-                </div>
-                <h4 className="text-lg font-bold">Portfolio & Projects</h4>
-              </div>
+              <h4 className="text-lg font-bold mb-4">Portfolio & Projects</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-4">
                 Collection of instructional materials, presentations, and innovative teaching projects showcasing creativity and pedagogical expertise.
               </p>
@@ -324,12 +299,7 @@ export default function AboutMe() {
               transition={{ duration: 0.5, delay: 1.3 }}
               className="card-dark hover:border-accent-primary/50 transition-all duration-300"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-                  <GraduationCap className="w-5 h-5 text-accent-primary" />
-                </div>
-                <h4 className="text-lg font-bold">Student Testimonials</h4>
-              </div>
+              <h4 className="text-lg font-bold mb-4">Student Testimonials</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-4">
                 Feedback and evaluations from students highlighting the impact of my teaching methods and supportive learning environment.
               </p>
