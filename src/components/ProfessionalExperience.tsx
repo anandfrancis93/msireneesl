@@ -80,12 +80,7 @@ export default function ProfessionalExperience() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <Briefcase className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">TESOL-Related Roles</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">TESOL-Related Roles</h3>
 
           <div className="space-y-6">
             {/* Teaching Role 1 */}
@@ -183,12 +178,7 @@ export default function ProfessionalExperience() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <Users className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">Other Professional Experience</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">Other Professional Experience</h3>
 
           <div className="space-y-6">
             {/* Social Work / Community Work */}
@@ -258,12 +248,7 @@ export default function ProfessionalExperience() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <Award className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">Professional Development & Service</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">Professional Development & Service</h3>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Conferences, Workshops, Webinars */}
@@ -346,12 +331,7 @@ export default function ProfessionalExperience() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <FileDown className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">CV & Contact</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">CV & Contact</h3>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Download CV */}
