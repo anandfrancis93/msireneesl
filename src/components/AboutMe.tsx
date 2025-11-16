@@ -2,41 +2,12 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { GraduationCap, BookOpen, Image as ImageIcon, ChevronDown } from 'lucide-react';
-
-const educationCourses = {
-  education: [
-    'EDU 212: Foundations of Education',
-    'EDU 200: Human Growth and Learning in Schools',
-    'EDU 340: Multiculturalism and Culturally Responsive Teaching Through Sheltered Instruction',
-    'EDU 305: Computer and Technology Assisted Instruction',
-    'EDU 312: Effective Pedagogy',
-    'EDU 385: Education Assessment in the Classroom',
-  ],
-  tesol: [
-    'TESOL 240: Introduction to TESOL',
-    'TESOL 310: TESOL Principles and Methods',
-    'TESOL 328: Teaching Reading',
-    'TESOL 327: Teaching Speaking',
-    'TESOL 426: Teaching Grammar',
-    'TESOL 425: Teaching Vocabulary',
-    'TESOL 405: Technology Assisted Language Instruction',
-  ],
-  psychology: [
-    'PSYC 111: General Psychology',
-    'PSYC 340: Community Mental Health',
-    'PSYC 341: Personality',
-  ],
-};
+import { useRef } from 'react';
+import { GraduationCap, BookOpen, Image as ImageIcon } from 'lucide-react';
 
 export default function AboutMe() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isEducationExpanded, setIsEducationExpanded] = useState(false);
-  const [isTesolExpanded, setIsTesolExpanded] = useState(false);
-  const [isPsychologyExpanded, setIsPsychologyExpanded] = useState(false);
 
   return (
     <section className="section-padding bg-dark-bg">
@@ -94,248 +65,281 @@ export default function AboutMe() {
           </button>
         </motion.div>
 
-        {/* Introduction */}
+        {/* About Me Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto mb-16"
+          className="max-w-4xl mx-auto mb-20"
         >
-          <p className="text-text-secondary text-lg leading-relaxed mb-6">
-            My name is Irene. I am from New Delhi, India. I'm married and my husband is from Nepal. I have over 13 years of work experience in Administration, Customer Service, Training, and ESL Teaching. I have traveled to different countries teaching students and prospective ESL Teachers. I currently live in the USA; where I am studying to be a trained TESOL teacher.
-          </p>
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {/* Professional Photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="md:col-span-1"
+            >
+              <div className="aspect-square bg-dark-surface border border-dark-border rounded-2xl flex items-center justify-center hover:bg-dark-elevated transition-colors duration-300">
+                <ImageIcon className="w-16 h-16 text-text-tertiary" />
+              </div>
+              <p className="text-center text-text-tertiary text-sm mt-4">
+                Professional photo coming soon
+              </p>
+            </motion.div>
+
+            {/* Professional Bio */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="md:col-span-2 space-y-6"
+            >
+              <div>
+                <h3 className="text-2xl font-bold mb-4">Professional Bio</h3>
+                <p className="text-text-secondary leading-relaxed">
+                  My name is Irene. I am from New Delhi, India. I'm married and my husband is from Nepal. I have over 13 years of work experience in Administration, Customer Service, Training, and ESL Teaching. I have traveled to different countries teaching students and prospective ESL Teachers. I currently live in the USA; where I am studying to be a trained TESOL teacher.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold mb-4">What This Portfolio Is About</h3>
+                <p className="text-text-secondary leading-relaxed">
+                  This portfolio showcases my journey as an ESL/TESOL educator, highlighting my teaching philosophy, professional development, and instructional materials. It serves as a comprehensive collection of my pedagogical approaches, lesson plans, and classroom experiences. Through this portfolio, I demonstrate my commitment to student-centered learning, cultural responsiveness, and evidence-based teaching practices that empower language learners to achieve their goals.
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
-        {/* My Story */}
+        {/* Teaching Philosophy & Approach */}
         <motion.div
           id="teaching-philosophy"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           className="max-w-4xl mx-auto mb-20"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold mb-6">My Story</h3>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
+            Teaching Philosophy & Approach
+          </h3>
 
-          <div className="space-y-6 text-text-secondary text-lg leading-relaxed">
-            <p>
-              Growing up in India, I, Irene, always had a fascination with languages and the connections they foster. In a country as diverse as India, where languages and cultures intersect at every turn, I developed a deep appreciation for communication and its power to bring people together. My journey to becoming an ESL teacher was not linear, but it was driven by my unwavering desire to help others find their voice in a globalized world.
-            </p>
+          <div className="space-y-8">
+            {/* Teaching Philosophy Statement */}
+            <div className="card-dark">
+              <h4 className="text-xl font-bold mb-4">Teaching Philosophy Statement</h4>
+              <p className="text-text-secondary leading-relaxed">
+                My teaching philosophy is rooted in the belief that language learning combines cognitive processes with social, emotional, and experiential journeys that enable students to connect, communicate, and excel in their personal and professional pursuits. As an ESL teacher, my main objective is to create an engaging, comprehensive, and supportive environment where students from diverse cultural and educational backgrounds can enhance their English language abilities.
+              </p>
+            </div>
 
-            {isExpanded && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.4 }}
-                className="space-y-6 overflow-hidden"
-              >
+            {/* Beliefs About Language Learning */}
+            <div className="card-dark">
+              <h4 className="text-xl font-bold mb-4">Beliefs About Language Learning & Learner-Centered Teaching</h4>
+              <div className="space-y-4 text-text-secondary leading-relaxed">
                 <p>
-                  After completing my education in India, I started my career in corporate roles, including customer service and sales management. These positions taught me the value of clear communication and understanding cultural nuances. However, I felt a pull toward a profession that would allow me to make a more direct impact on individuals' lives. That calling led me to teaching, and I began as an instructor at Manipal Institute of Computer Education in Goa. It was during this time that I discovered my passion for education.
+                  I believe that effective language learning occurs when students are at the center of the instructional process. Every learner presents unique needs, skills, and experiences in the classroom, and it is essential to customize teaching strategies to address these variances. I aim to promote an environment where all students feel supported and challenged through methods like differentiated instruction, scaffolding, and collaborative activities.
                 </p>
-
                 <p>
-                  In 2013, I joined Inlingua, a language school, as an English instructor, marking my formal entry into the world of language teaching. Teaching English opened my eyes to the challenges learners face when navigating a new language and culture. I found immense satisfaction in helping my students overcome those barriers and achieve their goals. Yet, I wanted to expand my horizons further and develop my skills on an international scale.
+                  Understanding that language and culture are intrinsically linked, I integrate cultural awareness within language instruction. I create lessons that include cultural comparisons and discussions, encouraging students to expand their perspectives while respecting their cultural backgrounds. This approach promotes intercultural competence, preparing learners with the skills to navigate the cultural and social complexities of communication with both confidence and sensitivity.
                 </p>
+              </div>
+            </div>
 
-                <p>
-                  In 2017, I moved to the United States to pursue higher education and broaden my teaching experience. My time at Brigham Young University-Hawaii proved pivotal. While completing my studies, I worked as an ESL tutor and teaching assistant, honing my expertise and gaining deeper insights into pedagogical strategies. I also had the opportunity to serve as the President of the BYU-Hawaii TESOL Society, where I collaborated with peers to promote best practices in language instruction.
-                </p>
-
-                <p>
-                  Teaching adults at the US Ling Institute and other institutions further enriched my journey, exposing me to learners from diverse backgrounds with unique aspirations. Each role deepened my commitment to creating inclusive and supportive learning environments. Today, as an ESL instructor at Utah Valley University and Brigham Young University-Provo, I feel incredibly grateful for how far I have come.
-                </p>
-
-                <p>
-                  What started as a fascination with language in India has transformed into a meaningful career that spans continents. My journey from India to becoming an ESL teacher has not only shaped my professional identity but also affirmed my belief in the power of education to change lives. I am proud to help my students find their voice, just as I found mine in this incredible journey.
-                </p>
-              </motion.div>
-            )}
-
-            <motion.button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              aria-expanded={isExpanded}
-              aria-label={isExpanded ? "Read less about my story" : "Read more about my story"}
-            >
-              {isExpanded ? 'Read Less' : 'Read More'}
-              <ChevronDown
-                size={20}
-                className={`transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
-              />
-            </motion.button>
+            {/* Key TESOL Principles */}
+            <div className="card-dark">
+              <h4 className="text-xl font-bold mb-4">Key TESOL Principles I Value</h4>
+              <div className="grid md:grid-cols-3 gap-6">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-2 h-2 bg-accent-primary rounded-full"></div>
+                    <h5 className="font-bold text-accent-primary">Communicative Approach</h5>
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    I emphasize real-world communication and functional language use, encouraging students to use English meaningfully through role-playing, discussions, and authentic interactions.
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-2 h-2 bg-accent-primary rounded-full"></div>
+                    <h5 className="font-bold text-accent-primary">Task-Based Learning</h5>
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    My lessons are oriented around practical tasks that prompt students to use English in real-world situations, such as ordering food, job interviews, or group problem-solving exercises.
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-2 h-2 bg-accent-primary rounded-full"></div>
+                    <h5 className="font-bold text-accent-primary">Inclusive Practices</h5>
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    I create a supportive, positive classroom environment where humor and connection are essential, encouraging students to take risks, face challenges with confidence, and learn from mistakes.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
 
-        {/* Education Section */}
+        {/* Highlights / Featured Work Section */}
         <motion.div
           id="highlights"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
           className="mb-20"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Education</h3>
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-accent-primary/10 px-6 py-3 rounded-full border border-accent-primary/20">
-              <GraduationCap className="w-5 h-5 text-accent-primary" />
-              <span className="text-text-primary font-semibold">Bachelor - Course Work</span>
-            </div>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
+            Highlights / Featured Work
+          </h3>
+          <p className="text-text-secondary text-center max-w-2xl mx-auto mb-12">
+            A showcase of my best lessons, projects, and presentations that demonstrate my teaching approach and instructional design skills.
+          </p>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Education Classes */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="card-dark"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-                  <BookOpen className="w-5 h-5 text-accent-primary" />
-                </div>
-                <h4 className="text-xl font-bold">Education Classes</h4>
-              </div>
-              <ul className="space-y-3">
-                {educationCourses.education.slice(0, 3).map((course, index) => (
-                  <li key={index} className="text-text-secondary text-sm leading-relaxed">
-                    {course}
-                  </li>
-                ))}
-                {isEducationExpanded && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="space-y-3 overflow-hidden"
-                  >
-                    {educationCourses.education.slice(3).map((course, index) => (
-                      <li key={index + 3} className="text-text-secondary text-sm leading-relaxed">
-                        {course}
-                      </li>
-                    ))}
-                  </motion.div>
-                )}
-              </ul>
-              <motion.button
-                onClick={() => setIsEducationExpanded(!isEducationExpanded)}
-                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2 mt-4"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                aria-expanded={isEducationExpanded}
-                aria-label={isEducationExpanded ? "Show fewer education classes" : "Show more education classes"}
-              >
-                {isEducationExpanded ? 'Read Less' : 'Read More'}
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform duration-300 ${isEducationExpanded ? 'rotate-180' : ''}`}
-                />
-              </motion.button>
-            </motion.div>
-
-            {/* TESOL Classes */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="card-dark"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-                  <BookOpen className="w-5 h-5 text-accent-primary" />
-                </div>
-                <h4 className="text-xl font-bold">TESOL Classes</h4>
-              </div>
-              <ul className="space-y-3">
-                {educationCourses.tesol.slice(0, 3).map((course, index) => (
-                  <li key={index} className="text-text-secondary text-sm leading-relaxed">
-                    {course}
-                  </li>
-                ))}
-                {isTesolExpanded && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="space-y-3 overflow-hidden"
-                  >
-                    {educationCourses.tesol.slice(3).map((course, index) => (
-                      <li key={index + 3} className="text-text-secondary text-sm leading-relaxed">
-                        {course}
-                      </li>
-                    ))}
-                  </motion.div>
-                )}
-              </ul>
-              <motion.button
-                onClick={() => setIsTesolExpanded(!isTesolExpanded)}
-                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2 mt-4"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                aria-expanded={isTesolExpanded}
-                aria-label={isTesolExpanded ? "Show fewer TESOL classes" : "Show more TESOL classes"}
-              >
-                {isTesolExpanded ? 'Read Less' : 'Read More'}
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform duration-300 ${isTesolExpanded ? 'rotate-180' : ''}`}
-                />
-              </motion.button>
-            </motion.div>
-
-            {/* Psychology Classes */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Featured Lesson Plan */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="card-dark"
+              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
             >
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
                   <BookOpen className="w-5 h-5 text-accent-primary" />
                 </div>
-                <h4 className="text-xl font-bold">Psychology Classes</h4>
+                <h4 className="text-lg font-bold">Featured Lesson Plans</h4>
               </div>
-              <ul className="space-y-3">
-                {educationCourses.psychology.slice(0, 2).map((course, index) => (
-                  <li key={index} className="text-text-secondary text-sm leading-relaxed">
-                    {course}
-                  </li>
-                ))}
-                {isPsychologyExpanded && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="space-y-3 overflow-hidden"
-                  >
-                    {educationCourses.psychology.slice(2).map((course, index) => (
-                      <li key={index + 2} className="text-text-secondary text-sm leading-relaxed">
-                        {course}
-                      </li>
-                    ))}
-                  </motion.div>
-                )}
-              </ul>
-              <motion.button
-                onClick={() => setIsPsychologyExpanded(!isPsychologyExpanded)}
-                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2 mt-4"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                aria-expanded={isPsychologyExpanded}
-                aria-label={isPsychologyExpanded ? "Show fewer psychology classes" : "Show more psychology classes"}
+              <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                Comprehensive lesson plans demonstrating communicative language teaching and task-based learning approaches for various proficiency levels.
+              </p>
+              <a
+                href="/tesol/lesson-plans"
+                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
               >
-                {isPsychologyExpanded ? 'Read Less' : 'Read More'}
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform duration-300 ${isPsychologyExpanded ? 'rotate-180' : ''}`}
-                />
-              </motion.button>
+                View Lesson Plans →
+              </a>
+            </motion.div>
+
+            {/* Book Reports & Analysis */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
+                  <GraduationCap className="w-5 h-5 text-accent-primary" />
+                </div>
+                <h4 className="text-lg font-bold">TESOL Book Reports</h4>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                In-depth analysis and reflections on influential TESOL literature, demonstrating theoretical understanding and practical application.
+              </p>
+              <a
+                href="/tesol/book-reports"
+                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
+              >
+                View Book Reports →
+              </a>
+            </motion.div>
+
+            {/* Teaching Philosophy */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 1.0 }}
+              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
+                  <BookOpen className="w-5 h-5 text-accent-primary" />
+                </div>
+                <h4 className="text-lg font-bold">Teaching Philosophy</h4>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                Detailed philosophy statement and action research case studies showcasing my student-centered approach to language education.
+              </p>
+              <a
+                href="/teaching-philosophy"
+                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
+              >
+                Read More →
+              </a>
+            </motion.div>
+
+            {/* Work Experience */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 1.1 }}
+              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
+                  <GraduationCap className="w-5 h-5 text-accent-primary" />
+                </div>
+                <h4 className="text-lg font-bold">Professional Experience</h4>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                Over 13 years of experience in ESL teaching, training, and curriculum development across multiple countries and educational contexts.
+              </p>
+              <a
+                href="/work-experience"
+                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
+              >
+                View Experience →
+              </a>
+            </motion.div>
+
+            {/* Portfolio Projects */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 1.2 }}
+              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
+                  <BookOpen className="w-5 h-5 text-accent-primary" />
+                </div>
+                <h4 className="text-lg font-bold">Portfolio & Projects</h4>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                Collection of instructional materials, presentations, and innovative teaching projects showcasing creativity and pedagogical expertise.
+              </p>
+              <a
+                href="/portfolio"
+                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
+              >
+                View Portfolio →
+              </a>
+            </motion.div>
+
+            {/* Student Testimonials */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 1.3 }}
+              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center">
+                  <GraduationCap className="w-5 h-5 text-accent-primary" />
+                </div>
+                <h4 className="text-lg font-bold">Student Testimonials</h4>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                Feedback and evaluations from students highlighting the impact of my teaching methods and supportive learning environment.
+              </p>
+              <a
+                href="/testimonials"
+                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
+              >
+                Read Testimonials →
+              </a>
             </motion.div>
           </div>
         </motion.div>
