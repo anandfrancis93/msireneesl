@@ -8,25 +8,19 @@ import { useTheme } from '@/contexts/ThemeContext';
 
 const navItems = [
   { name: 'Home', page: 'home', href: '/home' },
-  {
-    name: 'TESOL',
-    page: 'tesol',
-    href: '/tesol',
-    submenu: [
-      { name: 'Book Reports', page: 'book-reports', href: '/tesol/book-reports' },
-      { name: 'Lesson Plans', page: 'lesson-plans', href: '/tesol/lesson-plans' },
-      { name: 'Test Technical Manual', page: 'test-manual', href: '/tesol#test-manual' },
-    ]
-  },
-  { name: 'Work Experience', page: 'work-experience', href: '/work-experience' },
-  { name: 'Portfolio', page: 'portfolio', href: '/portfolio' },
-  { name: 'Blog', page: 'blog', href: '/blog' },
+  { name: 'About Me', page: 'about-me', href: '/about-me' },
   {
     name: 'More',
     page: 'more',
     href: '#',
     submenu: [
-      { name: 'About Me', page: 'about-me', href: '/about-me' },
+      { name: 'TESOL', page: 'tesol', href: '/tesol' },
+      { name: 'Book Reports', page: 'book-reports', href: '/tesol/book-reports' },
+      { name: 'Lesson Plans', page: 'lesson-plans', href: '/tesol/lesson-plans' },
+      { name: 'Test Technical Manual', page: 'test-manual', href: '/tesol#test-manual' },
+      { name: 'Work Experience', page: 'work-experience', href: '/work-experience' },
+      { name: 'Portfolio', page: 'portfolio', href: '/portfolio' },
+      { name: 'Blog', page: 'blog', href: '/blog' },
       { name: 'Testimonials', page: 'testimonials', href: '/testimonials' },
       { name: 'Contact', page: 'contactus', href: '/contactus' },
     ]
