@@ -183,7 +183,7 @@ export default function Home({ setActivePage }: HomeProps) {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.6 }}
               onClick={() => {
-                window.location.href = '/portfolio';
+                window.location.href = '/research-scholarship';
               }}
               className="card-dark text-center group cursor-pointer min-h-[200px] flex flex-col items-center justify-center"
               aria-label="View Research, Assessment & Scholarship"
