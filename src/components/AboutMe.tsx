@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { GraduationCap, BookOpen, Image as ImageIcon } from 'lucide-react';
+import Image from 'next/image';
 
 export default function AboutMe() {
   const ref = useRef(null);
@@ -104,12 +105,15 @@ export default function AboutMe() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="md:col-span-1"
             >
-              <div className="aspect-square bg-dark-surface border border-dark-border rounded-2xl flex items-center justify-center hover:bg-dark-elevated transition-colors duration-300">
-                <ImageIcon className="w-16 h-16 text-text-tertiary" />
+              <div className="aspect-square bg-dark-surface border border-dark-border rounded-2xl overflow-hidden relative">
+                <Image
+                  src="/professional-photo.avif"
+                  alt="Professional photo of Ms. Irene"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
-              <p className="text-center text-text-tertiary text-sm mt-4">
-                Professional photo coming soon
-              </p>
             </motion.div>
           </div>
         </motion.div>
