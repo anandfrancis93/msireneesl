@@ -71,12 +71,7 @@ export default function TeachingCurriculum() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <BookOpen className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">Teaching Experience</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">Teaching Experience</h3>
 
           <div className="space-y-6">
             {/* Course/Context 1 */}
@@ -174,12 +169,7 @@ export default function TeachingCurriculum() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <FileText className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">Lesson Plans & Classroom Materials</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">Lesson Plans & Classroom Materials</h3>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Skill-based lessons */}
@@ -276,12 +266,7 @@ export default function TeachingCurriculum() {
           className="mb-20"
           style={{ scrollMarginTop: '100px' }}
         >
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center">
-              <Layers className="w-6 h-6 text-accent-primary" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold">Curriculum & Course Design</h3>
-          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold mb-8">Curriculum & Course Design</h3>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Full course outlines & syllabi */}
