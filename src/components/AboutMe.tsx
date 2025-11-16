@@ -73,26 +73,11 @@ export default function AboutMe() {
           className="max-w-4xl mx-auto mb-20"
         >
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Professional Photo */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="md:col-span-1"
-            >
-              <div className="aspect-square bg-dark-surface border border-dark-border rounded-2xl flex items-center justify-center hover:bg-dark-elevated transition-colors duration-300">
-                <ImageIcon className="w-16 h-16 text-text-tertiary" />
-              </div>
-              <p className="text-center text-text-tertiary text-sm mt-4">
-                Professional photo coming soon
-              </p>
-            </motion.div>
-
             {/* Professional Bio */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="md:col-span-2 space-y-6"
             >
               <div>
@@ -108,6 +93,21 @@ export default function AboutMe() {
                   This portfolio showcases my journey as an ESL/TESOL educator, highlighting my teaching philosophy, professional development, and instructional materials. It serves as a comprehensive collection of my pedagogical approaches, lesson plans, and classroom experiences. Through this portfolio, I demonstrate my commitment to student-centered learning, cultural responsiveness, and evidence-based teaching practices that empower language learners to achieve their goals.
                 </p>
               </div>
+            </motion.div>
+
+            {/* Professional Photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="md:col-span-1"
+            >
+              <div className="aspect-square bg-dark-surface border border-dark-border rounded-2xl flex items-center justify-center hover:bg-dark-elevated transition-colors duration-300">
+                <ImageIcon className="w-16 h-16 text-text-tertiary" />
+              </div>
+              <p className="text-center text-text-tertiary text-sm mt-4">
+                Professional photo coming soon
+              </p>
             </motion.div>
           </div>
         </motion.div>
