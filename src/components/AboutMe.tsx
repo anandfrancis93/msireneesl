@@ -3,342 +3,223 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { GraduationCap, BookOpen, Image as ImageIcon } from 'lucide-react';
+import { Image as ImageIcon, ArrowRight, Quote } from 'lucide-react';
 import Image from 'next/image';
 
 export default function AboutMe() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <section className="section-padding bg-dark-bg">
+    <section className="min-h-screen bg-editorial-bg text-editorial-text font-sans selection:bg-editorial-accent/30 pt-32 pb-24">
       <div className="container-custom" ref={ref}>
+
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="uppercase tracking-[0.2em] text-sm font-medium text-editorial-accent mb-4 block">Professional Profile</span>
+            <h1 className="font-serif text-5xl lg:text-6xl text-editorial-navy mb-6">About Ms. Irene</h1>
+            <div className="w-24 h-1 bg-editorial-navy mx-auto" />
+          </motion.div>
+        </div>
+
         {/* Navigation Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+          className="flex flex-wrap gap-4 justify-center mb-20"
         >
-          <button
-            onClick={() => {
-              const element = document.getElementById('about-me');
-              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
-            className="btn-secondary inline-flex items-center justify-center"
-            aria-label="Jump to About Me section"
-          >
-            About Me
-          </button>
-          <button
-            onClick={() => {
-              const element = document.getElementById('teaching-philosophy');
-              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
-            className="btn-secondary inline-flex items-center justify-center"
-            aria-label="Jump to Teaching Philosophy & Approach section"
-          >
-            Teaching Philosophy & Approach
-          </button>
-          <button
-            onClick={() => {
-              const element = document.getElementById('highlights');
-              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
-            className="btn-secondary inline-flex items-center justify-center"
-            aria-label="Jump to Highlights / Featured Work section"
-          >
-            Highlights / Featured Work
-          </button>
-          <button
-            onClick={() => {
-              const element = document.getElementById('photo-gallery');
-              element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
-            className="btn-secondary inline-flex items-center justify-center"
-            aria-label="Jump to Photo Gallery section"
-          >
-            Photo Gallery
-          </button>
+          {[
+            { label: "Biography", id: "about-me" },
+            { label: "Philosophy", id: "teaching-philosophy" },
+            { label: "Highlights", id: "highlights" },
+            { label: "Gallery", id: "photo-gallery" }
+          ].map((item, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                const element = document.getElementById(item.id);
+                element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className="px-6 py-3 border border-editorial-border text-editorial-navy hover:border-editorial-navy hover:bg-editorial-navy hover:text-white transition-all duration-300 text-sm uppercase tracking-widest font-medium"
+            >
+              {item.label}
+            </button>
+          ))}
         </motion.div>
 
         {/* About Me Section */}
         <motion.div
           id="about-me"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-4xl mx-auto mb-20"
-          style={{ scrollMarginTop: '100px' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="max-w-5xl mx-auto mb-32 scroll-mt-32"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
-            About Me
-          </h3>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Professional Bio */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="md:col-span-2 space-y-6"
-            >
-              <div>
-                <h3 className="text-2xl font-bold mb-4">Professional Bio</h3>
-                <p className="text-text-secondary leading-relaxed">
-                  My name is Irene. I am from New Delhi, India. I'm married and my husband is from Nepal. I have over 13 years of work experience in Administration, Customer Service, Training, and ESL Teaching. I have traveled to different countries teaching students and prospective ESL Teachers. I currently live in the USA; where I am studying to be a trained TESOL teacher.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-bold mb-4">What This Portfolio Is About</h3>
-                <p className="text-text-secondary leading-relaxed">
-                  This portfolio showcases my journey as an ESL/TESOL educator, highlighting my teaching philosophy, professional development, and instructional materials. It serves as a comprehensive collection of my pedagogical approaches, lesson plans, and classroom experiences. Through this portfolio, I demonstrate my commitment to student-centered learning, cultural responsiveness, and evidence-based teaching practices that empower language learners to achieve their goals.
-                </p>
-              </div>
-            </motion.div>
-
+          <div className="grid md:grid-cols-12 gap-12 items-start">
             {/* Professional Photo */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="md:col-span-1"
-            >
-              <div className="aspect-square bg-dark-surface border border-dark-border rounded-2xl overflow-hidden relative">
-                <Image
-                  src="/professional-photo.avif"
-                  alt="Professional photo of Ms. Irene"
-                  fill
-                  className="object-cover"
-                  priority
-                />
+            <div className="md:col-span-5 relative">
+              <div className="relative aspect-[4/5] w-full bg-white p-4 shadow-xl rotate-2 hover:rotate-0 transition-transform duration-500">
+                <div className="relative h-full w-full overflow-hidden bg-gray-100">
+                  <Image
+                    src="/professional-photo.avif"
+                    alt="Ms. Irene"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
               </div>
-            </motion.div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-editorial-accent/10 rounded-full -z-10" />
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-editorial-navy/5 rounded-full -z-10" />
+            </div>
+
+            {/* Bio Text */}
+            <div className="md:col-span-7 space-y-8">
+              <div>
+                <h3 className="font-serif text-3xl text-editorial-navy mb-6">A Global Educator</h3>
+                <p className="text-editorial-subtext text-lg leading-relaxed mb-6">
+                  My name is Irene. I am from New Delhi, India. I have over 13 years of work experience in Administration, Customer Service, Training, and ESL Teaching. I have traveled to different countries teaching students and prospective ESL Teachers.
+                </p>
+                <p className="text-editorial-subtext text-lg leading-relaxed">
+                  I currently live in the USA, where I am studying to be a trained TESOL teacher. My journey has been defined by a passion for connecting with people from diverse backgrounds and empowering them through language.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 border-l-4 border-editorial-accent shadow-sm">
+                <h4 className="font-serif text-xl text-editorial-navy mb-3">Portfolio Mission</h4>
+                <p className="text-editorial-subtext italic">
+                  "To demonstrate my commitment to student-centered learning, cultural responsiveness, and evidence-based teaching practices that empower language learners to achieve their goals."
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
 
-        {/* Teaching Philosophy & Approach */}
+        {/* Teaching Philosophy */}
         <motion.div
           id="teaching-philosophy"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="max-w-4xl mx-auto mb-20"
-          style={{ scrollMarginTop: '100px' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="max-w-4xl mx-auto mb-32 scroll-mt-32"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
-            Teaching Philosophy & Approach
-          </h3>
+          <div className="text-center mb-12">
+            <h3 className="font-serif text-4xl text-editorial-navy mb-4">Teaching Philosophy</h3>
+            <p className="text-editorial-subtext max-w-2xl mx-auto">
+              Rooted in the belief that language learning combines cognitive processes with social, emotional, and experiential journeys.
+            </p>
+          </div>
 
-          <div className="space-y-8">
-            {/* Teaching Philosophy Statement */}
-            <div className="card-dark">
-              <h4 className="text-xl font-bold mb-4">Teaching Philosophy Statement</h4>
-              <p className="text-text-secondary leading-relaxed">
-                My teaching philosophy is rooted in the belief that language learning combines cognitive processes with social, emotional, and experiential journeys that enable students to connect, communicate, and excel in their personal and professional pursuits. As an ESL teacher, my main objective is to create an engaging, comprehensive, and supportive environment where students from diverse cultural and educational backgrounds can enhance their English language abilities.
-              </p>
-            </div>
-
-            {/* Beliefs About Language Learning */}
-            <div className="card-dark">
-              <h4 className="text-xl font-bold mb-4">Beliefs About Language Learning & Learner-Centered Teaching</h4>
-              <div className="space-y-4 text-text-secondary leading-relaxed">
-                <p>
-                  I believe that effective language learning occurs when students are at the center of the instructional process. Every learner presents unique needs, skills, and experiences in the classroom, and it is essential to customize teaching strategies to address these variances. I aim to promote an environment where all students feel supported and challenged through methods like differentiated instruction, scaffolding, and collaborative activities.
+          <div className="grid gap-8">
+            <div className="bg-white p-10 border border-editorial-border shadow-sm relative overflow-hidden">
+              <Quote className="absolute top-6 right-6 w-24 h-24 text-editorial-bg text-opacity-50 -z-0" />
+              <div className="relative z-10">
+                <h4 className="font-serif text-2xl text-editorial-navy mb-6">Core Beliefs</h4>
+                <p className="text-editorial-subtext leading-relaxed mb-6">
+                  I believe that effective language learning occurs when students are at the center of the instructional process. Every learner presents unique needs, skills, and experiences in the classroom, and it is essential to customize teaching strategies to address these variances.
                 </p>
-                <p>
-                  Understanding that language and culture are intrinsically linked, I integrate cultural awareness within language instruction. I create lessons that include cultural comparisons and discussions, encouraging students to expand their perspectives while respecting their cultural backgrounds. This approach promotes intercultural competence, preparing learners with the skills to navigate the cultural and social complexities of communication with both confidence and sensitivity.
+                <p className="text-editorial-subtext leading-relaxed">
+                  Understanding that language and culture are intrinsically linked, I integrate cultural awareness within language instruction. This approach promotes intercultural competence, preparing learners with the skills to navigate the cultural and social complexities of communication.
                 </p>
               </div>
             </div>
 
-            {/* Key TESOL Principles */}
-            <div className="card-dark">
-              <h4 className="text-xl font-bold mb-4">Key TESOL Principles I Value</h4>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <h5 className="font-bold text-text-primary mb-3">Communicative Approach</h5>
-                  <p className="text-text-secondary text-sm leading-relaxed">
-                    I emphasize real-world communication and functional language use, encouraging students to use English meaningfully through role-playing, discussions, and authentic interactions.
-                  </p>
+            <div className="grid md:grid-cols-3 gap-12 mt-16">
+              {[
+                { title: "Communicative", desc: "Real-world communication and functional language use through authentic interactions." },
+                { title: "Task-Based", desc: "Practical tasks that prompt students to use English in real-world situations." },
+                { title: "Inclusive", desc: "A supportive environment where humor and connection encourage risk-taking." }
+              ].map((item, idx) => (
+                <div key={idx} className="relative pt-8 border-t border-editorial-navy/20">
+                  <span className="absolute -top-3.5 left-0 bg-editorial-bg pr-4 text-editorial-accent font-serif italic text-lg">0{idx + 1}</span>
+                  <h5 className="font-serif text-2xl text-editorial-navy mb-4">{item.title}</h5>
+                  <p className="text-editorial-subtext leading-relaxed">{item.desc}</p>
                 </div>
-                <div>
-                  <h5 className="font-bold text-text-primary mb-3">Task-Based Learning</h5>
-                  <p className="text-text-secondary text-sm leading-relaxed">
-                    My lessons are oriented around practical tasks that prompt students to use English in real-world situations, such as ordering food, job interviews, or group problem-solving exercises.
-                  </p>
-                </div>
-                <div>
-                  <h5 className="font-bold text-text-primary mb-3">Inclusive Practices</h5>
-                  <p className="text-text-secondary text-sm leading-relaxed">
-                    I create a supportive, positive classroom environment where humor and connection are essential, encouraging students to take risks, face challenges with confidence, and learn from mistakes.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </motion.div>
 
-        {/* Highlights / Featured Work Section */}
+        {/* Highlights Section */}
         <motion.div
           id="highlights"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mb-20"
-          style={{ scrollMarginTop: '100px' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="mb-32 scroll-mt-32"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
-            Highlights / Featured Work
-          </h3>
-          <p className="text-text-secondary text-center max-w-2xl mx-auto mb-12">
-            A showcase of my best lessons, projects, and presentations that demonstrate my teaching approach and instructional design skills.
-          </p>
+          <div className="flex items-end justify-between mb-12 border-b border-editorial-border pb-6">
+            <div>
+              <span className="uppercase tracking-[0.2em] text-sm font-medium text-editorial-accent mb-2 block">Featured Work</span>
+              <h3 className="font-serif text-4xl text-editorial-navy">Highlights</h3>
+            </div>
+          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Featured Lesson Plan */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
-            >
-              <h4 className="text-lg font-bold mb-4">Featured Lesson Plans</h4>
-              <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                Comprehensive lesson plans demonstrating communicative language teaching and task-based learning approaches for various proficiency levels.
-              </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "Lesson Plans", desc: "Comprehensive plans demonstrating communicative language teaching.", link: "/tesol/lesson-plans" },
+              { title: "Book Reports", desc: "In-depth analysis and reflections on influential TESOL literature.", link: "/tesol/book-reports" },
+              { title: "Philosophy", desc: "Detailed statement and action research case studies.", link: "/teaching-philosophy" },
+              { title: "Experience", desc: "13+ years of teaching across multiple countries.", link: "/work-experience" },
+              { title: "Portfolio", desc: "Instructional materials and innovative teaching projects.", link: "/portfolio" },
+              { title: "Testimonials", desc: "Feedback highlighting the impact of my teaching methods.", link: "/testimonials" }
+            ].map((item, idx) => (
               <a
-                href="/tesol/lesson-plans"
-                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
+                key={idx}
+                href={item.link}
+                className="group bg-white p-8 border border-editorial-border hover:border-editorial-accent transition-all duration-300 hover:shadow-lg"
               >
-                View Lesson Plans →
+                <h4 className="font-serif text-2xl text-editorial-navy mb-4 group-hover:text-editorial-accent transition-colors">{item.title}</h4>
+                <p className="text-editorial-subtext text-sm leading-relaxed mb-6">{item.desc}</p>
+                <div className="flex items-center gap-2 text-editorial-navy text-sm font-medium uppercase tracking-wider group-hover:gap-3 transition-all">
+                  View <ArrowRight className="w-4 h-4" />
+                </div>
               </a>
-            </motion.div>
-
-            {/* Book Reports & Analysis */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.9 }}
-              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
-            >
-              <h4 className="text-lg font-bold mb-4">TESOL Book Reports</h4>
-              <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                In-depth analysis and reflections on influential TESOL literature, demonstrating theoretical understanding and practical application.
-              </p>
-              <a
-                href="/tesol/book-reports"
-                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
-              >
-                View Book Reports →
-              </a>
-            </motion.div>
-
-            {/* Teaching Philosophy */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 1.0 }}
-              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
-            >
-              <h4 className="text-lg font-bold mb-4">Teaching Philosophy</h4>
-              <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                Detailed philosophy statement and action research case studies showcasing my student-centered approach to language education.
-              </p>
-              <a
-                href="/teaching-philosophy"
-                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
-              >
-                Read More →
-              </a>
-            </motion.div>
-
-            {/* Work Experience */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 1.1 }}
-              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
-            >
-              <h4 className="text-lg font-bold mb-4">Professional Experience</h4>
-              <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                Over 13 years of experience in ESL teaching, training, and curriculum development across multiple countries and educational contexts.
-              </p>
-              <a
-                href="/work-experience"
-                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
-              >
-                View Experience →
-              </a>
-            </motion.div>
-
-            {/* Portfolio Projects */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 1.2 }}
-              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
-            >
-              <h4 className="text-lg font-bold mb-4">Portfolio & Projects</h4>
-              <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                Collection of instructional materials, presentations, and innovative teaching projects showcasing creativity and pedagogical expertise.
-              </p>
-              <a
-                href="/portfolio"
-                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
-              >
-                View Portfolio →
-              </a>
-            </motion.div>
-
-            {/* Student Testimonials */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 1.3 }}
-              className="card-dark hover:border-accent-primary/50 transition-all duration-300"
-            >
-              <h4 className="text-lg font-bold mb-4">Student Testimonials</h4>
-              <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                Feedback and evaluations from students highlighting the impact of my teaching methods and supportive learning environment.
-              </p>
-              <a
-                href="/testimonials"
-                className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 text-sm font-medium"
-              >
-                Read Testimonials →
-              </a>
-            </motion.div>
+            ))}
           </div>
         </motion.div>
 
         {/* Gallery Section */}
         <motion.div
           id="photo-gallery"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          style={{ scrollMarginTop: '100px' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="scroll-mt-32"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Gallery</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <h3 className="font-serif text-4xl text-editorial-navy mb-12 text-center">Gallery</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {[1, 2, 3, 4, 5].map((index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
-                className="aspect-square bg-dark-surface border border-dark-border rounded-2xl flex items-center justify-center hover:bg-dark-elevated transition-colors duration-300 cursor-pointer group"
+                className="aspect-square bg-white border border-editorial-border p-2 shadow-sm hover:shadow-md transition-shadow duration-300"
               >
-                <ImageIcon className="w-12 h-12 text-text-tertiary group-hover:text-accent-primary transition-colors duration-300" />
-              </motion.div>
+                <div className="w-full h-full bg-editorial-bg flex items-center justify-center">
+                  <ImageIcon className="w-8 h-8 text-editorial-border" />
+                </div>
+              </div>
             ))}
           </div>
-          <p className="text-center text-text-tertiary text-sm mt-6">
-            Gallery images coming soon
+          <p className="text-center text-editorial-subtext text-sm mt-8 italic font-serif">
+            More images coming soon...
           </p>
         </motion.div>
+
       </div>
     </section>
   );

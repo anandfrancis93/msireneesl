@@ -58,46 +58,51 @@ export default function WorkExperience() {
   };
 
   return (
-    <section className="section-padding bg-dark-bg">
+    <section className="section-padding bg-editorial-bg min-h-screen">
       <div className="container-custom" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Work <span className="gradient-text">Experience</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold mb-6 text-editorial-navy">
+            Work <span className="italic text-editorial-accent">Experience</span>
           </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-            Over a decade of dedicated ESL instruction across prestigious institutions
+          <p className="text-editorial-subtext max-w-2xl mx-auto text-lg leading-relaxed">
+            Over a decade of dedicated ESL instruction across prestigious institutions, fostering language acquisition and cultural fluency.
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-12">
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.title + exp.institution}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="card-dark relative"
+              className="bg-white p-8 md:p-12 border border-editorial-border shadow-sm hover:shadow-md transition-shadow duration-300"
             >
-              {/* Timeline dot */}
-              <div className="absolute -left-3 top-8 w-6 h-6 bg-accent-primary rounded-full border-4 border-dark-bg hidden md:block" />
+              <div className="grid md:grid-cols-12 gap-8">
+                {/* Left side - Period */}
+                <div className="md:col-span-3">
+                  <div className="inline-flex md:flex-col items-center md:items-start gap-2 text-editorial-accent font-serif italic text-lg">
+                    <Calendar size={18} />
+                    <span>{exp.period}</span>
+                  </div>
+                </div>
 
-              <div className="grid md:grid-cols-3 gap-6">
-                {/* Left side - Title and Institution */}
-                <div className="md:col-span-2">
-                  <h3 className="text-2xl font-bold mb-2">{exp.title}</h3>
-                  <div className="flex flex-wrap items-center gap-4 text-text-secondary mb-4">
+                {/* Right side - Content */}
+                <div className="md:col-span-9">
+                  <h3 className="text-2xl font-serif font-bold text-editorial-navy mb-2">{exp.title}</h3>
+                  <div className="flex flex-wrap items-center gap-4 text-editorial-subtext mb-6 text-sm uppercase tracking-wider">
                     <div className="flex items-center gap-2">
-                      <Briefcase size={16} />
+                      <Briefcase size={14} />
                       <span className="font-semibold">{exp.institution}</span>
                     </div>
                     {exp.location && (
                       <div className="flex items-center gap-2">
-                        <MapPin size={16} />
+                        <MapPin size={14} />
                         <span>{exp.location}</span>
                       </div>
                     )}
@@ -105,16 +110,16 @@ export default function WorkExperience() {
 
                   {/* Responsibilities */}
                   <div>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       {exp.responsibilities.slice(0, 3).map((resp, idx) => (
                         <motion.li
                           key={idx}
-                          initial={{ opacity: 0, x: -20 }}
+                          initial={{ opacity: 0, x: -10 }}
                           animate={isInView ? { opacity: 1, x: 0 } : {}}
                           transition={{ duration: 0.4, delay: index * 0.2 + 0.1 + idx * 0.1 }}
-                          className="flex items-start gap-3 text-text-secondary"
+                          className="flex items-start gap-3 text-editorial-subtext leading-relaxed"
                         >
-                          <div className="w-1.5 h-1.5 bg-accent-primary rounded-full mt-2 flex-shrink-0" />
+                          <span className="text-editorial-accent mt-1.5">•</span>
                           <span>{resp}</span>
                         </motion.li>
                       ))}
@@ -124,14 +129,14 @@ export default function WorkExperience() {
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="space-y-2 overflow-hidden"
+                          className="space-y-3 overflow-hidden"
                         >
                           {exp.responsibilities.slice(3).map((resp, idx) => (
                             <li
                               key={idx + 3}
-                              className="flex items-start gap-3 text-text-secondary"
+                              className="flex items-start gap-3 text-editorial-subtext leading-relaxed"
                             >
-                              <div className="w-1.5 h-1.5 bg-accent-primary rounded-full mt-2 flex-shrink-0" />
+                              <span className="text-editorial-accent mt-1.5">•</span>
                               <span>{resp}</span>
                             </li>
                           ))}
@@ -139,29 +144,19 @@ export default function WorkExperience() {
                       )}
                     </ul>
                     {exp.responsibilities.length > 3 && (
-                      <motion.button
+                      <button
                         onClick={() => toggleExpanded(index)}
-                        className="inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary transition-colors duration-300 font-medium min-h-[44px] px-4 py-2 mt-4"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        className="inline-flex items-center gap-2 text-editorial-navy hover:text-editorial-accent transition-colors duration-300 font-medium text-sm uppercase tracking-widest mt-6 border-b border-editorial-navy hover:border-editorial-accent pb-1"
                         aria-expanded={expandedIndex === index}
                         aria-label={expandedIndex === index ? "Show fewer responsibilities" : "Show more responsibilities"}
                       >
                         {expandedIndex === index ? 'Read Less' : 'Read More'}
                         <ChevronDown
-                          size={16}
+                          size={14}
                           className={`transition-transform duration-300 ${expandedIndex === index ? 'rotate-180' : ''}`}
                         />
-                      </motion.button>
+                      </button>
                     )}
-                  </div>
-                </div>
-
-                {/* Right side - Period */}
-                <div className="md:text-right">
-                  <div className="inline-flex items-center gap-2 bg-accent-primary/10 px-4 py-2 rounded-full border border-accent-primary/20">
-                    <Calendar size={16} className="text-accent-primary" />
-                    <span className="text-text-primary font-medium">{exp.period}</span>
                   </div>
                 </div>
               </div>

@@ -60,7 +60,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="section-padding bg-dark-surface">
+    <section className="section-padding bg-editorial-bg min-h-screen">
       <div className="container-custom" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -68,32 +68,30 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Get in <span className="gradient-text">Touch</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold mb-6 text-editorial-navy">
+            Get in <span className="italic text-editorial-accent">Touch</span>
           </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-            Have a project in mind? Let's create something amazing together
+          <p className="text-editorial-subtext max-w-2xl mx-auto text-lg leading-relaxed font-light">
+            Have a question or want to collaborate? I'd love to hear from you.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-8"
+            className="space-y-10"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-4">Let's Talk</h3>
-              <p className="text-text-secondary leading-relaxed">
-                Whether you have a question, want to start a project, or simply want
-                to connect, feel free to reach out. I'll get back to you as soon as
-                possible.
+              <h3 className="text-3xl font-serif font-bold mb-6 text-editorial-navy">Let's Connect</h3>
+              <p className="text-editorial-subtext leading-relaxed text-lg">
+                Whether you have a question about my teaching philosophy, want to discuss curriculum design, or simply want to connect, feel free to reach out. I'll get back to you as soon as possible.
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
                 return (
@@ -102,14 +100,14 @@ export default function Contact() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                    className="flex items-center gap-4"
+                    className="flex items-center gap-6 group"
                   >
-                    <div className="w-12 h-12 bg-accent-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-5 h-5 text-accent-primary" />
+                    <div className="w-14 h-14 bg-white border border-editorial-border rounded-full flex items-center justify-center flex-shrink-0 shadow-sm group-hover:border-editorial-accent transition-colors duration-300">
+                      <Icon className="w-6 h-6 text-editorial-navy group-hover:text-editorial-accent transition-colors duration-300" />
                     </div>
                     <div>
-                      <div className="text-text-tertiary text-sm">{info.label}</div>
-                      <div className="text-text-primary font-medium">{info.value}</div>
+                      <div className="text-editorial-subtext text-sm uppercase tracking-wider mb-1">{info.label}</div>
+                      <div className="text-editorial-navy font-serif font-bold text-lg">{info.value}</div>
                     </div>
                   </motion.div>
                 );
@@ -122,76 +120,77 @@ export default function Contact() {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-white p-8 md:p-10 border border-editorial-border shadow-sm"
           >
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                <label htmlFor="name" className="block text-sm font-bold text-editorial-navy mb-2 uppercase tracking-wide">
                   Name
                 </label>
                 <input
                   {...register('name')}
                   type="text"
                   id="name"
-                  className="w-full px-4 py-3 bg-dark-elevated border border-dark-border rounded-xl focus:outline-none focus:border-accent-primary transition-colors text-text-primary"
+                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border focus:outline-none focus:border-editorial-accent transition-colors text-editorial-navy placeholder-editorial-subtext/50"
                   placeholder="Your name"
                 />
                 {errors.name && (
-                  <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>
+                  <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <label htmlFor="email" className="block text-sm font-bold text-editorial-navy mb-2 uppercase tracking-wide">
                   Email
                 </label>
                 <input
                   {...register('email')}
                   type="email"
                   id="email"
-                  className="w-full px-4 py-3 bg-dark-elevated border border-dark-border rounded-xl focus:outline-none focus:border-accent-primary transition-colors text-text-primary"
+                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border focus:outline-none focus:border-editorial-accent transition-colors text-editorial-navy placeholder-editorial-subtext/50"
                   placeholder="your@email.com"
                 />
                 {errors.email && (
-                  <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
+                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                <label htmlFor="subject" className="block text-sm font-bold text-editorial-navy mb-2 uppercase tracking-wide">
                   Subject
                 </label>
                 <input
                   {...register('subject')}
                   type="text"
                   id="subject"
-                  className="w-full px-4 py-3 bg-dark-elevated border border-dark-border rounded-xl focus:outline-none focus:border-accent-primary transition-colors text-text-primary"
+                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border focus:outline-none focus:border-editorial-accent transition-colors text-editorial-navy placeholder-editorial-subtext/50"
                   placeholder="How can I help?"
                 />
                 {errors.subject && (
-                  <p className="text-red-400 text-sm mt-1">{errors.subject.message}</p>
+                  <p className="text-red-500 text-sm mt-1">{errors.subject.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label htmlFor="message" className="block text-sm font-bold text-editorial-navy mb-2 uppercase tracking-wide">
                   Message
                 </label>
                 <textarea
                   {...register('message')}
                   id="message"
                   rows={5}
-                  className="w-full px-4 py-3 bg-dark-elevated border border-dark-border rounded-xl focus:outline-none focus:border-accent-primary transition-colors resize-none text-text-primary"
+                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border focus:outline-none focus:border-editorial-accent transition-colors resize-none text-editorial-navy placeholder-editorial-subtext/50"
                   placeholder="Tell me about your project..."
                 />
                 {errors.message && (
-                  <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>
+                  <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
                 )}
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-8 py-4 bg-editorial-navy text-white font-serif text-lg hover:bg-editorial-accent transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>

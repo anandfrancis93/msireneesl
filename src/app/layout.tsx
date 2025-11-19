@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair' });
 
 export const metadata: Metadata = {
   title: "Ms. Irene - ESL Instructor Portfolio",
@@ -17,6 +18,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+import PageTransition from "@/components/PageTransition";
+
 export default function RootLayout({
   children,
 }: {
@@ -24,8 +27,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className={`${inter.variable} ${playfair.variable} font-sans bg-editorial-bg overflow-x-hidden`}>
+        <ThemeProvider>
+          <div className="relative min-h-screen w-full perspective-[2000px]">
+            <PageTransition>{children}</PageTransition>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

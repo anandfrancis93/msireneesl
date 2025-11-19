@@ -33,7 +33,7 @@ export default function Portfolio() {
   };
 
   return (
-    <section className="section-padding bg-dark-surface min-h-screen">
+    <section className="section-padding bg-editorial-bg min-h-screen">
       <div className="container-custom" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -41,11 +41,11 @@ export default function Portfolio() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            My <span className="gradient-text">Portfolio</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold mb-6 text-editorial-navy">
+            My <span className="italic text-editorial-accent">Portfolio</span>
           </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto text-lg">
-            Welcome to my portfolio. Here you'll find a selection of my work. Explore my projects to learn more about what I do.
+          <p className="text-editorial-subtext max-w-2xl mx-auto text-lg leading-relaxed">
+            A curated selection of my work and professional engagements. Explore the gallery to see my journey in action.
           </p>
         </motion.div>
 
@@ -57,8 +57,8 @@ export default function Portfolio() {
           className="max-w-5xl mx-auto"
         >
           {/* Main Image Display */}
-          <div className="relative bg-dark-bg border border-dark-border rounded-2xl overflow-hidden mb-6">
-            <div className="aspect-video relative bg-dark-elevated">
+          <div className="relative bg-white p-4 border border-editorial-border shadow-lg mb-8">
+            <div className="aspect-video relative bg-editorial-bg overflow-hidden">
               <Image
                 src={portfolioImages[currentImageIndex].src}
                 alt={portfolioImages[currentImageIndex].alt}
@@ -71,29 +71,29 @@ export default function Portfolio() {
             {/* Navigation Arrows */}
             <button
               onClick={goToPrevious}
-              className="absolute left-4 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] w-12 h-12 bg-dark-elevated/90 hover:bg-dark-hover border border-dark-border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+              className="absolute left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white border border-editorial-border shadow-md rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 text-editorial-navy hover:text-editorial-accent"
               aria-label="View previous portfolio image"
             >
-              <ChevronLeft className="w-6 h-6 text-accent-primary" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] w-12 h-12 bg-dark-elevated/90 hover:bg-dark-hover border border-dark-border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+              className="absolute right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white border border-editorial-border shadow-md rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 text-editorial-navy hover:text-editorial-accent"
               aria-label="View next portfolio image"
             >
-              <ChevronRight className="w-6 h-6 text-accent-primary" />
+              <ChevronRight className="w-6 h-6" />
             </button>
 
             {/* Image Counter */}
-            <div className="absolute bottom-4 right-4 bg-dark-elevated/90 backdrop-blur-sm px-4 py-2 rounded-full border border-dark-border">
-              <span className="text-text-primary text-sm font-medium">
+            <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full border border-editorial-border shadow-sm">
+              <span className="text-editorial-navy text-sm font-serif font-medium">
                 {currentImageIndex + 1} / {portfolioImages.length}
               </span>
             </div>
           </div>
 
           {/* Thumbnail Strip */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-4 gap-4">
             {portfolioImages.map((image, index) => (
               <motion.button
                 key={image.id}
@@ -101,20 +101,21 @@ export default function Portfolio() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                className={`aspect-video bg-dark-elevated border-2 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 relative min-h-[44px] ${
-                  currentImageIndex === index
-                    ? 'border-accent-primary ring-2 ring-accent-primary/50'
-                    : 'border-dark-border hover:border-accent-primary/50'
-                }`}
+                className={`aspect-video bg-white p-1 border transition-all duration-300 hover:scale-105 relative ${currentImageIndex === index
+                    ? 'border-editorial-accent shadow-md'
+                    : 'border-editorial-border hover:border-editorial-accent/50'
+                  }`}
                 aria-label={`View portfolio image ${index + 1}`}
                 aria-current={currentImageIndex === index ? 'true' : 'false'}
               >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-contain"
-                />
+                <div className="relative w-full h-full bg-editorial-bg">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </motion.button>
             ))}
           </div>

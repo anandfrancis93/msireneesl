@@ -26,10 +26,20 @@ const config: Config = {
           primary: '#ffffff',
           secondary: '#b4b4b4',
           tertiary: '#9ca3af',
+        },
+        // New Editorial Palette
+        editorial: {
+          bg: '#FDFBF7', // Warm Paper
+          text: '#1A1A1A', // Soft Black
+          subtext: '#4A4A4A', // Dark Grey
+          accent: '#D4AF37', // Muted Gold
+          navy: '#0F172A', // Deep Navy
+          border: '#E5E0D8', // Paper Border
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-in-out',
