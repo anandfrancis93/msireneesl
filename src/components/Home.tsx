@@ -103,7 +103,7 @@ export default function Home({ setActivePage }: HomeProps) {
                     src="/professional-photo.avif"
                     alt="Ms. Irene"
                     fill
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+                    className="object-cover transition-all duration-700 ease-in-out"
                     priority
                   />
                 </div>
