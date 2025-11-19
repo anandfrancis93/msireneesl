@@ -3,8 +3,9 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { ArrowRight, Star, Quote, BookOpen, GraduationCap, Globe, Notebook, FileText, Layers } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowRight, Star, Quote, BookOpen, GraduationCap, Globe, Plus, Minus, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
+import { LessonPlanAsset, ResearchAsset, MaterialsAsset } from './EditorialAssets';
 
 interface HomeProps {
   setActivePage: (page: string) => void;
@@ -18,6 +19,8 @@ export default function Home({ setActivePage }: HomeProps) {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [showPhilosophy, setShowPhilosophy] = useState(false);
   const [showExperience, setShowExperience] = useState(false);
+  const [expandedExperience, setExpandedExperience] = useState<string | null>(null);
+  const [showAllTestimonials, setShowAllTestimonials] = useState(false);
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
@@ -168,7 +171,7 @@ export default function Home({ setActivePage }: HomeProps) {
 
                 <div className="md:col-span-2 text-center mt-4">
                   <button
-                    onClick={() => window.location.href = '/teaching-philosophy'}
+                    onClick={() => setActivePage('teaching-philosophy')}
                     className="text-editorial-subtext hover:text-editorial-navy transition-colors text-sm border-b border-transparent hover:border-editorial-navy pb-1"
                   >
                     Read Full Statement
@@ -290,33 +293,74 @@ export default function Home({ setActivePage }: HomeProps) {
                 <span className="italic text-editorial-accent">Excellence</span>
               </h2>
               <div className="space-y-8">
-                <div className="flex gap-6">
-                  <div className="flex-shrink-0 w-12 h-12 border border-editorial-border flex items-center justify-center rounded-full text-editorial-navy">
+                {/* Academic Foundation */}
+                <div 
+                  className="flex gap-6 cursor-pointer group"
+                  onClick={() => setExpandedExperience(expandedExperience === 'academic' ? null : 'academic')}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 border border-editorial-border flex items-center justify-center rounded-full text-editorial-navy group-hover:bg-editorial-navy group-hover:text-white transition-colors duration-300">
                     <GraduationCap className="w-6 h-6" />
                   </div>
-                  <div>
-                    <h4 className="text-xl font-serif mb-2 text-editorial-navy">Academic Foundation</h4>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-xl font-serif mb-2 text-editorial-navy group-hover:text-editorial-accent transition-colors">Academic Foundation</h4>
+                      {expandedExperience === 'academic' ? <Minus className="w-4 h-4 text-editorial-accent" /> : <Plus className="w-4 h-4 text-editorial-subtext" />}
+                    </div>
                     <p className="text-editorial-subtext leading-relaxed">
-                      Master's in TESOL (In Progress), Bachelor's in Education, and specialized training in Psychology and Special Education.
+                      Master's in TESOL (In Progress), Bachelor's in Education, and specialized training in Psychology.
                     </p>
+                    
+                    <motion.div 
+                      initial={false}
+                      animate={{ height: expandedExperience === 'academic' ? 'auto' : 0, opacity: expandedExperience === 'academic' ? 1 : 0 }}
+                      className="overflow-hidden"
+                    >
+                      <ul className="pt-4 space-y-2 text-sm text-editorial-navy border-l-2 border-editorial-accent/30 pl-4 mt-2">
+                        <li>• MA in TESOL (Current)</li>
+                        <li>• BA in Education (Magna Cum Laude)</li>
+                        <li>• Certifications in Special Education</li>
+                        <li>• Psychology Minor</li>
+                      </ul>
+                    </motion.div>
                   </div>
                 </div>
-                <div className="flex gap-6">
-                  <div className="flex-shrink-0 w-12 h-12 border border-editorial-border flex items-center justify-center rounded-full text-editorial-navy">
+
+                {/* Experience */}
+                <div 
+                  className="flex gap-6 cursor-pointer group"
+                  onClick={() => setExpandedExperience(expandedExperience === 'experience' ? null : 'experience')}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 border border-editorial-border flex items-center justify-center rounded-full text-editorial-navy group-hover:bg-editorial-navy group-hover:text-white transition-colors duration-300">
                     <BookOpen className="w-6 h-6" />
                   </div>
-                  <div>
-                    <h4 className="text-xl font-serif mb-2 text-editorial-navy">13+ Years Experience</h4>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h4 className="text-xl font-serif mb-2 text-editorial-navy group-hover:text-editorial-accent transition-colors">13+ Years Experience</h4>
+                      {expandedExperience === 'experience' ? <Minus className="w-4 h-4 text-editorial-accent" /> : <Plus className="w-4 h-4 text-editorial-subtext" />}
+                    </div>
                     <p className="text-editorial-subtext leading-relaxed">
                       Over a decade of teaching across 5+ countries, adapting to diverse learning styles and cultural contexts.
                     </p>
+
+                    <motion.div 
+                      initial={false}
+                      animate={{ height: expandedExperience === 'experience' ? 'auto' : 0, opacity: expandedExperience === 'experience' ? 1 : 0 }}
+                      className="overflow-hidden"
+                    >
+                      <ul className="pt-4 space-y-2 text-sm text-editorial-navy border-l-2 border-editorial-accent/30 pl-4 mt-2">
+                        <li>• Taught in USA, Spain, Japan, and more</li>
+                        <li>• 1000+ Students Mentored</li>
+                        <li>• Specialized in ESL & Business English</li>
+                        <li>• Curriculum Development Expert</li>
+                      </ul>
+                    </motion.div>
                   </div>
                 </div>
               </div>
               <div className="mt-12">
-                <a href="/work-experience" className="inline-flex items-center gap-2 text-editorial-navy hover:text-editorial-accent transition-colors border-b border-editorial-navy pb-1 hover:border-editorial-accent">
+                <Link href="/work-experience" className="inline-flex items-center gap-2 text-editorial-navy hover:text-editorial-accent transition-colors border-b border-editorial-navy pb-1 hover:border-editorial-accent">
                   View Full CV <ArrowRight className="w-4 h-4" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -343,27 +387,112 @@ export default function Home({ setActivePage }: HomeProps) {
         </div>
       </div>
 
+      {/* Testimonials: The Word of Mouth */}
+      <div className="py-24 bg-editorial-bg border-b border-editorial-border">
+        <div className="container-custom">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+             <span className="uppercase tracking-[0.2em] text-sm font-medium text-editorial-accent mb-4 block">Student Success</span>
+             <h2 className="font-serif text-4xl lg:text-5xl text-editorial-navy mb-6">Words from the <span className="italic text-editorial-accent">Community</span></h2>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Featured Testimonial - Always Visible */}
+            <div className="lg:col-span-3 bg-white p-10 border border-editorial-border relative">
+              <div className="relative z-10 max-w-4xl mx-auto text-center">
+                <p className="font-serif text-2xl text-editorial-navy leading-relaxed mb-8">
+                  "Ms. Irene changed my vision about grammar and writing because she taught me with love. I learned a lot with her, and I am so grateful for her. She is amazing, and she is a big example to learn another language."
+                </p>
+                <div className="flex items-center justify-center gap-3">
+                   <div className="w-8 h-px bg-editorial-accent" />
+                   <span className="uppercase tracking-widest text-sm font-bold text-editorial-navy">Isabella M.</span>
+                   <span className="text-editorial-subtext text-sm">Student</span>
+                   <div className="w-8 h-px bg-editorial-accent" />
+                </div>
+              </div>
+            </div>
+
+            {/* Hidden Testimonials - Revealed on Click */}
+            {showAllTestimonials && (
+              <>
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-white p-8 border border-editorial-border"
+                >
+                  <div className="flex gap-1 mb-4">
+                    {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-editorial-accent text-editorial-accent" />)}
+                  </div>
+                  <p className="text-editorial-subtext mb-6 italic">"Ms. Irene's teaching style is incredibly effective. I have seen a remarkable improvement in my English skills."</p>
+                  <span className="font-serif text-editorial-navy block">Sarah T.</span>
+                  <span className="text-xs text-editorial-subtext uppercase">Student</span>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="bg-white p-8 border border-editorial-border"
+                >
+                   <div className="flex gap-1 mb-4">
+                    {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-editorial-accent text-editorial-accent" />)}
+                  </div>
+                  <p className="text-editorial-subtext mb-6 italic">"Irene is an excellent teacher who believes in really teaching students. She is always willing to try new methods."</p>
+                  <span className="font-serif text-editorial-navy block">Sarah L-M.</span>
+                  <span className="text-xs text-editorial-subtext uppercase">Supervisor</span>
+                </motion.div>
+
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="bg-white p-8 border border-editorial-border"
+                >
+                   <div className="flex gap-1 mb-4">
+                    {[1,2,3,4,5].map(i => <Star key={i} size={14} className="fill-editorial-accent text-editorial-accent" />)}
+                  </div>
+                  <p className="text-editorial-subtext mb-6 italic">"Learning English with Ms. Irene has been a game-changer for me. Her dedication boosted my confidence."</p>
+                  <span className="font-serif text-editorial-navy block">Daniel L.</span>
+                  <span className="text-xs text-editorial-subtext uppercase">Student</span>
+                </motion.div>
+              </>
+            )}
+          </div>
+
+          <div className="text-center mt-12">
+            <button 
+              onClick={() => setShowAllTestimonials(!showAllTestimonials)}
+              className="inline-flex items-center gap-2 px-8 py-3 border border-editorial-navy text-editorial-navy hover:bg-editorial-navy hover:text-white transition-colors duration-300 uppercase tracking-widest text-xs font-medium"
+            >
+              {showAllTestimonials ? 'Read Less' : 'Read More Stories'}
+              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showAllTestimonials ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Featured Work: The Gallery */}
       <div className="py-24 bg-white">
         <div className="container-custom">
           <div className="flex justify-between items-end mb-12 border-b border-editorial-border pb-6">
             <h2 className="font-serif text-3xl text-editorial-navy">Selected Works</h2>
-            <a href="/portfolio" className="text-editorial-subtext hover:text-editorial-navy transition-colors text-sm uppercase tracking-widest">View All</a>
+            <Link href="/portfolio" className="text-editorial-subtext hover:text-editorial-navy transition-colors text-sm uppercase tracking-widest">View All</Link>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { title: "Lesson Plans", cat: "Curriculum", link: "/tesol/lesson-plans", icon: Notebook },
-              { title: "Research Papers", cat: "Scholarship", link: "/research-scholarship", icon: FileText },
-              { title: "Teaching Materials", cat: "Resources", link: "/portfolio", icon: Layers }
+              { title: "Lesson Plans", cat: "Curriculum", link: "/tesol/lesson-plans", Asset: LessonPlanAsset },
+              { title: "Research Papers", cat: "Scholarship", link: "/research-scholarship", Asset: ResearchAsset },
+              { title: "Teaching Materials", cat: "Resources", link: "/portfolio", Asset: MaterialsAsset }
             ].map((item, idx) => (
-              <a key={idx} href={item.link} className="group block">
-                <div className="aspect-[4/3] bg-white mb-6 relative flex items-center justify-center border border-editorial-border shadow-sm hover:shadow-md transition-all duration-300">
+              <Link key={idx} href={item.link} className="group block">
+                <div className="aspect-[4/3] bg-white mb-6 relative overflow-hidden border border-editorial-border shadow-sm hover:shadow-md transition-all duration-300 group-hover:border-editorial-accent">
                   {/* Top accent border */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-editorial-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-editorial-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
-                  {/* Icon */}
-                  <item.icon strokeWidth={1.5} className="w-16 h-16 text-editorial-navy/30 group-hover:text-editorial-accent transition-colors duration-300" />
+                  {/* Asset */}
+                  <div className="w-full h-full transform group-hover:scale-105 transition-transform duration-700 p-4">
+                    <item.Asset />
+                  </div>
                 </div>
                 <div className="flex justify-between items-start">
                   <div>
@@ -372,7 +501,7 @@ export default function Home({ setActivePage }: HomeProps) {
                   </div>
                   <ArrowRight className="w-5 h-5 text-editorial-border group-hover:text-editorial-navy transition-colors" />
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

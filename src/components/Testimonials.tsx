@@ -68,11 +68,6 @@ export default function Testimonials() {
               transition={{ duration: 0.5, delay: index * 0.15 }}
               className="bg-white border border-editorial-border p-8 md:p-10 shadow-sm hover:shadow-md transition-all duration-300 relative"
             >
-              {/* Quote Icon */}
-              <div className="absolute top-8 left-8 opacity-20">
-                <Quote className="w-12 h-12 text-editorial-accent" />
-              </div>
-
               <div className="relative z-10 pl-4">
                 {/* Content */}
                 <p className="text-editorial-subtext text-lg leading-relaxed mb-8 italic font-serif">

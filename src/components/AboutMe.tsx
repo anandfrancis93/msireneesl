@@ -1,14 +1,33 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Image as ImageIcon, ArrowRight, Quote } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { Image as ImageIcon, ArrowRight, Quote, ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 
 export default function AboutMe() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [expandedSections, setExpandedSections] = useState<{ [key: string]: boolean }>({
+    bio: false,
+    philosophy: false,
+    highlights: false
+  });
+
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
+  const expandSection = (section: string) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: true
+    }));
+  };
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -40,16 +59,19 @@ export default function AboutMe() {
           className="flex flex-wrap gap-4 justify-center mb-20"
         >
           {[
-            { label: "Biography", id: "about-me" },
-            { label: "Philosophy", id: "teaching-philosophy" },
-            { label: "Highlights", id: "highlights" },
-            { label: "Gallery", id: "photo-gallery" }
+            { label: "Biography", id: "about-me", sectionKey: 'bio' },
+            { label: "Philosophy", id: "teaching-philosophy", sectionKey: 'philosophy' },
+            { label: "Highlights", id: "highlights", sectionKey: 'highlights' },
+            { label: "Gallery", id: "photo-gallery", sectionKey: null }
           ].map((item, idx) => (
             <button
               key={idx}
               onClick={() => {
-                const element = document.getElementById(item.id);
-                element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (item.sectionKey) expandSection(item.sectionKey);
+                setTimeout(() => {
+                   const element = document.getElementById(item.id);
+                   element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
               }}
               className="px-6 py-3 border border-editorial-border text-editorial-navy hover:border-editorial-navy hover:bg-editorial-navy hover:text-white transition-all duration-300 text-sm uppercase tracking-widest font-medium"
             >
@@ -92,16 +114,36 @@ export default function AboutMe() {
                 <p className="text-editorial-subtext text-lg leading-relaxed mb-6">
                   My name is Irene. I am from New Delhi, India. I have over 13 years of work experience in Administration, Customer Service, Training, and ESL Teaching. I have traveled to different countries teaching students and prospective ESL Teachers.
                 </p>
-                <p className="text-editorial-subtext text-lg leading-relaxed">
-                  I currently live in the USA, where I am studying to be a trained TESOL teacher. My journey has been defined by a passion for connecting with people from diverse backgrounds and empowering them through language.
-                </p>
-              </div>
+                
+                <AnimatePresence>
+                  {expandedSections.bio && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-editorial-subtext text-lg leading-relaxed mb-6">
+                        I currently live in the USA, where I am studying to be a trained TESOL teacher. My journey has been defined by a passion for connecting with people from diverse backgrounds and empowering them through language.
+                      </p>
+                      <div className="bg-white p-8 border-l-4 border-editorial-accent shadow-sm mt-8">
+                        <h4 className="font-serif text-xl text-editorial-navy mb-3">Portfolio Mission</h4>
+                        <p className="text-editorial-subtext italic">
+                          "To demonstrate my commitment to student-centered learning, cultural responsiveness, and evidence-based teaching practices that empower language learners to achieve their goals."
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-              <div className="bg-white p-8 border-l-4 border-editorial-accent shadow-sm">
-                <h4 className="font-serif text-xl text-editorial-navy mb-3">Portfolio Mission</h4>
-                <p className="text-editorial-subtext italic">
-                  "To demonstrate my commitment to student-centered learning, cultural responsiveness, and evidence-based teaching practices that empower language learners to achieve their goals."
-                </p>
+                <button
+                  onClick={() => toggleSection('bio')}
+                  className="mt-4 inline-flex items-center gap-2 text-editorial-navy font-medium border-b border-editorial-navy pb-1 hover:text-editorial-accent hover:border-editorial-accent transition-colors text-sm uppercase tracking-widest"
+                >
+                  {expandedSections.bio ? 'Read Less' : 'Read Full Bio'}
+                  {expandedSections.bio ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                </button>
               </div>
             </div>
           </div>
@@ -131,25 +173,58 @@ export default function AboutMe() {
                 <p className="text-editorial-subtext leading-relaxed mb-6">
                   I believe that effective language learning occurs when students are at the center of the instructional process. Every learner presents unique needs, skills, and experiences in the classroom, and it is essential to customize teaching strategies to address these variances.
                 </p>
-                <p className="text-editorial-subtext leading-relaxed">
-                  Understanding that language and culture are intrinsically linked, I integrate cultural awareness within language instruction. This approach promotes intercultural competence, preparing learners with the skills to navigate the cultural and social complexities of communication.
-                </p>
+                
+                <AnimatePresence>
+                  {expandedSections.philosophy && (
+                    <motion.div
+                       initial={{ opacity: 0, height: 0 }}
+                       animate={{ opacity: 1, height: 'auto' }}
+                       exit={{ opacity: 0, height: 0 }}
+                       transition={{ duration: 0.4 }}
+                       className="overflow-hidden"
+                    >
+                      <p className="text-editorial-subtext leading-relaxed">
+                        Understanding that language and culture are intrinsically linked, I integrate cultural awareness within language instruction. This approach promotes intercultural competence, preparing learners with the skills to navigate the cultural and social complexities of communication.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                <button
+                  onClick={() => toggleSection('philosophy')}
+                  className="mt-6 inline-flex items-center gap-2 text-editorial-navy font-medium border-b border-editorial-navy pb-1 hover:text-editorial-accent hover:border-editorial-accent transition-colors text-sm uppercase tracking-widest"
+                >
+                  {expandedSections.philosophy ? 'Read Less' : 'Read More'}
+                  {expandedSections.philosophy ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                </button>
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-12 mt-16">
-              {[
-                { title: "Communicative", desc: "Real-world communication and functional language use through authentic interactions." },
-                { title: "Task-Based", desc: "Practical tasks that prompt students to use English in real-world situations." },
-                { title: "Inclusive", desc: "A supportive environment where humor and connection encourage risk-taking." }
-              ].map((item, idx) => (
-                <div key={idx} className="relative pt-8 border-t border-editorial-navy/20">
-                  <span className="absolute -top-3.5 left-0 bg-editorial-bg pr-4 text-editorial-accent font-serif italic text-lg">0{idx + 1}</span>
-                  <h5 className="font-serif text-2xl text-editorial-navy mb-4">{item.title}</h5>
-                  <p className="text-editorial-subtext leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+            <AnimatePresence>
+               {expandedSections.philosophy && (
+                <motion.div
+                   initial={{ opacity: 0, height: 0 }}
+                   animate={{ opacity: 1, height: 'auto' }}
+                   exit={{ opacity: 0, height: 0 }}
+                   transition={{ duration: 0.4 }}
+                   className="overflow-hidden"
+                >
+                  <div className="grid md:grid-cols-3 gap-12 mt-8">
+                    {[
+                      { title: "Communicative", desc: "Real-world communication and functional language use through authentic interactions." },
+                      { title: "Task-Based", desc: "Practical tasks that prompt students to use English in real-world situations." },
+                      { title: "Inclusive", desc: "A supportive environment where humor and connection encourage risk-taking." }
+                    ].map((item, idx) => (
+                      <div key={idx} className="relative pt-8 border-t border-editorial-navy/20">
+                        <span className="absolute -top-3.5 left-0 bg-editorial-bg pr-4 text-editorial-accent font-serif italic text-lg">0{idx + 1}</span>
+                        <h5 className="font-serif text-2xl text-editorial-navy mb-4">{item.title}</h5>
+                        <p className="text-editorial-subtext leading-relaxed">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+               )}
+            </AnimatePresence>
           </div>
         </motion.div>
 
@@ -167,6 +242,13 @@ export default function AboutMe() {
               <span className="uppercase tracking-[0.2em] text-sm font-medium text-editorial-accent mb-2 block">Featured Work</span>
               <h3 className="font-serif text-4xl text-editorial-navy">Highlights</h3>
             </div>
+            
+            <button
+              onClick={() => toggleSection('highlights')}
+              className="text-editorial-subtext hover:text-editorial-navy transition-colors text-sm uppercase tracking-widest hidden sm:block"
+            >
+              {expandedSections.highlights ? 'View Less' : 'View All'}
+            </button>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -177,7 +259,7 @@ export default function AboutMe() {
               { title: "Experience", desc: "13+ years of teaching across multiple countries.", link: "/work-experience" },
               { title: "Portfolio", desc: "Instructional materials and innovative teaching projects.", link: "/portfolio" },
               { title: "Testimonials", desc: "Feedback highlighting the impact of my teaching methods.", link: "/testimonials" }
-            ].map((item, idx) => (
+            ].slice(0, expandedSections.highlights ? 6 : 3).map((item, idx) => (
               <a
                 key={idx}
                 href={item.link}
@@ -191,6 +273,14 @@ export default function AboutMe() {
               </a>
             ))}
           </div>
+           <div className="mt-8 text-center sm:hidden">
+             <button
+              onClick={() => toggleSection('highlights')}
+              className="text-editorial-subtext hover:text-editorial-navy transition-colors text-sm uppercase tracking-widest border-b border-editorial-border pb-1"
+            >
+              {expandedSections.highlights ? 'View Less' : 'View All'}
+            </button>
+           </div>
         </motion.div>
 
         {/* Gallery Section */}
