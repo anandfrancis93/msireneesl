@@ -18,8 +18,6 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-import PageTransition from "@/components/PageTransition";
-
 export default function RootLayout({
   children,
 }: {
@@ -29,9 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} font-sans bg-editorial-bg overflow-x-hidden`}>
         <ThemeProvider>
-          <div className="relative min-h-screen w-full perspective-[2000px]">
-            <PageTransition>{children}</PageTransition>
-          </div>
+          {children}
         </ThemeProvider>
       </body>
     </html>
