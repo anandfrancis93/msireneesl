@@ -68,7 +68,9 @@ export default function Navigation({ activePage, setActivePage }: NavigationProp
             transition={{ duration: 0.5 }}
             className="text-2xl font-serif font-bold text-editorial-navy tracking-tight"
           >
-            Ms. Irene
+            <Link href="/home" onClick={() => setActivePage('home')}>
+              Ms. Irene
+            </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
