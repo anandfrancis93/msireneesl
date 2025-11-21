@@ -6,7 +6,7 @@ import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Mail, MapPin, Phone, Send, Loader2, CheckCircle } from 'lucide-react';
+import { Send, Loader2, CheckCircle } from 'lucide-react';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -16,12 +16,6 @@ const contactSchema = z.object({
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
-
-const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'hello@irene.com' },
-  { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
-  { icon: MapPin, label: 'Location', value: 'San Francisco, CA' },
-];
 
 export default function Contact() {
   const ref = useRef(null);
@@ -76,51 +70,13 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-10"
-          >
-            <div>
-              <h3 className="text-3xl font-serif font-bold mb-6 text-editorial-navy">Let's Connect</h3>
-              <p className="text-editorial-subtext leading-relaxed text-lg">
-                Whether you have a question about my teaching philosophy, want to discuss curriculum design, or simply want to connect, feel free to reach out. I'll get back to you as soon as possible.
-              </p>
-            </div>
-
-            <div className="space-y-8">
-              {contactInfo.map((info, index) => {
-                const Icon = info.icon;
-                return (
-                  <motion.div
-                    key={info.label}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                    className="flex items-center gap-6 group"
-                  >
-                    <div className="w-14 h-14 bg-white border border-editorial-border rounded-full flex items-center justify-center flex-shrink-0 shadow-sm group-hover:border-editorial-accent transition-colors duration-300">
-                      <Icon className="w-6 h-6 text-editorial-navy group-hover:text-editorial-accent transition-colors duration-300" />
-                    </div>
-                    <div>
-                      <div className="text-editorial-subtext text-sm uppercase tracking-wider mb-1">{info.label}</div>
-                      <div className="text-editorial-navy font-serif font-bold text-lg">{info.value}</div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
+        <div className="max-w-2xl mx-auto">
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-white p-8 md:p-10 border border-editorial-border shadow-sm"
+            className="bg-white p-8 md:p-10 border border-editorial-border shadow-sm rounded-xl"
           >
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div>
@@ -131,7 +87,7 @@ export default function Contact() {
                   {...register('name')}
                   type="text"
                   id="name"
-                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border focus:outline-none focus:border-editorial-accent transition-colors text-editorial-navy placeholder-editorial-subtext/50"
+                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border rounded-lg focus:outline-none focus:border-editorial-accent transition-colors text-editorial-navy placeholder-editorial-subtext/50"
                   placeholder="Your name"
                 />
                 {errors.name && (
@@ -147,7 +103,7 @@ export default function Contact() {
                   {...register('email')}
                   type="email"
                   id="email"
-                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border focus:outline-none focus:border-editorial-accent transition-colors text-editorial-navy placeholder-editorial-subtext/50"
+                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border rounded-lg focus:outline-none focus:border-editorial-accent transition-colors text-editorial-navy placeholder-editorial-subtext/50"
                   placeholder="your@email.com"
                 />
                 {errors.email && (
@@ -163,7 +119,7 @@ export default function Contact() {
                   {...register('subject')}
                   type="text"
                   id="subject"
-                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border focus:outline-none focus:border-editorial-accent transition-colors text-editorial-navy placeholder-editorial-subtext/50"
+                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border rounded-lg focus:outline-none focus:border-editorial-accent transition-colors text-editorial-navy placeholder-editorial-subtext/50"
                   placeholder="How can I help?"
                 />
                 {errors.subject && (
@@ -179,7 +135,7 @@ export default function Contact() {
                   {...register('message')}
                   id="message"
                   rows={5}
-                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border focus:outline-none focus:border-editorial-accent transition-colors resize-none text-editorial-navy placeholder-editorial-subtext/50"
+                  className="w-full px-4 py-3 bg-editorial-bg border border-editorial-border rounded-lg focus:outline-none focus:border-editorial-accent transition-colors resize-none text-editorial-navy placeholder-editorial-subtext/50"
                   placeholder="Tell me about your project..."
                 />
                 {errors.message && (
@@ -190,7 +146,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-8 py-4 bg-editorial-navy text-white font-serif text-lg hover:bg-editorial-accent transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full px-8 py-4 bg-editorial-navy text-white font-serif text-lg hover:bg-editorial-accent transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed rounded-xl"
               >
                 {isSubmitting ? (
                   <>
