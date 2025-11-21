@@ -159,20 +159,20 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-dark-bg flex items-center justify-center p-4">
+      <div className="min-h-screen bg-editorial-bg flex items-center justify-center p-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="card-dark max-w-md w-full"
+          className="bg-white border border-editorial-border shadow-sm rounded-xl p-8 max-w-md w-full"
         >
           <div className="flex items-center justify-center mb-6">
-            <div className="w-16 h-16 bg-accent-primary/10 rounded-full flex items-center justify-center">
-              <Lock className="w-8 h-8 text-accent-primary" />
+            <div className="w-16 h-16 bg-editorial-accent/10 rounded-full flex items-center justify-center">
+              <Lock className="w-8 h-8 text-editorial-accent" />
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-center mb-2">Admin Login</h1>
-          <p className="text-text-secondary text-center mb-6">
+          <h1 className="text-2xl font-serif font-bold text-center mb-2 text-editorial-navy">Admin Login</h1>
+          <p className="text-editorial-subtext text-center mb-6">
             Enter your password to access the blog admin
           </p>
           <form onSubmit={handleLogin}>
@@ -181,15 +181,15 @@ export default function AdminPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter password"
-              className="w-full bg-dark-elevated border border-dark-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-primary transition-colors mb-4"
+              className="w-full bg-white border border-editorial-border rounded-xl px-4 py-3 text-editorial-navy focus:outline-none focus:border-editorial-accent transition-colors mb-4"
               required
             />
             {message && (
-              <p className="text-red-400 text-sm mb-4 text-center">{message}</p>
+              <p className="text-red-500 text-sm mb-4 text-center">{message}</p>
             )}
             <button
               type="submit"
-              className="w-full bg-accent-primary hover:bg-accent-secondary text-white font-medium py-3 rounded-xl transition-colors duration-300"
+              className="w-full bg-editorial-navy hover:bg-editorial-accent text-white font-serif font-bold py-3 rounded-xl transition-colors duration-300"
             >
               Login
             </button>
@@ -202,7 +202,7 @@ export default function AdminPage() {
   // List View
   if (view === 'list') {
     return (
-      <div className="min-h-screen bg-dark-bg py-12 px-4">
+      <div className="min-h-screen bg-editorial-bg py-12 px-4">
         <div className="container-custom max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -211,16 +211,16 @@ export default function AdminPage() {
           >
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h1 className="text-3xl sm:text-4xl font-bold mb-2">
-                  Blog <span className="gradient-text">Posts</span>
+                <h1 className="text-3xl sm:text-4xl font-serif font-bold mb-2 text-editorial-navy">
+                  Blog <span className="text-editorial-accent italic">Posts</span>
                 </h1>
-                <p className="text-text-secondary">
+                <p className="text-editorial-subtext">
                   Manage your blog posts
                 </p>
               </div>
               <button
                 onClick={handleNew}
-                className="bg-accent-primary hover:bg-accent-secondary text-white font-medium px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2"
+                className="bg-editorial-navy hover:bg-editorial-accent text-white font-serif font-bold px-6 py-3 rounded-xl transition-colors duration-300 flex items-center gap-2"
               >
                 <Plus size={20} />
                 New Post
@@ -232,11 +232,10 @@ export default function AdminPage() {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`mb-6 p-4 rounded-xl ${
-                  message.startsWith('✅')
-                    ? 'bg-green-500/10 border border-green-500/20 text-green-400'
-                    : 'bg-red-500/10 border border-red-500/20 text-red-400'
-                }`}
+                className={`mb-6 p-4 rounded-xl ${message.startsWith('✅')
+                  ? 'bg-green-50 border border-green-200 text-green-700'
+                  : 'bg-red-50 border border-red-200 text-red-700'
+                  }`}
               >
                 {message}
               </motion.div>
@@ -244,15 +243,15 @@ export default function AdminPage() {
 
             {isLoading ? (
               <div className="text-center py-12">
-                <div className="w-12 h-12 border-4 border-accent-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-                <p className="text-text-secondary">Loading blog posts...</p>
+                <div className="w-12 h-12 border-4 border-editorial-accent border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                <p className="text-editorial-subtext">Loading blog posts...</p>
               </div>
             ) : blogPosts.length === 0 ? (
-              <div className="text-center py-12 card-dark">
-                <p className="text-text-secondary mb-4">No blog posts yet.</p>
+              <div className="text-center py-12 bg-white border border-editorial-border rounded-xl p-8">
+                <p className="text-editorial-subtext mb-4">No blog posts yet.</p>
                 <button
                   onClick={handleNew}
-                  className="bg-accent-primary hover:bg-accent-secondary text-white font-medium px-6 py-3 rounded-xl transition-colors duration-300"
+                  className="bg-editorial-navy hover:bg-editorial-accent text-white font-serif font-bold px-6 py-3 rounded-xl transition-colors duration-300"
                 >
                   Create Your First Post
                 </button>
@@ -264,28 +263,28 @@ export default function AdminPage() {
                     key={post.slug}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="card-dark flex items-center justify-between"
+                    className="bg-white border border-editorial-border shadow-sm rounded-xl p-6 flex items-center justify-between hover:shadow-md transition-shadow"
                   >
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-1">{post.title}</h3>
-                      <p className="text-text-secondary text-sm mb-2">
+                      <h3 className="text-xl font-serif font-bold mb-1 text-editorial-navy">{post.title}</h3>
+                      <p className="text-editorial-subtext text-sm mb-2">
                         {post.category} • {new Date(post.date).toLocaleDateString()}
                       </p>
-                      <p className="text-text-tertiary text-sm line-clamp-2">
+                      <p className="text-editorial-subtext/80 text-sm line-clamp-2">
                         {post.excerpt}
                       </p>
                     </div>
                     <div className="ml-4 flex gap-2">
                       <button
                         onClick={() => handleEdit(post)}
-                        className="bg-dark-elevated hover:bg-dark-hover border border-dark-border text-text-primary font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
+                        className="bg-white hover:bg-editorial-bg border border-editorial-border text-editorial-navy font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
                       >
                         <Edit size={16} />
                         Edit
                       </button>
                       <button
                         onClick={() => handleDelete(post.slug, post.title)}
-                        className="bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
+                        className="bg-white hover:bg-red-50 border border-editorial-border hover:border-red-200 text-editorial-subtext hover:text-red-600 font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
                       >
                         <Trash2 size={16} />
                         Delete
@@ -303,7 +302,7 @@ export default function AdminPage() {
 
   // Create/Edit Form View
   return (
-    <div className="min-h-screen bg-dark-bg py-12 px-4">
+    <div className="min-h-screen bg-editorial-bg py-12 px-4">
       <div className="container-custom max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -313,24 +312,24 @@ export default function AdminPage() {
           <div className="flex items-center gap-4 mb-8">
             <button
               onClick={() => setView('list')}
-              className="bg-dark-elevated hover:bg-dark-hover border border-dark-border text-text-primary font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
+              className="bg-white hover:bg-editorial-bg border border-editorial-border text-editorial-navy font-medium px-4 py-2 rounded-xl transition-colors duration-300 flex items-center gap-2"
             >
               <List size={16} />
               Back to List
             </button>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-bold mb-2">
-            {view === 'edit' ? 'Edit' : 'Create'} <span className="gradient-text">Blog Post</span>
+          <h1 className="text-3xl sm:text-4xl font-serif font-bold mb-2 text-editorial-navy">
+            {view === 'edit' ? 'Edit' : 'Create'} <span className="text-editorial-accent italic">Blog Post</span>
           </h1>
-          <p className="text-text-secondary mb-8">
+          <p className="text-editorial-subtext mb-8">
             {view === 'edit' ? 'Update your blog post' : 'Add a new blog post to your website'}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Title */}
             <div>
-              <label className="block text-text-primary font-medium mb-2">
+              <label className="block text-editorial-navy font-bold mb-2">
                 Title *
               </label>
               <input
@@ -338,20 +337,20 @@ export default function AdminPage() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter your blog post title"
-                className="w-full bg-dark-elevated border border-dark-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-primary transition-colors"
+                className="w-full bg-white border border-editorial-border rounded-xl px-4 py-3 text-editorial-navy focus:outline-none focus:border-editorial-accent transition-colors"
                 required
               />
             </div>
 
             {/* Category */}
             <div>
-              <label className="block text-text-primary font-medium mb-2">
+              <label className="block text-editorial-navy font-bold mb-2">
                 Category *
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full bg-dark-elevated border border-dark-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-primary transition-colors"
+                className="w-full bg-white border border-editorial-border rounded-xl px-4 py-3 text-editorial-navy focus:outline-none focus:border-editorial-accent transition-colors"
                 required
               >
                 <option value="Teaching">Teaching</option>
@@ -365,7 +364,7 @@ export default function AdminPage() {
 
             {/* Excerpt */}
             <div>
-              <label className="block text-text-primary font-medium mb-2">
+              <label className="block text-editorial-navy font-bold mb-2">
                 Excerpt (Optional)
               </label>
               <input
@@ -373,13 +372,13 @@ export default function AdminPage() {
                 value={excerpt}
                 onChange={(e) => setExcerpt(e.target.value)}
                 placeholder="Brief summary (if empty, will use first 150 characters)"
-                className="w-full bg-dark-elevated border border-dark-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-primary transition-colors"
+                className="w-full bg-white border border-editorial-border rounded-xl px-4 py-3 text-editorial-navy focus:outline-none focus:border-editorial-accent transition-colors"
               />
             </div>
 
             {/* Content */}
             <div>
-              <label className="block text-text-primary font-medium mb-2">
+              <label className="block text-editorial-navy font-bold mb-2">
                 Content *
               </label>
               <textarea
@@ -387,10 +386,10 @@ export default function AdminPage() {
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="Write your blog post content here... You can use markdown formatting like **bold**, *italic*, ## headings, etc."
                 rows={15}
-                className="w-full bg-dark-elevated border border-dark-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-primary transition-colors resize-y"
+                className="w-full bg-white border border-editorial-border rounded-xl px-4 py-3 text-editorial-navy focus:outline-none focus:border-editorial-accent transition-colors resize-y"
                 required
               />
-              <p className="text-text-tertiary text-sm mt-2">
+              <p className="text-editorial-subtext text-sm mt-2">
                 Supports Markdown: **bold**, *italic*, ## headings, - bullet points
               </p>
             </div>
@@ -400,11 +399,10 @@ export default function AdminPage() {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`p-4 rounded-xl ${
-                  message.startsWith('✅')
-                    ? 'bg-green-500/10 border border-green-500/20 text-green-400'
-                    : 'bg-red-500/10 border border-red-500/20 text-red-400'
-                }`}
+                className={`p-4 rounded-xl ${message.startsWith('✅')
+                  ? 'bg-green-50 border border-green-200 text-green-700'
+                  : 'bg-red-50 border border-red-200 text-red-700'
+                  }`}
               >
                 {message}
               </motion.div>
@@ -414,7 +412,7 @@ export default function AdminPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-accent-primary hover:bg-accent-secondary text-white font-medium py-4 rounded-xl transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-editorial-navy hover:bg-editorial-accent text-white font-serif font-bold py-4 rounded-xl transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <>
@@ -430,9 +428,9 @@ export default function AdminPage() {
             </button>
           </form>
 
-          <div className="mt-8 p-4 bg-dark-elevated border border-dark-border rounded-xl">
-            <h3 className="font-semibold mb-2">Quick Tips:</h3>
-            <ul className="text-text-secondary text-sm space-y-1">
+          <div className="mt-8 p-4 bg-white border border-editorial-border rounded-xl">
+            <h3 className="font-bold text-editorial-navy mb-2">Quick Tips:</h3>
+            <ul className="text-editorial-subtext text-sm space-y-1">
               <li>• Posts are automatically sorted by date (newest first)</li>
               <li>• Read time is calculated automatically</li>
               <li>• Your site will rebuild in 1-2 minutes after publishing</li>
