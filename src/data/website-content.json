@@ -1,0 +1,107 @@
+{
+  "siteName": "Ms. Irene ESL Portfolio",
+  "siteDescription": "Professional portfolio website for Ms. Irene, an ESL teacher with over 13 years of experience in Administration, Customer Service, Training, and ESL Teaching.",
+  "pages": {
+    "home": {
+      "title": "Home",
+      "path": "/home",
+      "content": "\n        Ms. Irene's ESL Teaching Portfolio - The Art of Language\n        Established 2012\n\n        Tagline: Bridging cultures through expert English instruction. A research-backed approach to mastering communication.\n\n        Teaching Philosophy Summary:\n        Education is not just about transferring knowledge; it is about igniting a curiosity that lasts a lifetime. My approach combines rigorous academic standards with a deep empathy for the learner's journey.\n\n        Core Approaches:\n        - Communicative Approach: Language lives in interaction. Focus on real-world usage, moving beyond textbooks to authentic, meaningful communication.\n        - Cultural Intelligence: Understanding a language means understanding its culture. Lessons integrate cultural nuances for true intercultural competence.\n\n        Services Offered:\n        1. Private Tutoring - $50 per session\n           - One-on-One Instruction\n           - Bespoke lessons tailored to specific goals (academic, professional, or personal)\n           - Features: Custom Syllabus, Flexible Timing, Detailed Feedback\n\n        2. Conversation Seminar - $30 per session\n           - Small Group Practice (Max 4 Students)\n           - Guided discussions on complex topics to improve fluency, vocabulary, and confidence\n           - Features: Current Events, Peer Interaction\n\n        3. Mastery Course - $150 full course\n           - Intensive Program\n           - Multi-week deep dive into specific language skills (Academic Writing or Business English)\n           - Features: Certificate, Course Materials, Final Assessment\n\n        Experience Highlights:\n        - Academic Foundation: Master's in TESOL (In Progress), Bachelor's in Education, Psychology specialization\n        - 13+ Years Teaching Experience across 5+ countries\n        - 1000+ Students Mentored\n        - Specialized in ESL & Business English\n        - Curriculum Development Expert\n\n        Statistics:\n        - 13+ Years Teaching\n        - 5 Countries\n        - 1000+ Students\n        - 100% Satisfaction\n\n        Testimonials:\n        - Isabella M. (Student): \"Ms. Irene changed my vision about grammar and writing because she taught me with love.\"\n        - Sarah T. (Student): \"Ms. Irene's teaching style is incredibly effective. I have seen a remarkable improvement in my English skills.\"\n        - Sarah L-M. (Supervisor): \"Irene is an excellent teacher who believes in really teaching students. She is always willing to try new methods.\"\n        - Daniel L. (Student): \"Learning English with Ms. Irene has been a game-changer for me. Her dedication boosted my confidence.\"\n      "
+    },
+    "aboutMe": {
+      "title": "About Me",
+      "path": "/about-me",
+      "content": "\n        About Ms. Irene - Professional Profile\n\n        Biography:\n        My name is Irene. I am from New Delhi, India. I have over 13 years of work experience in Administration, Customer Service, Training, and ESL Teaching. I have traveled to different countries teaching students and prospective ESL Teachers.\n\n        I currently live in the USA, where I am studying to be a trained TESOL teacher. My journey has been defined by a passion for connecting with people from diverse backgrounds and empowering them through language.\n\n        Portfolio Mission:\n        \"To demonstrate my commitment to student-centered learning, cultural responsiveness, and evidence-based teaching practices that empower language learners to achieve their goals.\"\n\n        Teaching Philosophy Core Beliefs:\n        - Effective language learning occurs when students are at the center of the instructional process\n        - Every learner presents unique needs, skills, and experiences\n        - Essential to customize teaching strategies to address individual variances\n        - Language and culture are intrinsically linked\n        - Integrate cultural awareness within language instruction\n        - Promote intercultural competence\n\n        Teaching Approaches:\n        1. Communicative: Real-world communication and functional language use through authentic interactions\n        2. Task-Based: Practical tasks that prompt students to use English in real-world situations\n        3. Inclusive: A supportive environment where humor and connection encourage risk-taking\n\n        Highlights:\n        - Lesson Plans: Comprehensive plans demonstrating communicative language teaching\n        - Book Reports: In-depth analysis and reflections on influential TESOL literature\n        - Philosophy: Detailed statement and action research case studies\n        - Experience: 13+ years of teaching across multiple countries\n        - Portfolio: Instructional materials and innovative teaching projects\n        - Testimonials: Feedback highlighting the impact of teaching methods\n      "
+    },
+    "professionalExperience": {
+      "title": "Professional Experience",
+      "path": "/professional-experience",
+      "content": "\n        Professional Experience\n\n        Tabs/Categories:\n        - TESOL Roles\n        - Other Experience\n        - Professional Development\n        - CV & Contact\n\n        Professional experience details available on this page including teaching positions, administrative roles, and career development history.\n      "
+    },
+    "teachingCurriculum": {
+      "title": "Teaching & Curriculum",
+      "path": "/teaching-curriculum",
+      "content": "\n        Teaching & Curriculum\n\n        Categories:\n        - Teaching Experience\n        - Lesson Plans\n        - Curriculum Development\n\n        Details about teaching methodologies, curriculum design, and instructional materials developed by Ms. Irene.\n      "
+    },
+    "teachingPhilosophy": {
+      "title": "Teaching Philosophy",
+      "path": "/teaching-philosophy",
+      "content": "\n        Teaching Philosophy\n\n        Core Belief: Language learning combines cognitive processes with social, emotional, and experiential journeys.\n\n        Key Principles:\n        - Student-centered instruction\n        - Cultural responsiveness\n        - Evidence-based teaching practices\n        - Communicative language teaching\n        - Task-based learning\n        - Inclusive classroom environment\n      "
+    },
+    "researchScholarship": {
+      "title": "Research & Scholarship",
+      "path": "/research-scholarship",
+      "content": "\n        Research & Scholarship\n\n        Categories:\n        - Research\n        - Book Reports\n        - Presentations\n        - Assessment\n\n        Academic work, research papers, book analyses, and professional presentations by Ms. Irene.\n      "
+    },
+    "workExperience": {
+      "title": "Work Experience",
+      "path": "/work-experience",
+      "content": "\n        Work Experience\n\n        13+ years of professional experience including:\n        - ESL Teaching positions\n        - Administration roles\n        - Customer Service\n        - Training and Development\n\n        Experience spans multiple countries and diverse educational settings.\n      "
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "path": "/portfolio",
+      "content": "\n        Portfolio\n\n        Collection of:\n        - Teaching materials\n        - Lesson plans\n        - Curriculum samples\n        - Instructional projects\n        - Educational resources\n      "
+    },
+    "tesol": {
+      "title": "TESOL",
+      "path": "/tesol",
+      "content": "\n        TESOL (Teaching English to Speakers of Other Languages)\n\n        Subpages:\n        - Book Reports: Analysis of TESOL literature and educational texts\n        - Lesson Plans: Detailed lesson plans for ESL instruction\n        - Test Technical Manual: Assessment and testing materials\n\n        Ms. Irene is currently pursuing a Master's in TESOL.\n      "
+    },
+    "bookReports": {
+      "title": "Book Reports",
+      "path": "/tesol/book-reports",
+      "content": "\n        Book Reports\n\n        In-depth analysis and reflections on influential TESOL literature and educational texts.\n      "
+    },
+    "lessonPlans": {
+      "title": "Lesson Plans",
+      "path": "/tesol/lesson-plans",
+      "content": "\n        Lesson Plans\n\n        Comprehensive lesson plans demonstrating communicative language teaching approaches and task-based learning methodologies.\n      "
+    },
+    "testManual": {
+      "title": "Test Technical Manual",
+      "path": "/tesol/test-manual",
+      "content": "\n        Test Technical Manual\n\n        Assessment materials, testing guidelines, and evaluation frameworks for ESL instruction.\n      "
+    },
+    "blog": {
+      "title": "Blog",
+      "path": "/blog",
+      "content": "\n        Blog\n\n        Articles and posts about ESL teaching, language learning, and educational insights.\n      "
+    },
+    "testimonials": {
+      "title": "Testimonials",
+      "path": "/testimonials",
+      "content": "\n        Testimonials\n\n        Feedback and reviews from students, colleagues, and supervisors about Ms. Irene's teaching.\n\n        Featured testimonials include praise for her teaching methods, dedication, and positive impact on students' language learning journeys.\n      "
+    },
+    "contact": {
+      "title": "Contact",
+      "path": "/contactus",
+      "content": "\n        Contact\n\n        Contact form to reach Ms. Irene for:\n        - Tutoring inquiries\n        - Professional collaboration\n        - Speaking engagements\n        - General questions\n\n        Form fields: Name, Email, Subject, Message\n      "
+    },
+    "resume": {
+      "title": "Resume",
+      "path": "/resume",
+      "content": "\n        Resume\n\n        Download Ms. Irene's professional resume/CV with detailed education, experience, and qualifications.\n      "
+    }
+  },
+  "quickFacts": {
+    "name": "Ms. Irene",
+    "origin": "New Delhi, India",
+    "currentLocation": "USA",
+    "yearsExperience": "13+",
+    "studentsCount": "1000+",
+    "countriesTaught": "5+",
+    "currentStudy": "Master's in TESOL",
+    "specializations": [
+      "ESL Teaching",
+      "Business English",
+      "Curriculum Development",
+      "Teacher Training"
+    ],
+    "services": [
+      "Private Tutoring ($50/session)",
+      "Conversation Seminar ($30/session)",
+      "Mastery Course ($150)"
+    ],
+    "contactPage": "/contactus"
+  }
+}
